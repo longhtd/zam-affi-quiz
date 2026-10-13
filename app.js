@@ -239,8 +239,17 @@ const QUIZ_CATALOG = {
 document.addEventListener("DOMContentLoaded", async () => {
   extractTrackingSubId();
   resolveActiveQuiz();
+  renderTopNavBar();
   renderDirectoryFooter();
   startQuiz();
+
+  // Support browser back/forward buttons
+  window.addEventListener("popstate", () => {
+    resolveActiveQuiz();
+    renderTopNavBar();
+    renderDirectoryFooter();
+    startQuiz();
+  });
 });
 
 // Extract Tracking Parameters (Video ID, UTM, etc.)
@@ -438,6 +447,51 @@ window.handleOutboundClick = function(event, el) {
   // On Vercel production (quiz.zamverse.com), allow natural navigation to /out/:slug which executes api/out.js 307 redirect
 };
 
+// Render Top Navigation Bar
+function renderTopNavBar() {
+  const container = document.getElementById("navTabs");
+  if (!container) return;
+
+  const currentSlug = currentQuizData.slug;
+  const tabIcons = {
+    "soulmate": "✨ Soulmate",
+    "love-secret": "👑 Love Secret",
+    "glowup": "💎 Glow-Up",
+    "brainwave": "⚡ Brainwave"
+  };
+
+  const tabsHtml = Object.values(QUIZ_CATALOG.quizzes).map(q => {
+    const activeClass = q.slug === currentSlug ? "active" : "";
+    const label = tabIcons[q.slug] || q.title.split("?")[0].substring(0, 16);
+    return `
+      <button class="nav-tab-btn ${activeClass}" onclick="switchQuiz('${q.slug}')">
+        <span>${label}</span>
+      </button>
+    `;
+  }).join("");
+
+  container.innerHTML = tabsHtml;
+}
+
+// Switch Quiz dynamically with clean URL update
+window.switchQuiz = function(slug) {
+  if (!QUIZ_CATALOG.quizzes[slug]) return;
+
+  currentQuizData = QUIZ_CATALOG.quizzes[slug];
+  document.title = `${currentQuizData.title} | Zamverse Quiz`;
+
+  // Update browser URL without page reload
+  const newUrl = `/${slug}${window.location.search}`;
+  window.history.pushState({ slug }, "", newUrl);
+
+  renderTopNavBar();
+  renderDirectoryFooter();
+  startQuiz();
+
+  // Smooth scroll back to top of quiz card
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
 // Directory Footer to Switch between Quizzes easily
 function renderDirectoryFooter() {
   const container = document.getElementById("directoryChips");
@@ -446,7 +500,7 @@ function renderDirectoryFooter() {
   const currentSlug = currentQuizData.slug;
   const items = Object.values(QUIZ_CATALOG.quizzes).map(q => {
     const activeClass = q.slug === currentSlug ? "active" : "";
-    return `<a href="/${q.slug}" class="dir-chip ${activeClass}">${q.badge.split(" ")[0]} ${q.title.split("?")[0].substring(0, 24)}...</a>`;
+    return `<a href="/${q.slug}" class="dir-chip ${activeClass}" onclick="event.preventDefault(); switchQuiz('${q.slug}')">${q.badge.split(" ")[0]} ${q.title.split("?")[0].substring(0, 24)}...</a>`;
   }).join("");
 
   container.innerHTML = items;

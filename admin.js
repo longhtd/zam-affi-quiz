@@ -317,6 +317,33 @@ function parseYouTubeId(input) {
   return cleaned || "web";
 }
 
+// Studio Mode & Inputs State
+let currentStudioMode = "quick";
+let currentVideoTitle = "";
+let currentScriptText = "";
+
+window.setStudioMode = function(mode) {
+  currentStudioMode = mode;
+  document.getElementById("modeQuickBtn").classList.toggle("active", mode === "quick");
+  document.getElementById("modeAdvancedBtn").classList.toggle("active", mode === "advanced");
+
+  const prodGroup = document.getElementById("productSelectGroup");
+  if (prodGroup) {
+    prodGroup.style.display = "block";
+  }
+};
+
+window.onTitleInputChanged = function(val) {
+  currentVideoTitle = val.trim();
+  generateOutputs();
+};
+
+window.onScriptInputChanged = function() {
+  const el = document.getElementById("scriptInput");
+  currentScriptText = el ? el.value.trim() : "";
+  generateAiPrompt();
+};
+
 // Handlers
 window.onVideoInputChanged = function(val) {
   const parsed = parseYouTubeId(val);
@@ -337,8 +364,14 @@ window.toggleLang = function(lang) {
 
 window.toggleLinkMode = function(mode) {
   currentLinkMode = mode;
-  document.getElementById("modeQuizLabel").classList.toggle("active", mode === "quiz");
-  document.getElementById("modeDirectLabel").classList.toggle("active", mode === "direct");
+  const qLabel = document.getElementById("modeQuizLabel");
+  const rLabel = document.getElementById("modeRandomLabel");
+  const dLabel = document.getElementById("modeDirectLabel");
+
+  if (qLabel) qLabel.classList.toggle("active", mode === "quiz");
+  if (rLabel) rLabel.classList.toggle("active", mode === "random");
+  if (dLabel) dLabel.classList.toggle("active", mode === "direct");
+
   generateOutputs();
 };
 
@@ -373,27 +406,120 @@ window.randomizeVariants = function() {
   
   // Highlight flash
   const outputSection = document.getElementById("readyPostsTab");
-  outputSection.style.opacity = "0.5";
-  setTimeout(() => {
-    outputSection.style.opacity = "1";
-  }, 150);
+  if (outputSection) {
+    outputSection.style.opacity = "0.5";
+    setTimeout(() => {
+      outputSection.style.opacity = "1";
+    }, 150);
+  }
+};
+
+// ============================================================================
+// SMART MATCHING & 1-CLICK ACTIONS
+// ============================================================================
+
+// Intelligent keyword matching to pair video with ideal ClickBank product
+function smartMatchProduct(title, script) {
+  const text = (title + " " + script).toLowerCase();
+
+  // Match: Duke of the North / Protective Male Lead / Romantic Destiny
+  if (/duke|công tước|bạo quân|bắc cung|tổng tài|soulmate|định mệnh|hoàng tử|hôn thê|nam chính|ép gả/.test(text)) {
+    return "soulmate";
+  }
+
+  // Match: Male distance / Misunderstandings / Hero Instinct
+  if (/hiểu lầm|lạnh nhạt|vô tâm|rời đi|bỏ đi|tâm lý đàn ông|giữ chân|hero instinct|cầu xin/.test(text)) {
+    return "love-secret";
+  }
+
+  // Match: Flirting / Text Chemistry / Charisma
+  if (/nhắn tin|tán tỉnh|thả thính|cưa cẩm|text chemistry|quyến rũ|bẫy tình/.test(text)) {
+    return "devotion";
+  }
+
+  // Match: Breakup / Ex / Regret / Reconciliation
+  if (/người yêu cũ|chia tay|hối hận|quay lại|bạch nguyệt quang|níu kéo|ex/.test(text)) {
+    return "ex-factor";
+  }
+
+  // Match: Cinderella glow-up / Rebirth / Beauty / Coffee ritual
+  if (/trùng sinh|lọ lem|lột xác|xinh đẹp|giảm cân|eo thon|dáng đẹp|cà phê|béo|xấu xí/.test(text)) {
+    return "coffee-ritual";
+  }
+
+  // Match: Herbal tea / Royal elixir
+  if (/trà|thảo mộc|cung đình|tiêu mỡ|trà chiều/.test(text)) {
+    return "tea-burn";
+  }
+
+  // Match: Numerology / Life path number
+  if (/thần số học|ngày sinh|con số linh hồn|lá số/.test(text)) {
+    return "numerology";
+  }
+
+  // Match: Astrology / Horoscope / Zodiac
+  if (/cung hoàng đạo|chiêm tinh|bản đồ sao|sao chiếu|hành tinh/.test(text)) {
+    return "astrology";
+  }
+
+  // Match: Aura / Magnetic charm
+  if (/hào quang|khí chất|aura|năng lượng quyến rũ/.test(text)) {
+    return "aura";
+  }
+
+  // Match: Brainwave / System / Wealth
+  if (/sóng não|hệ thống|làm giàu|tiềm thức|luật hấp dẫn|theta|nữ cường|tài sản/.test(text)) {
+    return "brainwave";
+  }
+
+  // Default: Universal random route
+  return "random";
+}
+
+// 1-Click: Match according to Title & Script
+window.smartMatchAndGenerate = function() {
+  const matchedSlug = smartMatchProduct(currentVideoTitle, currentScriptText);
+  const selectEl = document.getElementById("productSelect");
+  if (selectEl) {
+    selectEl.value = matchedSlug;
+  }
+  randomizeVariants();
+};
+
+// 1-Click: Pick random product & generate instantly
+window.randomizeProductAndGenerate = function() {
+  const availableKeys = Object.keys(PRODUCTS_DATA);
+  const randomKey = availableKeys[Math.floor(Math.random() * availableKeys.length)];
+  const selectEl = document.getElementById("productSelect");
+  if (selectEl) {
+    selectEl.value = randomKey;
+  }
+  randomizeVariants();
 };
 
 // ============================================================================
 // MAIN GENERATOR LOGIC
 // ============================================================================
 function generateOutputs() {
-  const prodKey = document.getElementById("productSelect").value || "soulmate";
-  const p = PRODUCTS_DATA[prodKey] || PRODUCTS_DATA["soulmate"];
+  const prodKey = document.getElementById("productSelect").value || "random";
+  const p = PRODUCTS_DATA[prodKey] || PRODUCTS_DATA["random"];
   const vid = currentVideoId || "web";
 
-  // Build Target Link
+  // Build Target Link based on product & linkMode
   let finalLink = "";
-  if (currentLinkMode === "quiz") {
+  if (currentLinkMode === "random" || p.slug === "random") {
+    finalLink = `https://quiz.zamverse.com/random?v=${vid}`;
+  } else if (currentLinkMode === "quiz") {
     finalLink = `https://quiz.zamverse.com/${p.slug}?v=${vid}`;
   } else {
     finalLink = `https://quiz.zamverse.com/out/${p.outSlug}?tid=${vid}`;
   }
+
+  // Update Status Banner
+  const statusProdName = document.getElementById("statusProdName");
+  const statusLinkUrl = document.getElementById("statusLinkUrl");
+  if (statusProdName) statusProdName.textContent = p.name;
+  if (statusLinkUrl) statusLinkUrl.textContent = finalLink;
 
   if (currentLang === "en") {
     generateEnglishVariants(p, finalLink);
@@ -405,43 +531,53 @@ function generateOutputs() {
 }
 
 // ----------------------------------------------------------------------------
-// ENGLISH VARIANTS (RANDOMIZED POOLS)
+// ENGLISH VARIANTS (MAX-CTR RANDOMIZED POOLS)
 // ----------------------------------------------------------------------------
 function generateEnglishVariants(p, link) {
-  // Pool 1: Emotional Hook Openers
+  const titleMention = currentVideoTitle ? ` in "${currentVideoTitle}"` : " in this chapter";
+
+  // Emotional Openers
   const emotionalOpeners = [
-    `The way he looked at her in this scene spoke louder than a thousand words... 🥹❤️`,
-    `Can we just take a moment to appreciate this chapter? My heart actually skipped a beat... 🥺✨`,
-    `The unspoken devotion between them in this episode is everything I've ever wanted... 😭💖`,
-    `That protective stare gave me literal chills. He would burn down the whole kingdom for her... 👑🔥`,
-    `Watching them navigate this misunderstanding broke my heart and healed it all at once... 💔❤️`
+    `The unspoken devotion between them${titleMention} had my heart racing... 🥹❤️`,
+    `Can we just appreciate that intense stare${titleMention}? He would literally burn the whole kingdom for her... 🥺✨`,
+    `The raw chemistry here made me tear up... You can feel how fiercely protective he is... 😭💖`,
+    `Watching them navigate this heartbreaking tension broke my soul and healed it all at once... 💔❤️`,
+    `That protective gesture${titleMention} gave me absolute chills... A true cold Duke devotion! 👑🔥`
   ];
 
-  // Pool 2: Bridge Questions
-  const bridgeQuestions = [
-    `✨ For our romantic readers who believe in true soulmate connections:\nEver wonder what kind of destined archetype is written in your stars?`,
-    `👑 Quick question for the ladies watching:\nIf you could meet your real-life counterpart to this story, what kind of energy would they have?`,
-    `🔮 If you love deep romantic resonance as much as I do:\nThere's a quick intuitive test that reveals the exact archetype destined for you:`,
-    `💫 A fun little gift for our lovely community:\nTake this 45-second private assessment to uncover your personalized romantic reading:`
-  ];
+  // Bridge Questions (Tailored for Random vs Specific Product)
+  let bridgeQuestions = [];
+  if (p.slug === "random") {
+    bridgeQuestions = [
+      `✨ For everyone in love with romantic soulmate stories:\nIf you could meet your destined counterpart in real life, what royal archetype would you attract?\nThere's a 45-second intuitive reader audit to reveal your personalized archetype:`,
+      `👑 Quick question for the ladies watching:\nEver wonder which destined archetype is written in your stars? Our community created this fun 45-second private reading:`,
+      `🔮 If you love deep romantic chemistry as much as I do:\nTake this 45-second private assessment to uncover your destined partner's profile:`
+    ];
+  } else {
+    bridgeQuestions = [
+      `✨ ${p.angleEn}\nThere's a quick 45-second intuitive audit prepared for our readers:`,
+      `👑 For everyone captivated by this episode:\nTake a minute to discover your own personalized profile:`,
+      `🔮 Ever wonder how this story's romantic dynamic reflects your own life? Check your private reading below:`
+    ];
+  }
 
-  // Pool 3: Community Debate Openers
+  // Community Debate Openers
   const debateOpeners = [
-    `Question of the day for our romance readers: If you were in her shoes, would you forgive him after what he did? 🤔💭`,
-    `Let's be completely honest in the comments: Is he acting out of pride, or is he terrified of getting hurt? 💬👇`,
-    `Unpopular opinion: He loved her from chapter one, he was just terrible at showing his feelings! What do you think? 🧐❤️`,
-    `Be honest: Which male lead archetype would YOU choose in real life? The cold protective duke or the charming prince? ⚔️✨`
+    `Question of the day for our romance readers: If you were in her shoes${titleMention}, would you forgive him after what just happened? 🤔💭`,
+    `Let's be honest in the comments: Is he acting out of stubborn pride, or is he terrified of losing her? 💬👇`,
+    `Unpopular opinion: He loved her from the very first chapter, he was just terrible at expressing it! Agree or disagree? 🧐❤️`,
+    `Which archetype would you choose in real life? The cold protective Duke or the charming warm Prince? ⚔️✨`
   ];
 
-  // Pool 4: Curious / Shockingly Accurate Hooks
+  // Curiosity / Barnum Hooks
   const curiosityHooks = [
-    `Someone shared this intuitive archetype test in our Discord last night and it was SHOCKINGLY accurate... 😳🔮`,
-    `I normally don't do online quizzes, but the psychological accuracy of this one gave me literal goosebumps... 🫣✨`,
-    `If you've been seeing repeating synchronicities lately, this personalized reading will feel like someone read your diary... 🌙🗝️`,
-    `Did this test yesterday out of pure curiosity and it described my exact relationship pattern down to the detail: 🤯💫`
+    `Someone in our community shared this 45-second archetype assessment yesterday and the psychological accuracy gave me goosebumps... 😳🔮`,
+    `I normally skip online tests, but the uncanny accuracy of this reader audit felt like someone read my personal diary... 🫣✨`,
+    `If you've been noticing subtle synchronicities lately, this personalized reading will feel shocking... 🌙🗝️`,
+    `Took this test yesterday out of curiosity and it nailed my relationship pattern down to the smallest detail: 🤯💫`
   ];
 
-  // Pool 5: Guarantees / Sub-notes
+  // Guarantees / Sub-notes
   const subnotes = [
     `(100% free • Takes 45 seconds • Instant private reading ✨)`,
     `(Confidential & free • Takes under a minute • Shockingly deep 🔮)`,
@@ -460,7 +596,7 @@ ${pickRandom(subnotes)}`;
   // Variant 2: Community Debate
   const v2 = `${pickRandom(debateOpeners)}
 
-Drop your thoughts below! And while you're here, check out your own romantic archetype test:
+Drop your thoughts below! And while you're here, check out your own romantic archetype reading:
 👉 ${link}
 ${pickRandom(subnotes)}`;
 
@@ -473,13 +609,13 @@ Curious about your own result? Take the 45-second test here:
 (Drop your archetype in the comments below! I want to see who else got mine 👇)`;
 
   // Variant 4: Short & Punchy (Shorts / Community)
-  const v4 = `Who is your real-life destined archetype? 👑✨
+  const v4 = `Who is your real-life destined royal archetype? 👑✨
 Take the 45-second private quiz to uncover your personalized report:
 👉 ${link}`;
 
   // Variant 5: Top 3 Lines Description
   const v5 = `✨ Who is your destined partner? Take the free assessment: ${link}
-📖 Today's Manhwa Chapter Recap & Deep Dive Analysis.
+📖 Today's Manhwa Chapter Recap & Deep Dive Analysis${currentVideoTitle ? ' - ' + currentVideoTitle : ''}.
 🔔 Don't forget to Like, Subscribe, and leave your thoughts in the comments!`;
 
   // Render to UI
@@ -491,25 +627,35 @@ Take the 45-second private quiz to uncover your personalized report:
 }
 
 // ----------------------------------------------------------------------------
-// VIETNAMESE VARIANTS (RANDOMIZED POOLS)
+// VIETNAMESE VARIANTS (MAX-CTR RANDOMIZED POOLS)
 // ----------------------------------------------------------------------------
 function generateVietnameseVariants(p, link) {
+  const titleMentionVi = currentVideoTitle ? ` trong tập "${currentVideoTitle}"` : " trong tập này";
+
   const emotionalOpenersVi = [
-    `Ánh mắt nam chính nhìn cô ấy trong tập này ấm áp xao xuyến thực sự... 🥹❤️`,
+    `Ánh mắt nam chính nhìn cô ấy${titleMentionVi} làm tim mình muốn tan chảy luôn... 🥹❤️`,
     `Có ai xem đến đoạn này mà tim đập thình thịch như mình không? Cảm giác được che chở đúng đỉnh chóp... 🥺✨`,
     `Sự nuông chiều âm thầm của chàng quả thật là ước mơ của mọi cô gái... 😭💖`,
     `Nam chính ngoài lạnh trong nóng thế này ai mà cưỡng lại nổi chứ! 👑🔥`
   ];
 
-  const bridgeQuestionsVi = [
-    `✨ Dành cho các bạn fan mê truyện ngôn tình & hoàng gia:\nĐã bao giờ bạn tự hỏi mẫu 'Bắc Cung Công Tước' ngoài đời thực của mình sẽ là ai chưa?`,
-    `👑 Một bài trắc nghiệm vui 45 giây cho độc giả:\nKhám phá mẫu người yêu tiền định và lá số tình duyên của bạn tại đây:`,
-    `🔮 Tặng các bạn một bài test trực giác thú vị:\nGiải mã tần số cảm xúc và tìm ra chàng trai định mệnh của bạn:`,
-    `💫 Bật mí cho các nàng xem truyện:\nLàm bài kiểm tra tâm lý ngắn 45 giây để xem chân dung và tính cách người ấy:`
-  ];
+  let bridgeQuestionsVi = [];
+  if (p.slug === "random") {
+    bridgeQuestionsVi = [
+      `✨ Tặng các nàng mê truyện ngôn tình một bài trắc nghiệm tính cách hoàng gia 45s:\nNếu bước vào thế giới này, chàng nam chính định mệnh nào sẽ thuộc về bạn?`,
+      `👑 Một bài trắc nghiệm vui 45 giây cho độc giả:\nKhám phá mẫu người yêu tiền định và lá số tình duyên của bạn tại đây:`,
+      `🔮 Tặng các bạn một bài test trực giác thú vị:\nGiải mã tần số cảm xúc và tìm ra chàng trai định mệnh của bạn:`,
+      `💫 Bật mí cho các nàng xem truyện:\nLàm bài kiểm tra tâm lý ngắn 45 giây để xem chân dung và tính cách người ấy:`
+    ];
+  } else {
+    bridgeQuestionsVi = [
+      `✨ ${p.angleVi}\nCó một bài test trực giác 45 giây rất hay dành cho độc giả tại đây:`,
+      `👑 Dành cho các bạn theo dõi tập truyện hôm nay:\nKhám phá bài trắc nghiệm tính cách đặc biệt tại đây:`
+    ];
+  }
 
   const debateOpenersVi = [
-    `Hỏi thật các bạn: Nếu ở vào vị trí của nữ chính, bạn có tha thứ cho nam chính sau tất cả những gì anh ấy đã làm không? 🤔💭`,
+    `Hỏi thật các bạn: Nếu ở vào vị trí của nữ chính${titleMentionVi}, bạn có tha thứ cho nam chính sau tất cả những gì anh ấy đã làm không? 🤔💭`,
     `Anh ấy làm vậy là vì kiêu ngạo hay vì quá sợ mất cô ấy? Mọi người nghĩ sao, chia sẻ ở dưới nhé! 💬👇`,
     `Mọi người thích gu nam chính lạnh lùng bảo vệ âm thầm hay hoàng tử ấm áp dịu dàng hơn? ⚔️✨`
   ];
@@ -546,12 +692,12 @@ Các bạn tò mò kết quả của mình thì thử làm bài test 45 giây n�
 
 (Làm xong nhớ comment kết quả bên dưới xem ai trùng cung hoàng đạo với mình nha 👇)`;
 
-  const v4 = `Ai là chàng 'Bắc Cung Công Tước' ngoài đời thực của bạn? 👑✨
+  const v4 = `Ai là hình mẫu định mệnh của bạn ngoài đời thực? 👑✨
 Làm bài test 45 giây giải mã nhân duyên tại đây:
 👉 ${link}`;
 
-  const v5 = `✨ Ai là người yêu định mệnh của bạn? Xem kết quả bài test miễn phí: ${link}
-📖 Tóm tắt & Phân tích chi tiết tập truyện Manhwa hôm nay.
+  const v5 = `✨ Ai là người yêu định mệnh của bạn? Xem kết quả bài test miễn phí 45s: ${link}
+📖 Tóm tắt & Phân tích chi tiết tập truyện Manhwa hôm nay${currentVideoTitle ? ' - ' + currentVideoTitle : ''}.
 🔔 Nhớ Like và Đăng Ký Kênh để không bỏ lỡ tập tiếp theo nhé!`;
 
   document.getElementById("res1").textContent = v1;
@@ -561,92 +707,100 @@ Làm bài test 45 giây giải mã nhân duyên tại đây:
   document.getElementById("res5").textContent = v5;
 }
 
-// Script input state
-let currentScriptText = "";
-
-window.onScriptInputChanged = function() {
-  const el = document.getElementById("scriptInput");
-  currentScriptText = el ? el.value.trim() : "";
-  generateAiPrompt();
-};
-
 // ============================================================================
-// AI MEGA-PROMPT GENERATOR (20 COMMENTS)
+// AI MEGA-PROMPT GENERATOR (WITH STRUCTURED JSON CONTEXT)
 // ============================================================================
 function generateAiPrompt() {
-  const prodKey = document.getElementById("productSelect").value || "soulmate";
-  const p = PRODUCTS_DATA[prodKey] || PRODUCTS_DATA["soulmate"];
+  const prodKey = document.getElementById("productSelect").value || "random";
+  const p = PRODUCTS_DATA[prodKey] || PRODUCTS_DATA["random"];
   const vid = currentVideoId || "web";
 
   let finalLink = "";
-  if (currentLinkMode === "quiz") {
+  if (currentLinkMode === "random" || p.slug === "random") {
+    finalLink = `https://quiz.zamverse.com/random?v=${vid}`;
+  } else if (currentLinkMode === "quiz") {
     finalLink = `https://quiz.zamverse.com/${p.slug}?v=${vid}`;
   } else {
     finalLink = `https://quiz.zamverse.com/out/${p.outSlug}?tid=${vid}`;
   }
 
-  // Optional Script Section
-  let scriptSection = "";
-  if (currentScriptText) {
-    scriptSection = `
-================================================================================
-📜 EPISODE SCRIPT / CHAPTER SUMMARY CONTEXT PROVIDED BY USER:
-================================================================================
-"""
-${currentScriptText}
-"""
+  // Structured Metadata JSON Payload
+  const promptJsonContext = {
+    system_directive: "zam-affi-comment-generator",
+    video_id: vid,
+    video_title: currentVideoTitle || "Untitled Episode Recap",
+    has_script_context: Boolean(currentScriptText),
+    target_language: currentLang === "en" ? "English" : "Vietnamese",
+    product_selection_mode: p.slug === "random" ? "RANDOM_OR_BEST_FIT" : "SPECIFIC",
+    selected_product_slug: p.slug,
+    selected_product_name: p.name,
+    target_destination_url: finalLink,
+    target_audience: "85%+ Female manga/manhwa romance recap readers, aged 18-35",
+    top_converting_catalog_reference: [
+      { slug: "soulmate", name: "Soulmate Sketch", angle: "Real-life Duke of the North psychic drawing" },
+      { slug: "love-secret", name: "His Secret Obsession", angle: "12-word Hero Instinct trigger that unlocks male devotion" },
+      { slug: "devotion", name: "The Devotion System", angle: "Text Chemistry secrets to keep him hooked" },
+      { slug: "ex-factor", name: "The Ex Factor Guide", angle: "Reverse psychology playbook to become his White Moonlight" },
+      { slug: "glowup", name: "Cinderella Glow-Up / Java Burn", angle: "10-second morning coffee metabolism ritual" },
+      { slug: "tea-burn", name: "Tea Burn", angle: "Noble afternoon tea ritual for waistline & glass skin" },
+      { slug: "numerology", name: "Numerologist", angle: "Life Path Number & soulmate destiny calculation" },
+      { slug: "astrology", name: "Astrology Reading", angle: "Natal chart & destined lover cosmic timing" },
+      { slug: "brainwave", name: "Billionaire Brain Wave", angle: "7-minute Theta brainwave for female lead abundance" }
+    ],
+    script_or_synopsis: currentScriptText || "No script provided. Base your emotional hooks on general romantic manga tropes and the video title."
+  };
 
-CRITICAL INSTRUCTIONS FOR SCRIPT INTEGRATION:
-- Closely analyze the script/plot above.
-- Naturally quote or mention REAL character names (male lead, female lead, rivals), specific high-emotion scenes (e.g., the confession, the cold stare, the protective sacrifice, the misunderstanding, or the revenge glow-up), and poignant moments from this exact chapter.
-- Make each comment sound like an authentic, passionate fan or channel creator who just finished watching this EXACT episode, creating a seamless emotional bridge into the assessment link.
-`;
-  }
+  const isRandomMode = p.slug === "random";
 
   const promptText = `You are a world-class YouTube Community Manager and Direct Response Copywriter specializing in female romance manga / manhwa / webtoon recap channels.
 
-TARGET CHANNEL NICHE:
-- Audience: 85%+ Female readers, aged 18–35.
-- Interests: Otome Isekai, Cold Duke of the North, Protective male leads, Villainess reincarnation, Cinderella glow-up, Soulmate destiny, Tarot, Astrology, and Romantic drama.
-- Vibe: Emotional, cozy, relatable, high-engagement, passionate, protective of female leads.
-${scriptSection}
-YOUR TASK:
-Write exactly 20 DISTINCT, highly engaging, natural-sounding YouTube Pinned Comments to pin at the top of our manga recap video. Every comment must feel like a genuine channel host or fellow fangirl speaking, and smoothly bridge the video's emotional high into the following interactive link:
+================================================================================
+📦 STRUCTURED PROJECT CONTEXT (JSON PAYLOAD):
+================================================================================
+\`\`\`json
+${JSON.stringify(promptJsonContext, null, 2)}
+\`\`\`
 
-OFFER / DESTINATION DETAILS:
-- Product: ${p.name} (Category: ${p.category})
-- Unique Selling Angle: ${currentLang === "en" ? p.angleEn : p.angleVi}
-- Relevant Video Tropes: ${currentLang === "en" ? p.targetTopicEn : p.targetTopicVi}
-- The Exact Link to Embed in every comment:
-  ${finalLink}
+================================================================================
+🎯 YOUR MISSION:
+================================================================================
+Write exactly 20 DISTINCT, emotionally engaging, natural-sounding YouTube Pinned Comments to pin at the top of our manga recap video. Every comment must feel like an authentic, passionate fellow fan or channel host speaking, and smoothly bridge the video's emotional high into the interactive link.
+
+${isRandomMode ? `⚡ DYNAMIC SELECTION INSTRUCTION (RANDOM_OR_BEST_FIT):
+- You have full creative freedom:
+  Option A: Use the Universal Link: https://quiz.zamverse.com/random?v=${vid} (framed as a 45-second intuitive archetype test).
+  Option B: If the video title/script clearly matches one of the catalog products (e.g. Soulmate, Hero Instinct, Glow-Up, or Ex Factor), seamlessly weave in that specific product angle and use: https://quiz.zamverse.com/{chosen_slug}?v=${vid}.` : `🎯 SPECIFIC PRODUCT INSTRUCTION:
+- Anchor the comments around: ${p.name}
+- Product Angle: ${currentLang === 'en' ? p.angleEn : p.angleVi}
+- Embed Link: ${finalLink}`}
 
 LANGUAGE REQUIREMENT:
-Generate all 20 comments in ${currentLang === "en" ? "ENGLISH" : "VIETNAMESE (Tiếng Việt tự nhiên, hợp gu giới trẻ đọc truyện)"}.
+Generate all 20 comments in ${currentLang === "en" ? "ENGLISH" : "VIETNAMESE (Tiếng Việt tự nhiên, trẻ trung, đúng giọng fan truyện tranh)"}.
 
 STRUCTURE THE 20 COMMENTS INTO 5 DISTINCT CATEGORIES (4 comments per category):
 
-1. CATEGORY 1: Deep Emotional & Character-Connected (Hooks into the male lead's devotion or heartbreak)
-   - 4 Comments that start with a touching observation about the chapter${currentScriptText ? " (referencing specific characters or moments from the script)" : ""}, then bridge to the link.
+1. CATEGORY 1: Deep Emotional & Character-Connected (Hooks into the male lead's devotion, unspoken feelings, or heartbreaking moments)
+   - 4 Comments referencing specific characters, scenes${currentVideoTitle ? ' from "' + currentVideoTitle + '"' : ''}, or high-emotion moments.
 
-2. CATEGORY 2: Playful, Sassy & Debate-Provoking (Drives comment section arguments & replies)
-   - 4 Comments asking a spicy question about the female lead's choices or the male lead's red/green flags.
+2. CATEGORY 2: Playful, Sassy & Debate-Provoking (Drives comment section replies and algorithm engagement)
+   - 4 Comments asking a spicy question about the female lead's choice, red flags, or whether they would forgive the male lead.
 
 3. CATEGORY 3: Psychological & "Shockingly Accurate" (Taps into curiosity & the Barnum effect)
-   - 4 Comments emphasizing how uncanny and accurate the assessment was for other viewers.
+   - 4 Comments emphasizing how uncanny and spot-on the 45-second assessment was for other readers.
 
-4. CATEGORY 4: Wholesome & Sisterly Community Gifts (Friendly recommendation style)
+4. CATEGORY 4: Wholesome Sisterly Community Gifts (Friendly recommendation style)
    - 4 Comments written as a sweet gift or fun relaxation activity for the viewers.
 
 5. CATEGORY 5: Short, Punchy & High-Impact (Ideal for YouTube Shorts, Community Posts, or Mobile users)
    - 4 Concise 2-to-3-line comments that drive maximum click-through rate.
 
 STRICT GUIDELINES:
-- DO NOT use cheesy, salesy infomercial language (Never say "Buy now", "Special discount", "Click here to purchase").
-- Frame the link as an interactive, fun, 100% free intuitive test or confidential reading.
+- ZERO AD ODOR: Never use salesy language ("Buy now", "Special deal", "Limited discount").
+- Frame the destination as an interactive, fun, 100% free intuitive assessment or confidential reading.
 - Include natural emojis (✨, 🥹, 👑, 🔮, 💖, 👇) placed tastefully.
-- Every single comment MUST contain the exact link: ${finalLink}
+- Every single comment MUST contain the tracking link.
 
-Please generate the 20 numbered comments now:`;
+Please output the 20 numbered comments now:`;
 
   const outputEl = document.getElementById("aiPromptOutput");
   if (outputEl) {

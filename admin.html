@@ -226,6 +226,110 @@
       box-shadow: 0 8px 30px rgba(157, 78, 221, 0.55);
     }
 
+    .btn-emerald {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
+    }
+
+    .btn-emerald:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(16, 185, 129, 0.55);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(245, 208, 97, 0.3);
+      color: var(--accent-gold-light);
+    }
+
+    .btn-outline:hover {
+      background: rgba(245, 208, 97, 0.12);
+      border-color: var(--accent-gold);
+      transform: translateY(-2px);
+    }
+
+    /* Mode Switcher Bar */
+    .mode-switcher-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 22px;
+      padding: 6px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-md);
+    }
+
+    .mode-switch-btn {
+      flex: 1;
+      padding: 10px 16px;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: var(--transition-smooth);
+    }
+
+    .mode-switch-btn:hover {
+      color: #fff;
+    }
+
+    .mode-switch-btn.active {
+      background: rgba(245, 208, 97, 0.15);
+      border-color: rgba(245, 208, 97, 0.4);
+      color: var(--accent-gold);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Active Status Bar */
+    .active-status-bar {
+      margin-top: 18px;
+      padding: 12px 16px;
+      background: rgba(18, 12, 34, 0.85);
+      border: 1px solid rgba(245, 208, 97, 0.3);
+      border-radius: var(--radius-sm);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.85rem;
+    }
+
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #fff;
+    }
+
+    .status-badge strong {
+      color: var(--accent-gold);
+    }
+
+    .status-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+    }
+
+    .status-link code {
+      background: rgba(0, 0, 0, 0.4);
+      color: var(--accent-gold-light);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
     /* Output Section */
     .tab-bar {
       display: flex;
@@ -407,14 +511,26 @@
 
     <!-- Main Generator Card -->
     <section class="admin-card">
-      <header style="margin-bottom: 24px;">
+      <header style="margin-bottom: 20px;">
         <h1 style="font-family: var(--font-royal); font-size: 1.7rem; color: #fff; margin-bottom: 6px;">
           Tạo Post Comment YouTube & Prompt AI
         </h1>
         <p style="color: var(--text-secondary); font-size: 0.95rem;">
-          Chỉ cần nhập Video ID và chọn sản phẩm ➡️ Hệ thống tự động sinh các biến thể comment ghim độc nhất hoặc xuất Master Prompt cho AI sinh 20 bài.
+          Nhập Video ID hoặc dán kịch bản ➡️ Bấm 1 nút để tự động chọn sản phẩm & sinh ngay comment ghim CTR đỉnh cao, hoặc xuất Master Prompt cho AI!
         </p>
       </header>
+
+      <!-- Mode Switcher -->
+      <div class="mode-switcher-bar">
+        <button type="button" class="mode-switch-btn active" id="modeQuickBtn" onclick="setStudioMode('quick')">
+          <span>⚡</span>
+          <span>1-Click Siêu Tốc (Random & Smart Match)</span>
+        </button>
+        <button type="button" class="mode-switch-btn" id="modeAdvancedBtn" onclick="setStudioMode('advanced')">
+          <span>🎯</span>
+          <span>Tùy Chọn Tỉ Mỉ (Chọn Sản Phẩm Sâu)</span>
+        </button>
+      </div>
 
       <form id="generatorForm" onsubmit="event.preventDefault(); generateOutputs();">
         <div class="form-grid">
@@ -436,15 +552,32 @@
             </div>
           </div>
 
-          <!-- Product Selector -->
+          <!-- Video Title Input (NEW) -->
           <div class="form-group full-width">
+            <label class="form-label" for="titleInput">
+              <span>📖</span>
+              <span>Tiêu Đề Video YouTube (Tùy chọn - Giúp AI bám sát tình tiết & nhân vật)</span>
+            </label>
+            <input type="text" 
+                   id="titleInput" 
+                   class="form-input" 
+                   placeholder="Ví dụ: Nữ Phụ Trùng Sinh Khiến Bạo Quân Si Mê / When The Cold Duke Falls For The Reincarnated Villainess..."
+                   value=""
+                   oninput="onTitleInputChanged(this.value)">
+          </div>
+
+          <!-- Product Selector (Detailed mode or when user wants to manually pick) -->
+          <div class="form-group full-width" id="productSelectGroup">
             <label class="form-label" for="productSelect">
               <span>💎</span>
-              <span>Chọn Sản Phẩm ClickBank Mục Tiêu (24 Sản Phẩm)</span>
+              <span>Chọn Sản Phẩm ClickBank Mục Tiêu (24 Sản Phẩm + Chế độ Random)</span>
             </label>
             <select id="productSelect" class="form-select" onchange="generateOutputs()">
+              <optgroup label="🎲 UNIVERSAL & SMART ROUTE (TỰ ĐỘNG CHỌN)">
+                <option value="random" selected>🎲 Universal / Random Quiz — Tự động bốc bài test HOT & Giữ 100% Tracking</option>
+              </optgroup>
               <optgroup label="💖 NHÓM 1: ROMANCE, DATING & TÂM LÝ PHÁI MẠNH">
-                <option value="soulmate" selected>✨ Soulmate Sketch (tinapsc) — Bản vẽ Người yêu định mệnh / Duke of the North</option>
+                <option value="soulmate">✨ Soulmate Sketch (tinapsc) — Bản vẽ Người yêu định mệnh / Duke of the North</option>
                 <option value="love-secret">👑 His Secret Obsession (hissecret) — Bản năng người hùng (Hero Instinct)</option>
                 <option value="devotion">💌 The Devotion System (amynorth) — Nghệ thuật nhắn tin (Text Chemistry)</option>
                 <option value="ex-factor">💔 The Ex Factor Guide (brbrowning) — Kịch bản hàn gắn người yêu cũ</option>
@@ -505,18 +638,24 @@
             <div class="options-row">
               <label class="radio-pill active" id="modeQuizLabel">
                 <input type="radio" name="linkMode" value="quiz" checked onchange="toggleLinkMode('quiz')">
-                <span>🔮 Quiz Tương Tác (Khuyên dùng)</span>
+                <span>🔮 Quiz Tương Tác</span>
+              </label>
+              <label class="radio-pill" id="modeRandomLabel">
+                <input type="radio" name="linkMode" value="random" onchange="toggleLinkMode('random')">
+                <span>🎲 Universal (/random)</span>
               </label>
               <label class="radio-pill" id="modeDirectLabel">
                 <input type="radio" name="linkMode" value="direct" onchange="toggleLinkMode('direct')">
-                <span>⚡ Cloaked Rút Gọn (/out/...)</span>
+                <span>⚡ Rút Gọn (/out/...)</span>
               </label>
             </div>
+          </div>
+
           <!-- Video Script / Plot Summary Input (Optional) -->
           <div class="form-group full-width">
             <label class="form-label" for="scriptInput">
               <span>📜</span>
-              <span>Kịch Bản / Tóm Tắt Diễn Biến Tập Truyện (Tùy chọn - Giúp AI viết bám sát từng tình tiết)</span>
+              <span>Kịch Bản / Tóm Tắt Diễn Biến Tập Truyện (Tùy chọn - Giúp AI bám sát từng tình tiết)</span>
             </label>
             <textarea id="scriptInput" 
                       class="form-input" 
@@ -524,21 +663,41 @@
                       placeholder="Dán kịch bản, lời thoại hoặc tóm tắt diễn biến tập truyện vào đây (tùy chọn)... AI sẽ đọc nội dung này để trích dẫn chính xác tên nhân vật, phân cảnh cao trào và lời thoại đắt giá vào 20 bài comment!"
                       oninput="onScriptInputChanged()"></textarea>
             <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">
-              💡 <em>Khi có kịch bản: AI sẽ phân tích các phân cảnh xúc động và tên nhân vật thực tế trong video để sinh ra các bình luận chân thực như fan ruột bình luận, tỷ lệ tương tác và bấm link sẽ tăng vọt!</em>
+              💡 <em>Mẹo: Khi có kịch bản hoặc tiêu đề, hệ thống sẽ tự động ghép tên nhân vật và phân cảnh thật để tỷ lệ click link và tương tác đạt mức tối đa!</em>
             </div>
           </div>
 
         </div>
 
+        <!-- Active Status Summary Bar -->
+        <div class="active-status-bar" id="activeStatusBar">
+          <div class="status-badge">
+            <span>🎯 Sản phẩm áp dụng:</span>
+            <strong id="statusProdName">Universal / Random Quiz</strong>
+          </div>
+          <div class="status-link">
+            <span>🔗 Link gắn comment:</span>
+            <code id="statusLinkUrl">https://quiz.zamverse.com/random?v=web</code>
+          </div>
+        </div>
+
         <!-- Buttons Row -->
         <div class="action-btn-row">
-          <button type="button" class="admin-btn btn-gold" onclick="randomizeVariants()">
+          <button type="button" class="admin-btn btn-gold" onclick="randomizeProductAndGenerate()">
             <span>🎲</span>
-            <span>Tạo Biến Thể Mới (Randomize)</span>
+            <span>1-Click Random Sản Phẩm & Sinh Comment</span>
+          </button>
+          <button type="button" class="admin-btn btn-emerald" onclick="smartMatchAndGenerate()">
+            <span>✨</span>
+            <span>Khớp Tự Động Theo Video (Smart Match)</span>
+          </button>
+          <button type="button" class="admin-btn btn-outline" onclick="randomizeVariants()">
+            <span>🔄</span>
+            <span>Đổi Câu Từ Mới</span>
           </button>
           <button type="button" class="admin-btn btn-purple" onclick="switchToAiTab()">
             <span>🤖</span>
-            <span>Sinh Mega-Prompt Cho AI (20 Comment)</span>
+            <span>Xuất Mega-Prompt Cho AI (20 Comment)</span>
           </button>
         </div>
       </form>

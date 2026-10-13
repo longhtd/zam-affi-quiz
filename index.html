@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Zamverse Quiz Portal | Exclusive Archetype & Destiny Assessments</title>
+  <title>Zamverse Portal | Private Archetype & Destiny Assessments</title>
   
   <!-- SEO & Open Graph -->
-  <meta name="description" content="Discover your destined soulmate archetype, male psychology triggers, and personalized wellness blueprints with quick, confidential assessments.">
-  <meta property="og:title" content="Zamverse Quiz | Destiny, Psychology & Archetype Assessments">
-  <meta property="og:description" content="Take this 45-second assessment to unlock your personalized archetype report.">
+  <meta name="description" content="Confidential reader assessments exploring romantic archetypes, male psychology, and vitality protocols.">
+  <meta property="og:title" content="Zamverse Assessments | Reader Insights & Reports">
+  <meta property="og:description" content="Discover your personalized archetype and confidential report in under 60 seconds.">
   <meta property="og:type" content="website">
-  <meta name="theme-color" content="#0a0714">
+  <meta name="theme-color" content="#07050e">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="/style.css">
@@ -32,15 +32,8 @@
 
   <main class="quiz-container">
 
-    <!-- Top Navigation Bar to Switch Quizzes -->
-    <nav class="quiz-nav-bar" aria-label="Select Assessment" id="topQuizNav">
-      <div class="nav-scroll-track" id="navTabs">
-        <!-- Rendered dynamically via app.js -->
-      </div>
-    </nav>
-
     <!-- Brand Header -->
-    <header class="brand-header">
+    <header class="brand-header" id="brandHeader">
       <div class="brand-badge" id="brandBadge">✨ Destiny Assessment</div>
       <h1 class="brand-title" id="brandTitle">
         <span class="highlight">Who is Your Real-Life Duke of the North?</span>
@@ -48,7 +41,7 @@
       <p class="brand-subtitle" id="brandSubtitle">
         Answer 4 intuitive questions to uncover your destined partner's archetype and reveal their psychic sketch.
       </p>
-      <div class="brand-meta">
+      <div class="brand-meta" id="brandMeta">
         <span id="readingTime">⏱️ Takes 45 seconds</span>
         <span>•</span>
         <span>🔒 100% Free & Private</span>
@@ -56,12 +49,12 @@
     </header>
 
     <!-- Quiz Shell Card -->
-    <section class="quiz-card" aria-live="polite">
+    <section class="quiz-card" id="quizCard" aria-live="polite">
 
-      <!-- Progress Section -->
-      <div class="progress-section">
+      <!-- Progress Section (Hidden during calculation/result/portal) -->
+      <div class="progress-section" id="progressSection">
         <div class="progress-header">
-          <span id="progressLabel">Question 1 of 4</span>
+          <span id="progressLabel">Step 1 of 4</span>
           <span>⚡ Instant Analysis</span>
         </div>
         <div class="progress-bar-bg">
@@ -71,22 +64,15 @@
 
       <!-- Question & Result Dynamic Body -->
       <div id="quizCardBody">
-        <!-- Rendered via app.js -->
+        <!-- Rendered dynamically via app.js -->
       </div>
 
     </section>
 
-    <!-- Navigation / Directory Switcher -->
-    <footer class="quiz-directory-footer">
-      <div class="directory-title">Popular Reader Audits</div>
-      <div class="directory-chips" id="directoryChips">
-        <!-- Rendered via app.js -->
-      </div>
-
-      <div class="legal-footer">
-        <p>© 2026 Zamverse Quiz Portal. All rights reserved.</p>
-        <p>This assessment is for entertainment, psychological exploration, and educational self-discovery purposes only.</p>
-      </div>
+    <!-- Legal Footer -->
+    <footer class="legal-footer">
+      <p>© 2026 Zamverse Insights. All rights reserved.</p>
+      <p>This assessment is for entertainment, psychological exploration, and educational self-discovery purposes only.</p>
     </footer>
 
   </main>

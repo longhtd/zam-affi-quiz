@@ -512,6 +512,20 @@
                 <span>⚡ Cloaked Rút Gọn (/out/...)</span>
               </label>
             </div>
+          <!-- Video Script / Plot Summary Input (Optional) -->
+          <div class="form-group full-width">
+            <label class="form-label" for="scriptInput">
+              <span>📜</span>
+              <span>Kịch Bản / Tóm Tắt Diễn Biến Tập Truyện (Tùy chọn - Giúp AI viết bám sát từng tình tiết)</span>
+            </label>
+            <textarea id="scriptInput" 
+                      class="form-input" 
+                      style="height: 110px; resize: vertical; font-family: var(--font-body); font-size: 0.88rem; line-height: 1.5;"
+                      placeholder="Dán kịch bản, lời thoại hoặc tóm tắt diễn biến tập truyện vào đây (tùy chọn)... AI sẽ đọc nội dung này để trích dẫn chính xác tên nhân vật, phân cảnh cao trào và lời thoại đắt giá vào 20 bài comment!"
+                      oninput="onScriptInputChanged()"></textarea>
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">
+              💡 <em>Khi có kịch bản: AI sẽ phân tích các phân cảnh xúc động và tên nhân vật thực tế trong video để sinh ra các bình luận chân thực như fan ruột bình luận, tỷ lệ tương tác và bấm link sẽ tăng vọt!</em>
+            </div>
           </div>
 
         </div>

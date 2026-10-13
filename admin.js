@@ -548,6 +548,15 @@ Làm bài test 45 giây giải mã nhân duyên tại đây:
   document.getElementById("res5").textContent = v5;
 }
 
+// Script input state
+let currentScriptText = "";
+
+window.onScriptInputChanged = function() {
+  const el = document.getElementById("scriptInput");
+  currentScriptText = el ? el.value.trim() : "";
+  generateAiPrompt();
+};
+
 // ============================================================================
 // AI MEGA-PROMPT GENERATOR (20 COMMENTS)
 // ============================================================================
@@ -563,15 +572,33 @@ function generateAiPrompt() {
     finalLink = `https://quiz.zamverse.com/out/${p.outSlug}?tid=${vid}`;
   }
 
+  // Optional Script Section
+  let scriptSection = "";
+  if (currentScriptText) {
+    scriptSection = `
+================================================================================
+📜 EPISODE SCRIPT / CHAPTER SUMMARY CONTEXT PROVIDED BY USER:
+================================================================================
+"""
+${currentScriptText}
+"""
+
+CRITICAL INSTRUCTIONS FOR SCRIPT INTEGRATION:
+- Closely analyze the script/plot above.
+- Naturally quote or mention REAL character names (male lead, female lead, rivals), specific high-emotion scenes (e.g., the confession, the cold stare, the protective sacrifice, the misunderstanding, or the revenge glow-up), and poignant moments from this exact chapter.
+- Make each comment sound like an authentic, passionate fan or channel creator who just finished watching this EXACT episode, creating a seamless emotional bridge into the assessment link.
+`;
+  }
+
   const promptText = `You are a world-class YouTube Community Manager and Direct Response Copywriter specializing in female romance manga / manhwa / webtoon recap channels.
 
 TARGET CHANNEL NICHE:
 - Audience: 85%+ Female readers, aged 18–35.
 - Interests: Otome Isekai, Cold Duke of the North, Protective male leads, Villainess reincarnation, Cinderella glow-up, Soulmate destiny, Tarot, Astrology, and Romantic drama.
 - Vibe: Emotional, cozy, relatable, high-engagement, passionate, protective of female leads.
-
+${scriptSection}
 YOUR TASK:
-Write exactly 20 DISTINCT, highly engaging, natural-sounding YouTube Pinned Comments to pin at the top of our manga recap videos. Every comment must feel like a genuine channel host or fellow fangirl speaking, and smoothly bridge the video's emotional high into the following interactive link:
+Write exactly 20 DISTINCT, highly engaging, natural-sounding YouTube Pinned Comments to pin at the top of our manga recap video. Every comment must feel like a genuine channel host or fellow fangirl speaking, and smoothly bridge the video's emotional high into the following interactive link:
 
 OFFER / DESTINATION DETAILS:
 - Product: ${p.name} (Category: ${p.category})
@@ -586,7 +613,7 @@ Generate all 20 comments in ${currentLang === "en" ? "ENGLISH" : "VIETNAMESE (Ti
 STRUCTURE THE 20 COMMENTS INTO 5 DISTINCT CATEGORIES (4 comments per category):
 
 1. CATEGORY 1: Deep Emotional & Character-Connected (Hooks into the male lead's devotion or heartbreak)
-   - 4 Comments that start with a touching observation about the chapter, then bridge to the link.
+   - 4 Comments that start with a touching observation about the chapter${currentScriptText ? " (referencing specific characters or moments from the script)" : ""}, then bridge to the link.
 
 2. CATEGORY 2: Playful, Sassy & Debate-Provoking (Drives comment section arguments & replies)
    - 4 Comments asking a spicy question about the female lead's choices or the male lead's red/green flags.

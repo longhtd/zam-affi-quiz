@@ -1,0 +1,224 @@
+{
+  "affiliate": "gnite",
+  "default_quiz": "soulmate",
+  "quizzes": {
+    "soulmate": {
+      "id": "soulmate",
+      "slug": "soulmate",
+      "vendor": "soulmatesk",
+      "theme": "royal",
+      "badge": "✨ Royal Destiny & Soulmate Audit",
+      "title": "Who is Your Real-Life Duke of the North?",
+      "subtitle": "Answer 4 intuitive questions to uncover your destined partner's archetype and reveal their psychic sketch.",
+      "reading_time": "Takes 45 seconds • Instant Report",
+      "questions": [
+        {
+          "question": "When meeting someone new, what catches your attention first?",
+          "options": [
+            { "text": "Their quiet, protective aura and deep gaze", "archetype": "Duke of the North" },
+            { "text": "Their warm smile, wit, and effortless charm", "archetype": "Crown Prince" },
+            { "text": "Their mysterious past and untamed independence", "archetype": "Rebel Knight" },
+            { "text": "Their intellectual depth and calm leadership", "archetype": "Grand Archmage" }
+          ]
+        },
+        {
+          "question": "What is your biggest unspoken desire in love?",
+          "options": [
+            { "text": "To be fiercely protected and chosen above all else", "archetype": "Devotion" },
+            { "text": "A deep mental connection where no words are needed", "archetype": "Soul Resonance" },
+            { "text": "An adventurous partner who pushes me to grow", "archetype": "Transformation" },
+            { "text": "Unwavering loyalty through life's darkest storms", "archetype": "Eternal Bond" }
+          ]
+        },
+        {
+          "question": "How do you intuitively sense when someone is 'The One'?",
+          "options": [
+            { "text": "An inexplicable feeling of familiarity, like we met in a past life", "archetype": "Twin Flame" },
+            { "text": "A sense of calm certainty and quiet safety in my chest", "archetype": "True Haven" },
+            { "text": "Intense emotional and creative sparks that never fade", "archetype": "Passionate Flame" },
+            { "text": "Synchronistic dreams or gut feelings before we even spoke", "archetype": "Destiny Bond" }
+          ]
+        },
+        {
+          "question": "What zodiac element or season do you feel most drawn to?",
+          "options": [
+            { "text": "Winter & Ice (Silent strength, profound loyalty)", "archetype": "North" },
+            { "text": "Autumn & Fire (Warmth, passion, golden intensity)", "archetype": "Sun" },
+            { "text": "Spring & Air (Freedom, quick wit, new beginnings)", "archetype": "Wind" },
+            { "text": "Summer & Earth (Steadfast grounding, lush abundance)", "archetype": "Root" }
+          ]
+        }
+      ],
+      "result": {
+        "title": "Your Soulmate Connection Archetype: The Destined Sovereign",
+        "description": "Your intuitive frequency points toward a partner with deep protective instincts, unyielding loyalty, and a profound soul connection. They are likely already in your orbit or about to cross your path within the next moon cycle.",
+        "highlight": "98.7% Energy Match Detected",
+        "cta_label": "✨ Reveal Your Soulmate's Psychic Sketch Now",
+        "cta_subtext": "Official artist sketch & personalized astrological reading ready"
+      }
+    },
+    "love-secret": {
+      "id": "love-secret",
+      "slug": "love-secret",
+      "vendor": "beirresist",
+      "theme": "romance",
+      "badge": "👑 Male Psychology & Hero Instinct Audit",
+      "title": "Why Do Men Pull Away? Decode His Hidden Desire",
+      "subtitle": "Discover the primal psychological trigger that turns casual attraction into lifelong devotion.",
+      "reading_time": "Takes 60 seconds • Private Assessment",
+      "questions": [
+        {
+          "question": "What happens when you open your heart completely to a man?",
+          "options": [
+            { "text": "He seems intensely interested at first, then becomes distant" },
+            { "text": "He treats me like a friend instead of his romantic priority" },
+            { "text": "He has trouble committing and stays emotionally guarded" },
+            { "text": "Things start great, but the passion fizzles out over time" }
+          ]
+        },
+        {
+          "question": "Which quality makes a woman truly unforgettable in a man's mind?",
+          "options": [
+            { "text": "Making him feel indispensable, like your personal hero" },
+            { "text": "Always being supportive, gentle, and understanding" },
+            { "text": "Keeping an air of mystery and high value" },
+            { "text": "Sharing all the same hobbies and daily routines" }
+          ]
+        },
+        {
+          "question": "How does he react when you need help or advice?",
+          "options": [
+            { "text": "He lights up and wants to step up and solve it" },
+            { "text": "He seems indifferent or changes the subject" },
+            { "text": "He gets defensive or feels pressured" },
+            { "text": "He listens, but rarely takes protective action" }
+          ]
+        },
+        {
+          "question": "If you could activate a single psychological instinct in him, which would you choose?",
+          "options": [
+            { "text": "An irresistible urge to pursue me and lock in our future" },
+            { "text": "Complete emotional transparency without fear of vulnerability" },
+            { "text": "A protective devotion where he never looks at anyone else" },
+            { "text": "A deep romantic obsession that grows stronger with age" }
+          ]
+        }
+      ],
+      "result": {
+        "title": "Diagnosis: His 'Hero Instinct' Is Currently Dormant",
+        "description": "Men don't fall in love because of physical beauty alone; they commit to women who unlock their deep psychological need to feel essential. Once triggered, distance dissolves into intense devotion.",
+        "highlight": "Psychological Trigger Identified: High Receptivity",
+        "cta_label": "🔓 Watch The 12-Word Text That Triggers His Devotion",
+        "cta_subtext": "Free relationship masterclass by relationship counselor James Bauer"
+      }
+    },
+    "glowup": {
+      "id": "glowup",
+      "slug": "glowup",
+      "vendor": "puravive",
+      "theme": "emerald",
+      "badge": "💎 Villainess Metabolic Glow-Up Audit",
+      "title": "What Is Your True Biological Metabolic Score?",
+      "subtitle": "Discover the exotic rice & botanical ritual Hollywood and Manhwa heroines use for radiant energy and effortless fat burning.",
+      "reading_time": "Takes 45 seconds • Instant Metabolic Blueprint",
+      "questions": [
+        {
+          "question": "When does your energy hit the biggest slump during the day?",
+          "options": [
+            { "text": "Right around 2:00 PM – 4:00 PM (Brain fog & sugar cravings)" },
+            { "text": "Immediately upon waking up, even after 7–8 hours in bed" },
+            { "text": "Late in the evening after dinner" },
+            { "text": "Random bursts of fatigue throughout the entire day" }
+          ]
+        },
+        {
+          "question": "Where does your body stubbornly hold onto excess weight?",
+          "options": [
+            { "text": "Lower belly and waistline (cortisol & hormone related)" },
+            { "text": "Hips, thighs, and lower body" },
+            { "text": "Overall sluggish puffiness and fluid retention" },
+            { "text": "Upper body and face" }
+          ]
+        },
+        {
+          "question": "How have traditional restrictive diets worked for you in the past?",
+          "options": [
+            { "text": "I lose a few pounds, but it rebounds the second I stop" },
+            { "text": "My metabolism slows to a crawl, leaving me exhausted" },
+            { "text": "It feels unnatural and causes terrible mood swings" },
+            { "text": "I haven't found a sustainable, natural routine yet" }
+          ]
+        },
+        {
+          "question": "Are you willing to test a natural 10-second morning botanical ritual?",
+          "options": [
+            { "text": "Yes, absolutely! I want natural, effortless results" },
+            { "text": "Yes, as long as it's backed by clinical research" },
+            { "text": "I'd love to see the research and video explanation first" }
+          ]
+        }
+      ],
+      "result": {
+        "title": "Profile: Low BAT (Brown Adipose Tissue) Activity",
+        "description": "Your metabolism isn't broken; modern toxins and stress have simply put your fat-shrinking brown adipose tissue into hibernation. Activating this natural pathway allows your body to burn calories effortlessly 24/7.",
+        "highlight": "Potential Metabolic Rebound: +300% Calorie Burn",
+        "cta_label": "🌿 Watch The 10-Second Morning Ritual Video",
+        "cta_subtext": "Official research presentation by clinical nutritionists"
+      }
+    },
+    "brainwave": {
+      "id": "brainwave",
+      "slug": "brainwave",
+      "vendor": "bbwave",
+      "theme": "gold",
+      "badge": "⚡ System Awakening & Theta Frequency Test",
+      "title": "Is Your Real-Life 'System' Unlocked?",
+      "subtitle": "Discover which brainwave frequency is holding back your wealth, intuition, and IRL stat boosts.",
+      "reading_time": "Takes 60 seconds • Frequency Scan",
+      "questions": [
+        {
+          "question": "If you woke up with an IRL 'Leveling System', which stat would you max out first?",
+          "options": [
+            { "text": "Luck & Wealth Generation (Never worry about money again)" },
+            { "text": "Focus & Mental Acuity (Learn any skill 10x faster)" },
+            { "text": "Charisma & Authority (Command respect and influence)" },
+            { "text": "Stamina & Vitality (Unstoppable drive and physical energy)" }
+          ]
+        },
+        {
+          "question": "How often do you feel trapped by mental fatigue or overthinking?",
+          "options": [
+            { "text": "Almost daily—my brain refuses to shut down at night" },
+            { "text": "Whenever I try to take big risks or start new ventures" },
+            { "text": "Periodically, when burnout catches up with me" },
+            { "text": "Rarely, but I know I'm operating far below my true potential" }
+          ]
+        },
+        {
+          "question": "What is the biggest bottleneck between where you are and where you want to be?",
+          "options": [
+            { "text": "Subconscious self-sabotage and subconscious limiting beliefs" },
+            { "text": "Lack of high-level financial opportunities and timing" },
+            { "text": "Procrastination and dopamine burnout from screens" },
+            { "text": "Energy drainage from negative environments and people" }
+          ]
+        },
+        {
+          "question": "Can you listen to a targeted 7-minute audio frequency each morning?",
+          "options": [
+            { "text": "Yes, I can easily listen with headphones during morning routine" },
+            { "text": "Yes, if it's proven by neuroscientists" },
+            { "text": "I want to hear the sound sample first" }
+          ]
+        }
+      ],
+      "result": {
+        "title": "Scan Complete: Theta Brainwave Suppressed by Beta Dominance",
+        "description": "Your hippocampus is currently overproducing stressful Beta waves, blocking the intuitive Theta state where true wealth generation, breakthrough creativity, and effortless abundance occur.",
+        "highlight": "Neural Awakening Potential: 99.4%",
+        "cta_label": "🎧 Activate Your Theta Wave (7-Minute Audio)",
+        "cta_subtext": "Official audio frequency demonstration by Columbia neuroscientists"
+      }
+    }
+  }
+}

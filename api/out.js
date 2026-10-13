@@ -7,10 +7,40 @@ export default function handler(req, res) {
   const affiliate = "gnite";
 
   const vendorMap = {
+    // 💖 Group 1: Romance, Dating & Male Psychology
     "soulmate": "tinapsc",
     "love-secret": "hissecret",
+    "hero-instinct": "hissecret",
+    "devotion": "amynorth",
+    "text-chemistry": "amynorth",
+    "ex-factor": "brbrowning",
+
+    // 🔮 Group 2: Destiny, Astrology, Tarot & Mindset
+    "numerology": "numerology",
+    "astrology": "astroread",
+    "aura": "auraread",
+    "mind-movies": "mindmovies",
+
+    // 👑 Group 3: Cinderella Glow-Up & Metabolism
     "glowup": "javaburn",
-    "brainwave": "attractbr"
+    "coffee-ritual": "javaburn",
+    "tea-burn": "teaburn",
+    "belly-juice": "lbjuice",
+    "lean-biome": "leanbiome",
+    "mitolyn": "mitolyn",
+    "liv-pure": "livpure",
+    "alpilean": "alpilean",
+    "prodentim": "prodentim",
+    "beauty-sleep": "revive",
+    "gut-vita": "gutvita",
+
+    // ⚡ Group 4: Inner Peace, Focus & Wealth
+    "brainwave": "attractbr",
+    "wealth-dna": "wealthdna",
+    "neuro-zoom": "neurozoom",
+    "cortexi": "cortexi",
+    "audisoothe": "audifort",
+    "zeneara": "zeneara"
   };
 
   const targetSlug = (slug || "").toLowerCase();

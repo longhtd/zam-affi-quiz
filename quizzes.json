@@ -279,6 +279,188 @@
           { "author": "Marcus V., 27", "text": "The focus and sense of calm confidence it gives you in the morning is unreal. Best 7 minutes of my day." }
         ]
       }
+    },
+    "devotion": {
+      "id": "devotion",
+      "slug": "devotion",
+      "vendor": "amynorth",
+      "badge": "💌 Romantic Siren & Text Chemistry",
+      "title": "What Is Your Romantic Fascination Archetype?",
+      "subtitle": "Discover the magnetic communication style that captivates a man's thoughts day and night.",
+      "reading_time": "Takes 50 seconds • Private Chemistry Profile",
+      "card_title": "The Siren Communication Matrix",
+      "card_num": "FASCINATION AUDIT",
+      "icon": "💌",
+      "questions": [
+        {
+          "question": "When messaging someone you are deeply attracted to, what is your default style?",
+          "options": [
+            { "text": "Thoughtful, articulate, but sometimes overanalyzing every single word", "sub": "Checking read receipts and waiting with anticipation" },
+            { "text": "Playful, witty, and teasing with effortless banter", "sub": "Keeping things light and exciting" },
+            { "text": "Warm, supportive, and instantly responsive to his messages", "sub": "Showing genuine care and attentiveness" },
+            { "text": "Mysterious, slow to reply, and leaving him wanting more", "sub": "Holding back to maintain high value" }
+          ]
+        },
+        {
+          "question": "What is the most frustrating text behavior you encounter from men?",
+          "options": [
+            { "text": "Going silent for days, then suddenly reappearing like nothing happened", "sub": "The hot-and-cold disappearing act" },
+            { "text": "Dry, one-word responses that give you nothing to work with", "sub": "Low-effort communication" },
+            { "text": "Talking for weeks without ever asking you out on a real date", "sub": "Endless texting pen pals" },
+            { "text": "Avoiding emotional depth whenever the conversation gets real", "sub": "Emotional deflection" }
+          ]
+        },
+        {
+          "question": "If you could trigger an instant emotional reaction in him via a single text, what would it be?",
+          "options": [
+            { "text": "A sudden rush of adoration that makes him drop everything to call me", "sub": "Unstoppable romantic urgency" },
+            { "text": "Intense curiosity that keeps him daydreaming about me all afternoon", "sub": "Living rent-free in his mind" },
+            { "text": "A deep sense of emotional connection that he has never felt before", "sub": "Soulmate-level resonance" },
+            { "text": "Fierce determination to step up and prove his worth to me", "sub": "Inspiring his masculine pursuit" }
+          ]
+        }
+      ],
+      "result": {
+        "badge": "💌 Chemistry Matrix Calculated",
+        "card_title": "The Magnetic Siren (High Fascination Score)",
+        "card_subtitle": "You possess intense romantic allure, but standard texting diffuses your mystery",
+        "tarot_num": "ARCHETYPE III • THE ENCHANTRESS",
+        "match_percentage": "98.2% Fascination Capacity",
+        "cold_reading": "You have a vibrant, passionate heart, but you frequently give away too much emotional certainty too quickly over text. When a man feels he has completely figured you out, the natural excitement of the chase diminishes. By applying targeted psychological 'Text Chemistry' signals, you flip the script: he stops being complacent, starts anticipating your messages, and views you as the rare, unforgettable prize of his life.",
+        "traits": [
+          { "label": "Attraction Archetype", "value": "Magnetic Enchantress" },
+          { "label": "Texting Vulnerability", "value": "Over-availability" },
+          { "label": "Mastery Key", "value": "Curiosity Hooks" }
+        ],
+        "urgency_notice": "Dating coach Amy North has released the private 'Devotion Sequence' text script breakdown.",
+        "cta_label": "💌 Unlock The Exact Texts That Trigger His Devotion",
+        "cta_subtext": "Official presentation by bestselling relationship author Amy North",
+        "testimonials": [
+          { "author": "Jessica P., 27", "text": "Sent the 'Curiosity Hook' text to a guy who was ghosting me for 2 weeks. He called me within 12 minutes apologizing and asked me out to dinner." },
+          { "author": "Lauren B., 34", "text": "Changed the way I communicate with men completely. Now he is the one texting me every morning and evening." }
+        ]
+      }
+    },
+    "numerology": {
+      "id": "numerology",
+      "slug": "numerology",
+      "vendor": "numerology",
+      "badge": "🔢 Sacred Destiny & Life Path Code",
+      "title": "What Does Your Birth Date Reveal About Your Destiny?",
+      "subtitle": "Calculate your sacred Life Path Number to unlock karmic patterns, hidden soul gifts, and destined romantic timing.",
+      "reading_time": "Takes 40 seconds • Free Numerology Blueprint",
+      "card_title": "The Sacred Life Path Matrix",
+      "card_num": "SACRED GEOMETRY",
+      "icon": "🔢",
+      "questions": [
+        {
+          "question": "Which recurring life pattern do you find yourself experiencing most?",
+          "options": [
+            { "text": "Always being the emotional anchor for friends, family, and partners", "sub": "The natural empath and healer burden" },
+            { "text": "A restless urge to reinvent yourself and break free from ordinary expectations", "sub": "The pioneer and visionary calling" },
+            { "text": "Experiencing sudden, dramatic life shifts right before breakthrough chapters", "sub": "Karmic transformation cycles" },
+            { "text": "A deep intuition that your true purpose has not yet been fully revealed", "sub": "Dormant potential awaiting alignment" }
+          ]
+        },
+        {
+          "question": "What number pattern or synchronicity catches your eye most often?",
+          "options": [
+            { "text": "Triple numbers like 111, 222, 333, or 444 on clocks and receipts", "sub": "Angelic alignment reminders" },
+            { "text": "Mirror hours like 11:11, 12:21, or 21:12", "sub": "Portal of rapid manifestation" },
+            { "text": "Repeating numbers tied to significant past dates or milestones", "sub": "Ancestral & karmic guidance" },
+            { "text": "Spontaneous gut feelings that predict events right before they happen", "sub": "High intuitive psychic sensitivity" }
+          ]
+        },
+        {
+          "question": "What is the primary spiritual abundance you wish to unlock this season?",
+          "options": [
+            { "text": "Destined soulmate union and emotional peace", "sub": "Finding your karmic counterpart" },
+            { "text": "Financial sovereign freedom and creative flourishing", "sub": "Living on your own terms" },
+            { "text": "Deep self-trust and eradication of chronic self-doubt", "sub": "Unshakable inner knowing" },
+            { "text": "Clearing past-life karmic blockages and generational burdens", "sub": "Releasing emotional baggage" }
+          ]
+        }
+      ],
+      "result": {
+        "badge": "🔢 Destiny Blueprint Decoded",
+        "card_title": "Master Soul Vibration Detected",
+        "card_subtitle": "Your life path carries an ancient karmic imprint of leadership and deep empathy",
+        "tarot_num": "KEY 11 • SACRED MASTER VIBRATION",
+        "match_percentage": "99.1% Karmic Alignment",
+        "cold_reading": "Your birth date reveals that you are an old soul placed in a modern world. You feel things with rare intensity—capable of sensing people's unspoken motives before they say a word. Because of this high sensitivity, you have often felt misunderstood or taken for granted by those who lack your emotional depth. You are entering a major 9-year astrological transition where past sacrifices convert into profound romantic alignment and unexpected abundance.",
+        "traits": [
+          { "label": "Soul Archetype", "value": "Intuitive Sovereign" },
+          { "label": "Karmic Cycle", "value": "Breakthrough Phase" },
+          { "label": "Destiny Gift", "value": "Emotional Claircognizance" }
+        ],
+        "urgency_notice": "Your personalized cosmic name and birth date numerology video report is ready for immediate streaming.",
+        "cta_label": "🔮 Watch Your Personalized Life Path & Destiny Video Report",
+        "cta_subtext": "Official comprehensive reading by Numerologist.com master astrologers",
+        "testimonials": [
+          { "author": "Hannah S., 29", "text": "The accuracy about my past relationships and family dynamics was uncanny. It felt like someone had read my private diary." },
+          { "author": "Daniela M., 32", "text": "Gave me goosebumps. It predicted a major career and romantic shift in October that came completely true." }
+        ]
+      }
+    },
+    "tea-burn": {
+      "id": "tea-burn",
+      "slug": "tea-burn",
+      "vendor": "teaburn",
+      "badge": "🍵 Royal Herbal Radiance Ritual",
+      "title": "What Is Your Cellular Detox & Glow Score?",
+      "subtitle": "Discover the 100% natural herbal tea accompaniment that neutralizes metabolic toxins and promotes effortless waistline slimming.",
+      "reading_time": "Takes 45 seconds • Instant Radiance Analysis",
+      "card_title": "The Royal Botanical Tea Protocol",
+      "card_num": "HERBAL BOTANICAL AUDIT",
+      "icon": "🍵",
+      "questions": [
+        {
+          "question": "What beverage kickstarts your mornings?",
+          "options": [
+            { "text": "Hot green or black tea (I love soothing herbal warmth)", "sub": "Gentle antioxidant nourishment" },
+            { "text": "Warm lemon water or herbal infusions", "sub": "Natural hydration and digestive care" },
+            { "text": "Morning coffee or matcha latte", "sub": "Rich morning energy" },
+            { "text": "A quick glass of water on the go", "sub": "Fast-paced morning routine" }
+          ]
+        },
+        {
+          "question": "What is your primary wellness aspiration for your body right now?",
+          "options": [
+            { "text": "Effortlessly losing stubborn inches around the waist and hips", "sub": "Natural silhouette contouring" },
+            { "text": "Waking up with clear, radiant skin and zero morning puffiness", "sub": "Lymphatic drainage and facial glow" },
+            { "text": "Clean, steady energy without afternoon jitters or crashes", "sub": "Balanced metabolic vitality" },
+            { "text": "Easing digestion and eliminating uncomfortable post-meal bloating", "sub": "Soothing gut inflammation" }
+          ]
+        },
+        {
+          "question": "Can you stir an unflavored, 100% natural plant packet into your favorite cup of tea?",
+          "options": [
+            { "text": "Yes, absolutely! It takes 5 seconds and won't alter the taste of my tea", "sub": "Zero hassle, seamless morning ritual" },
+            { "text": "Yes, if it contains zero artificial chemicals or fillers", "sub": "Pure botanical purity" },
+            { "text": "I want to see the clinical research presentation first", "sub": "Show me the science" }
+          ]
+        }
+      ],
+      "result": {
+        "badge": "🍵 Botanical Analysis Complete",
+        "card_title": "Dormant Metabolic Tea Synergy",
+        "card_subtitle": "Tea contains potent catechins that multiply in fat-burning efficacy when paired with key micronutrients",
+        "tarot_num": "RESET VI • BOTANICAL DETOX",
+        "match_percentage": "High Botanical Synergy (98.6%)",
+        "cold_reading": "Tea has been the beauty secret of royal courts for centuries. However, modern environmental stress and sluggish liver pathways prevent ordinary tea from releasing its full metabolic potential. When combined with specific patent-pending plant micronutrients, your daily cup of tea triggers thermal metabolic synergy—dissolving stubborn fat cells and revitalizing skin luminosity from within.",
+        "traits": [
+          { "label": "Ritual Type", "value": "100% Tasteless Botanical Add-in" },
+          { "label": "Daily Duration", "value": "5 Seconds Every Morning" },
+          { "label": "Metabolic Synergy", "value": "400% Acceleration" }
+        ],
+        "urgency_notice": "The official Tea Burn presentation detailing the patent-pending formula is currently online.",
+        "cta_label": "🌿 Watch The Tea Burn Botanical Video Presentation",
+        "cta_subtext": "Official scientific presentation on natural tea synergy and thermogenesis",
+        "testimonials": [
+          { "author": "Grace W., 35", "text": "I love that it doesn't change the flavor of my favorite Earl Grey. Lost 14 lbs in 6 weeks without changing what I eat." },
+          { "author": "Chloe N., 28", "text": "My skin has that dewy Korean glass skin glow, and my morning puffiness is completely gone!" }
+        ]
+      }
     }
   }
 }

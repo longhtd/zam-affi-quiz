@@ -1,46 +1,28 @@
 {
   "version": 2,
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
+  "routes": [
     {
-      "source": "/out/:slug",
-      "destination": "/api/out?slug=:slug"
+      "src": "/out/(?<slug>[^/]+)",
+      "dest": "/api/out?slug=$slug"
     },
     {
-      "source": "/go/:slug",
-      "destination": "/api/out?slug=:slug"
+      "src": "/go/(?<slug>[^/]+)",
+      "dest": "/api/out?slug=$slug"
     },
     {
-      "source": "/admin",
-      "destination": "/admin.html"
+      "src": "/admin",
+      "dest": "/admin.html"
     },
     {
-      "source": "/generator",
-      "destination": "/admin.html"
+      "src": "/generator",
+      "dest": "/admin.html"
     },
     {
-      "source": "/:path*",
-      "destination": "/index.html"
-    }
-  ],
-  "headers": [
+      "handle": "filesystem"
+    },
     {
-      "source": "/:path*",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
-        }
-      ]
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }

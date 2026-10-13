@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 });
 
-// Extract Video ID / Tracking Parameters
+// Extract Video ID / Tracking Parameters and persist across all quizzes
 function extractTrackingSubId() {
   const urlParams = new URLSearchParams(window.location.search);
   const possibleTid = urlParams.get("vid") || 
@@ -40,6 +40,17 @@ function extractTrackingSubId() {
                       urlParams.get("src");
   if (possibleTid) {
     targetSubId = possibleTid.replace(/[^a-zA-Z0-9_-]/g, "").substring(0, 30);
+    try {
+      sessionStorage.setItem("zam_affi_tid", targetSubId);
+      localStorage.setItem("zam_affi_tid", targetSubId);
+    } catch (e) {}
+  } else {
+    try {
+      const savedTid = sessionStorage.getItem("zam_affi_tid") || localStorage.getItem("zam_affi_tid");
+      if (savedTid) {
+        targetSubId = savedTid;
+      }
+    } catch (e) {}
   }
 }
 
@@ -68,6 +79,23 @@ function routeAndRender() {
   if (slug === "love" || slug === "secret" || slug === "hero") slug = "love-secret";
   if (slug === "diet" || slug === "health" || slug === "cinderella") slug = "glowup";
   if (slug === "theta" || slug === "wealth" || slug === "system") slug = "brainwave";
+
+  // 🎲 Universal Random Route (/random, /any, /lucky)
+  if (slug === "random" || slug === "any" || slug === "lucky") {
+    if (QUIZ_DATA && QUIZ_DATA.quizzes) {
+      const availableSlugs = Object.keys(QUIZ_DATA.quizzes);
+      if (availableSlugs.length > 0) {
+        const randomSlug = availableSlugs[Math.floor(Math.random() * availableSlugs.length)];
+        const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+        const trackingQuery = (targetSubId && targetSubId !== "web") ? `?v=${encodeURIComponent(targetSubId)}` : "";
+        const targetUrl = isLocal ? `/?q=${randomSlug}${trackingQuery ? '&' + trackingQuery.slice(1) : ''}` : `/${randomSlug}${trackingQuery}`;
+        window.history.replaceState({ slug: randomSlug }, "", targetUrl);
+        currentQuizData = QUIZ_DATA.quizzes[randomSlug];
+        startQuiz();
+        return;
+      }
+    }
+  }
 
   if (!slug || slug === "" || slug === "index.html" || slug === "portal") {
     // Show Portal Hub if no specific quiz is targeted
@@ -277,10 +305,13 @@ window.clearPortalSearch = function() {
   renderPortalBody();
 };
 
-// Select Quiz From Portal Hub
+// Select Quiz From Portal Hub (Always keeps tracking ID)
 window.selectQuizFromPortal = function(slug) {
   const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
-  const newUrl = isLocal ? `/?q=${slug}` : `/${slug}${window.location.search}`;
+  const trackingQuery = (targetSubId && targetSubId !== "web") ? `?v=${encodeURIComponent(targetSubId)}` : "";
+  const newUrl = isLocal 
+    ? `/?q=${slug}${trackingQuery ? '&' + trackingQuery.slice(1) : ''}` 
+    : `/${slug}${trackingQuery}`;
   window.history.pushState({ slug }, "", newUrl);
 
   currentQuizData = QUIZ_DATA.quizzes[slug];
@@ -288,10 +319,11 @@ window.selectQuizFromPortal = function(slug) {
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
-// Return back to Portal Hub
+// Return back to Portal Hub (Always keeps tracking ID)
 window.backToPortal = function() {
   const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
-  const newUrl = isLocal ? "/" : `/${window.location.search}`;
+  const trackingQuery = (targetSubId && targetSubId !== "web") ? `?v=${encodeURIComponent(targetSubId)}` : "";
+  const newUrl = isLocal ? `/${trackingQuery}` : `/${trackingQuery}`;
   window.history.pushState({}, "", newUrl);
 
   renderPortalHub();

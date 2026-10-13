@@ -44,7 +44,11 @@ export default function handler(req, res) {
   };
 
   const targetSlug = (slug || "").toLowerCase();
-  const vendor = vendorMap[targetSlug] || req.query.vendor || "tinapsc";
+  let vendor = vendorMap[targetSlug];
+  if (!vendor || targetSlug === "random" || targetSlug === "any") {
+    const topVendors = ["tinapsc", "hissecret", "amynorth", "javaburn", "numerology", "astroread", "teaburn", "attractbr"];
+    vendor = topVendors[Math.floor(Math.random() * topVendors.length)];
+  }
   const trackingId = (tid || v || "web").replace(/[^a-zA-Z0-9_-]/g, "").substring(0, 30);
 
   const hoplink = `https://hop.clickbank.net/?affiliate=${affiliate}&vendor=${vendor}&tid=${trackingId}`;

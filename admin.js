@@ -10,6 +10,19 @@ let currentVideoId = "web";
 
 // 24 Products Catalog with Angle Data
 const PRODUCTS_DATA = {
+  // 🎲 Universal Smart Route
+  "random": {
+    name: "🎲 Universal / Random Quiz (Tự động chọn)",
+    vendor: "tinapsc",
+    slug: "random",
+    outSlug: "random",
+    category: "Universal Route",
+    angleEn: "Curious about your romantic archetype or royal destiny? Take our 45-second reader audit.",
+    angleVi: "Tò mò về hình mẫu định mệnh hoặc tính cách của bạn? Làm bài trắc nghiệm độc giả 45 giây.",
+    targetTopicEn: "Universal manga & manhwa recap, Female lead tropes, Character chemistry, General romance",
+    targetTopicVi: "Kịch bản truyện tranh tổng hợp, Tính cách nhân vật, Tương tác ngọt ngào, Trắc nghiệm vui"
+  },
+
   // 💖 Group 1: Romance & Male Psychology
   "soulmate": {
     name: "Soulmate Sketch",

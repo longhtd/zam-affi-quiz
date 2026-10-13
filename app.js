@@ -83,49 +83,199 @@ function routeAndRender() {
   }
 }
 
+// Portal Filter State
+let currentPortalCategory = "all";
+let currentPortalSearch = "";
+
 // ==========================================================================
 // PORTAL HUB (FOR ROOT HOMEPAGE VISITORS)
 // ==========================================================================
 function renderPortalHub() {
   document.title = "Zamverse Reader Portal | Exclusive Insights & Assessments";
 
+  // Expand container for wide catalog view
+  const mainContainer = document.getElementById("mainContainer");
+  if (mainContainer) {
+    mainContainer.classList.add("portal-expanded");
+  }
+
   // Update Header
-  document.getElementById("brandBadge").textContent = "✨ Zamverse Reader Chronicles";
-  document.getElementById("brandTitle").innerHTML = `<span class="highlight">Choose Your Private Assessment</span>`;
-  document.getElementById("brandSubtitle").textContent = "Explore our exclusive psychological audits, romantic archetypes, and subconscious vitality scans.";
-  document.getElementById("brandMeta").innerHTML = "<span>📚 4 Reader Audits Available</span> • <span>🔒 100% Free & Confidential</span>";
+  document.getElementById("brandBadge").textContent = "👑 Zamverse Reader Chronicles";
+  document.getElementById("brandTitle").innerHTML = `<span class="highlight">Discover Your Royal Archetype & Destiny</span>`;
+  document.getElementById("brandSubtitle").textContent = "Explore our interactive psychological assessments, romantic soulmate sketches, and metabolic vitality blueprints.";
+  
+  const allQuizzes = QUIZ_DATA ? Object.values(QUIZ_DATA.quizzes) : [];
+  document.getElementById("brandMeta").innerHTML = `<span>📚 ${allQuizzes.length} Reader Audits Available</span> • <span>🔒 100% Free & Confidential</span>`;
 
   // Hide progress bar on portal
   document.getElementById("progressSection").style.display = "none";
 
-  const cardBody = document.getElementById("quizCardBody");
-  const quizzes = QUIZ_DATA ? Object.values(QUIZ_DATA.quizzes) : [];
+  renderPortalBody();
+}
 
-  const cardsHtml = quizzes.map(q => {
-    return `
-      <div class="portal-card" onclick="selectQuizFromPortal('${q.slug}')">
-        <div>
-          <div class="portal-card-icon">${q.icon || "✨"}</div>
-          <div class="portal-card-tag">${q.card_num || "ASSESSMENT"}</div>
-          <h2 class="portal-card-title">${q.title}</h2>
-          <p class="portal-card-sub">${q.subtitle.substring(0, 95)}...</p>
+function renderPortalBody() {
+  const cardBody = document.getElementById("quizCardBody");
+  const allQuizzes = QUIZ_DATA ? Object.values(QUIZ_DATA.quizzes) : [];
+
+  // Filter categories count
+  const counts = {
+    all: allQuizzes.length,
+    romance: allQuizzes.filter(q => q.category === "romance").length,
+    destiny: allQuizzes.filter(q => q.category === "destiny").length,
+    glowup: allQuizzes.filter(q => q.category === "glowup").length,
+    wealth: allQuizzes.filter(q => q.category === "wealth").length
+  };
+
+  // Filter quizzes based on active tab and search
+  const term = currentPortalSearch.toLowerCase().trim();
+  const filteredQuizzes = allQuizzes.filter(q => {
+    const matchCat = currentPortalCategory === "all" || q.category === currentPortalCategory;
+    const matchSearch = !term || 
+      q.title.toLowerCase().includes(term) || 
+      q.subtitle.toLowerCase().includes(term) || 
+      (q.badge && q.badge.toLowerCase().includes(term));
+    return matchCat && matchSearch;
+  });
+
+  // Featured Hero Quiz (Soulmate Sketch)
+  const heroQuiz = QUIZ_DATA && QUIZ_DATA.quizzes ? QUIZ_DATA.quizzes["soulmate"] : null;
+  const showHero = heroQuiz && currentPortalCategory === "all" && !term;
+
+  const heroHtml = showHero ? `
+    <div class="portal-hero-banner" onclick="selectQuizFromPortal('${heroQuiz.slug}')">
+      <div class="hero-content">
+        <div class="hero-crown-badge">👑 Reader Favorite • Most Viral Today</div>
+        <h2 class="hero-title">${heroQuiz.title}</h2>
+        <p class="hero-sub">${heroQuiz.subtitle}</p>
+        <div class="hero-meta">
+          <span>🔥 38,400+ readers completed</span>
+          <span>•</span>
+          <span>⚡ 98.7% Accuracy</span>
+          <span>•</span>
+          <span>⏱️ 45 Seconds</span>
         </div>
-        <div class="portal-card-cta">
-          <span>Start Assessment (45s)</span>
+      </div>
+      <div>
+        <div class="hero-cta-btn">
+          <span>✨ Start Soulmate Reading</span>
           <span>→</span>
         </div>
       </div>
+    </div>
+  ` : "";
+
+  // Grid cards
+  let cardsHtml = "";
+  if (filteredQuizzes.length === 0) {
+    cardsHtml = `
+      <div class="portal-empty">
+        <div class="portal-empty-icon">🔍</div>
+        <h3>No assessments found</h3>
+        <p>Try searching with another keyword or select "All Audits" above.</p>
+      </div>
     `;
-  }).join("");
+  } else {
+    cardsHtml = filteredQuizzes.map(q => {
+      const timeStr = q.reading_time ? q.reading_time.split("•")[0].trim() : "45s";
+      const ratingStr = q.rating || "4.9/5";
+      const participantsStr = q.participants || "18k+ readers";
+      const categoryLabel = q.category_name || q.badge.split(" ")[0] + " ASSESSMENT";
+
+      return `
+        <div class="portal-card" onclick="selectQuizFromPortal('${q.slug}')">
+          <div class="portal-card-top">
+            <span class="portal-card-badge">${q.icon || "✨"} ${categoryLabel}</span>
+            <span class="portal-card-time">⏱️ ${timeStr}</span>
+          </div>
+
+          <div class="portal-card-main">
+            <h2 class="portal-card-title">${q.title}</h2>
+            <p class="portal-card-sub">${q.subtitle.substring(0, 110)}...</p>
+          </div>
+
+          <div class="portal-card-footer">
+            <span class="portal-card-rating">⭐️ ${ratingStr} • ${participantsStr}</span>
+            <span class="portal-card-cta">
+              <span>Begin Audit</span>
+              <span>→</span>
+            </span>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
 
   cardBody.innerHTML = `
     <div class="portal-view">
+
+      <!-- Category Filter Tabs -->
+      <div class="portal-tabs-container">
+        <div class="portal-tabs">
+          <button class="portal-tab-pill ${currentPortalCategory === 'all' ? 'active' : ''}" onclick="setPortalCategory('all')">
+            <span>✨ All Audits</span>
+            <span class="tab-count">${counts.all}</span>
+          </button>
+          <button class="portal-tab-pill ${currentPortalCategory === 'romance' ? 'active' : ''}" onclick="setPortalCategory('romance')">
+            <span>💖 Romance & Soulmates</span>
+            <span class="tab-count">${counts.romance}</span>
+          </button>
+          <button class="portal-tab-pill ${currentPortalCategory === 'destiny' ? 'active' : ''}" onclick="setPortalCategory('destiny')">
+            <span>🔮 Destiny & Tarot</span>
+            <span class="tab-count">${counts.destiny}</span>
+          </button>
+          <button class="portal-tab-pill ${currentPortalCategory === 'glowup' ? 'active' : ''}" onclick="setPortalCategory('glowup')">
+            <span>👑 Cinderella Glow-Up</span>
+            <span class="tab-count">${counts.glowup}</span>
+          </button>
+          <button class="portal-tab-pill ${currentPortalCategory === 'wealth' ? 'active' : ''}" onclick="setPortalCategory('wealth')">
+            <span>⚡ System & Mindset</span>
+            <span class="tab-count">${counts.wealth}</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Real-time Search Input -->
+      <div class="portal-search-wrapper">
+        <span class="search-icon-left">🔍</span>
+        <input type="text" 
+               class="portal-search-input" 
+               placeholder="Search assessments (e.g. Duke, Soulmate, Coffee, Tarot, Belly Fat, Wealth...)"
+               value="${currentPortalSearch}"
+               oninput="onPortalSearch(this.value)">
+        <button class="search-clear-btn" id="searchClearBtn" onclick="clearPortalSearch()">✕</button>
+      </div>
+
+      <!-- Spotlight Hero Card -->
+      ${heroHtml}
+
+      <!-- Filtered Quiz Cards Grid -->
       <div class="portal-grid">
         ${cardsHtml}
       </div>
+
     </div>
   `;
 }
+
+// Portal Filter Actions
+window.setPortalCategory = function(cat) {
+  currentPortalCategory = cat;
+  renderPortalBody();
+};
+
+window.onPortalSearch = function(val) {
+  currentPortalSearch = val;
+  const clearBtn = document.getElementById("searchClearBtn");
+  if (clearBtn) {
+    clearBtn.style.display = val ? "block" : "none";
+  }
+  renderPortalBody();
+};
+
+window.clearPortalSearch = function() {
+  currentPortalSearch = "";
+  renderPortalBody();
+};
 
 // Select Quiz From Portal Hub
 window.selectQuizFromPortal = function(slug) {
@@ -138,6 +288,16 @@ window.selectQuizFromPortal = function(slug) {
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
+// Return back to Portal Hub
+window.backToPortal = function() {
+  const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+  const newUrl = isLocal ? "/" : `/${window.location.search}`;
+  window.history.pushState({}, "", newUrl);
+
+  renderPortalHub();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
 // ==========================================================================
 // DEDICATED QUIZ FUNNEL
 // ==========================================================================
@@ -147,13 +307,21 @@ function startQuiz() {
   currentQuestionIndex = 0;
   userAnswers = [];
 
+  // Revert container to focused width
+  const mainContainer = document.getElementById("mainContainer");
+  if (mainContainer) {
+    mainContainer.classList.remove("portal-expanded");
+  }
+
   document.title = `${currentQuizData.title} | Zamverse Insights`;
 
   // Show progress section
   document.getElementById("progressSection").style.display = "block";
 
   // Update Brand Headers
-  document.getElementById("brandBadge").textContent = currentQuizData.badge;
+  document.getElementById("brandBadge").innerHTML = `
+    <span onclick="backToPortal()" style="cursor: pointer; opacity: 0.8; margin-right: 6px;">← All Audits</span> • ${currentQuizData.badge}
+  `;
   document.getElementById("brandTitle").innerHTML = `<span class="highlight">${currentQuizData.title}</span>`;
   document.getElementById("brandSubtitle").textContent = currentQuizData.subtitle;
   document.getElementById("brandMeta").innerHTML = `<span>⏱️ ${currentQuizData.reading_time}</span> • <span>🔒 100% Free & Private</span>`;

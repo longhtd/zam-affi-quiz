@@ -17,37 +17,85 @@
         {
           "question": "When meeting someone new, what catches your intuition first?",
           "options": [
-            { "text": "Their quiet, protective aura and unyielding gaze", "sub": "Silent strength that instantly calms your nervous system" },
-            { "text": "Their magnetic wit, charisma, and effortless charm", "sub": "Someone who commands the room with ease" },
-            { "text": "Their mysterious past and fiercely independent spirit", "sub": "A lone wolf who only lets their guard down around you" },
-            { "text": "Their intellectual depth and grounded wisdom", "sub": "Someone you can talk with for hours under the stars" }
+            {
+              "text": "Their quiet, protective aura and unyielding gaze",
+              "sub": "Silent strength that instantly calms your nervous system"
+            },
+            {
+              "text": "Their magnetic wit, charisma, and effortless charm",
+              "sub": "Someone who commands the room with ease"
+            },
+            {
+              "text": "Their mysterious past and fiercely independent spirit",
+              "sub": "A lone wolf who only lets their guard down around you"
+            },
+            {
+              "text": "Their intellectual depth and grounded wisdom",
+              "sub": "Someone you can talk with for hours under the stars"
+            }
           ]
         },
         {
           "question": "What is your deepest unspoken desire when it comes to true love?",
           "options": [
-            { "text": "To be fiercely protected and chosen above all else", "sub": "Unconditional devotion where you are never second-guessed" },
-            { "text": "A telepathic mental bond where few words are needed", "sub": "Feeling completely seen and understood without explanation" },
-            { "text": "An adventurous equal who inspires you to reach your highest potential", "sub": "Mutual growth and unstoppable passion" },
-            { "text": "Unwavering loyalty that stands firm through life's darkest trials", "sub": "A safe haven you can always come home to" }
+            {
+              "text": "To be fiercely protected and chosen above all else",
+              "sub": "Unconditional devotion where you are never second-guessed"
+            },
+            {
+              "text": "A telepathic mental bond where few words are needed",
+              "sub": "Feeling completely seen and understood without explanation"
+            },
+            {
+              "text": "An adventurous equal who inspires you to reach your highest potential",
+              "sub": "Mutual growth and unstoppable passion"
+            },
+            {
+              "text": "Unwavering loyalty that stands firm through life's darkest trials",
+              "sub": "A safe haven you can always come home to"
+            }
           ]
         },
         {
           "question": "How do you intuitively sense when someone is destined for you?",
           "options": [
-            { "text": "An electric shock of familiarity, like meeting an old soul from a past life", "sub": "Time stops the moment your eyes meet" },
-            { "text": "A sudden, deep stillness in your chest—a quiet certainty of safety", "sub": "Your anxiety dissolves instantly" },
-            { "text": "Intense synchronicities, repeating numbers, or vivid dreams beforehand", "sub": "The universe whispering that they are near" },
-            { "text": "An undeniable magnetic pull that logic cannot explain", "sub": "Every instinct tells you not to let them go" }
+            {
+              "text": "An electric shock of familiarity, like meeting an old soul from a past life",
+              "sub": "Time stops the moment your eyes meet"
+            },
+            {
+              "text": "A sudden, deep stillness in your chest—a quiet certainty of safety",
+              "sub": "Your anxiety dissolves instantly"
+            },
+            {
+              "text": "Intense synchronicities, repeating numbers, or vivid dreams beforehand",
+              "sub": "The universe whispering that they are near"
+            },
+            {
+              "text": "An undeniable magnetic pull that logic cannot explain",
+              "sub": "Every instinct tells you not to let them go"
+            }
           ]
         },
         {
           "question": "Which elemental energy resonates most with your inner soul?",
           "options": [
-            { "text": "Winter Frost & Obsidian (Steadfast protection, rare vulnerability)", "sub": "Cold to the world, infinitely gentle only with you" },
-            { "text": "Autumn Ember & Fire (Passionate loyalty, golden warmth)", "sub": "A burning flame that protects and illuminates" },
-            { "text": "Spring Wind & Sky (Freedom, brilliant intellect, quick wit)", "sub": "Boundless energy and lighthearted adventure" },
-            { "text": "Deep Earth & Ancient Forest (Unshakable roots, enduring patience)", "sub": "Grounded safety that outlasts all storms" }
+            {
+              "text": "Winter Frost & Obsidian (Steadfast protection, rare vulnerability)",
+              "sub": "Cold to the world, infinitely gentle only with you"
+            },
+            {
+              "text": "Autumn Ember & Fire (Passionate loyalty, golden warmth)",
+              "sub": "A burning flame that protects and illuminates"
+            },
+            {
+              "text": "Spring Wind & Sky (Freedom, brilliant intellect, quick wit)",
+              "sub": "Boundless energy and lighthearted adventure"
+            },
+            {
+              "text": "Deep Earth & Ancient Forest (Unshakable roots, enduring patience)",
+              "sub": "Grounded safety that outlasts all storms"
+            }
           ]
         }
       ],
@@ -59,18 +107,37 @@
         "match_percentage": "98.7% Resonance",
         "cold_reading": "You project an aura of self-sufficiency, composure, and emotional resilience to the outside world. People admire your strength and lean on you. Yet in your quietest moments, you carry the exhausting weight of always having to be the strong one. Your soul does not want someone who needs to be fixed or mothered; you crave a partner whose inner strength surpasses your own—someone commanding enough that you can finally exhale, surrender control, and feel completely cherished.",
         "traits": [
-          { "label": "Connection Type", "value": "Past-Life Twin Flame" },
-          { "label": "Protective Instinct", "value": "100% Devotion" },
-          { "label": "Arrival Window", "value": "Current Lunar Phase" }
+          {
+            "label": "Connection Type",
+            "value": "Past-Life Twin Flame"
+          },
+          {
+            "label": "Protective Instinct",
+            "value": "100% Devotion"
+          },
+          {
+            "label": "Arrival Window",
+            "value": "Current Lunar Phase"
+          }
         ],
         "urgency_notice": "Psychic Master Tina has active vision availability for your energy signature today. Your drawing queue is held for 15 minutes.",
         "cta_label": "🔮 Reveal Your Soulmate's Psychic Sketch & Reading",
         "cta_subtext": "Official psychic sketch & astrological analysis presentation by Tina Aldea",
         "testimonials": [
-          { "author": "Elena R., 28", "text": "I got chills reading the personality breakdown. It described my exact inner feelings. Two weeks later, I met someone with the exact facial features from the sketch." },
-          { "author": "Sophia M., 31", "text": "Felt like stepping into the romance of my favorite manhwa. The psychic reading gave me so much peace and clarity." }
+          {
+            "author": "Elena R., 28",
+            "text": "I got chills reading the personality breakdown. It described my exact inner feelings. Two weeks later, I met someone with the exact facial features from the sketch."
+          },
+          {
+            "author": "Sophia M., 31",
+            "text": "Felt like stepping into the romance of my favorite manhwa. The psychic reading gave me so much peace and clarity."
+          }
         ]
-      }
+      },
+      "category": "romance",
+      "category_name": "💖 Romance & Soulmates",
+      "participants": "38,400+ readers",
+      "rating": "4.9/5"
     },
     "love-secret": {
       "id": "love-secret",
@@ -87,37 +154,85 @@
         {
           "question": "What pattern tends to occur when you open your heart fully to a man?",
           "options": [
-            { "text": "He seems intensely interested at first, then becomes emotionally distant", "sub": "He retreats into his cave without explanation" },
-            { "text": "He treats me like a companion or best friend rather than his romantic priority", "sub": "The deep romantic spark is missing" },
-            { "text": "He struggles with long-term commitment and remains emotionally guarded", "sub": "Afraid of taking the next step" },
-            { "text": "Things start wonderfully, but the passion naturally fizzles over time", "sub": "Routine replaces excitement" }
+            {
+              "text": "He seems intensely interested at first, then becomes emotionally distant",
+              "sub": "He retreats into his cave without explanation"
+            },
+            {
+              "text": "He treats me like a companion or best friend rather than his romantic priority",
+              "sub": "The deep romantic spark is missing"
+            },
+            {
+              "text": "He struggles with long-term commitment and remains emotionally guarded",
+              "sub": "Afraid of taking the next step"
+            },
+            {
+              "text": "Things start wonderfully, but the passion naturally fizzles over time",
+              "sub": "Routine replaces excitement"
+            }
           ]
         },
         {
           "question": "What makes a woman truly irreplaceable in a man's subconscious mind?",
           "options": [
-            { "text": "Making him feel indispensable—like your personal champion and hero", "sub": "Fulfilling his biological drive to provide and protect" },
-            { "text": "Always being supportive, gentle, understanding, and accommodating", "sub": "Being a constant peace in his life" },
-            { "text": "Maintaining an air of high-value mystery and unpredictability", "sub": "Keeping the thrill of the chase alive" },
-            { "text": "Sharing all the same intellectual hobbies and mutual daily routines", "sub": "Deep intellectual harmony" }
+            {
+              "text": "Making him feel indispensable—like your personal champion and hero",
+              "sub": "Fulfilling his biological drive to provide and protect"
+            },
+            {
+              "text": "Always being supportive, gentle, understanding, and accommodating",
+              "sub": "Being a constant peace in his life"
+            },
+            {
+              "text": "Maintaining an air of high-value mystery and unpredictability",
+              "sub": "Keeping the thrill of the chase alive"
+            },
+            {
+              "text": "Sharing all the same intellectual hobbies and mutual daily routines",
+              "sub": "Deep intellectual harmony"
+            }
           ]
         },
         {
           "question": "How does he react when you come to him with a problem or need help?",
           "options": [
-            { "text": "He lights up and takes pride in stepping up to solve it", "sub": "His protective instinct is momentarily sparked" },
-            { "text": "He seems distracted, lukewarm, or quickly changes the topic", "sub": "Emotionally disconnected" },
-            { "text": "He becomes defensive or feels pressured like he's being judged", "sub": "Fear of inadequacy" },
-            { "text": "He listens quietly, but rarely takes decisive action", "sub": "Passive and detached" }
+            {
+              "text": "He lights up and takes pride in stepping up to solve it",
+              "sub": "His protective instinct is momentarily sparked"
+            },
+            {
+              "text": "He seems distracted, lukewarm, or quickly changes the topic",
+              "sub": "Emotionally disconnected"
+            },
+            {
+              "text": "He becomes defensive or feels pressured like he's being judged",
+              "sub": "Fear of inadequacy"
+            },
+            {
+              "text": "He listens quietly, but rarely takes decisive action",
+              "sub": "Passive and detached"
+            }
           ]
         },
         {
           "question": "If you could activate a single psychological instinct in him, which would you choose?",
           "options": [
-            { "text": "An irresistible urge to pursue me and lock in our future together", "sub": "He views you as his absolute greatest prize" },
-            { "text": "Total emotional transparency without any fear of vulnerability", "sub": "He shares his deepest truths only with you" },
-            { "text": "Fierce, unshakeable devotion where other women completely disappear", "sub": "Zero wandering eyes or doubts" },
-            { "text": "A romantic obsession that deepens and grows stronger every year", "sub": "Timeless, unbreakable romance" }
+            {
+              "text": "An irresistible urge to pursue me and lock in our future together",
+              "sub": "He views you as his absolute greatest prize"
+            },
+            {
+              "text": "Total emotional transparency without any fear of vulnerability",
+              "sub": "He shares his deepest truths only with you"
+            },
+            {
+              "text": "Fierce, unshakeable devotion where other women completely disappear",
+              "sub": "Zero wandering eyes or doubts"
+            },
+            {
+              "text": "A romantic obsession that deepens and grows stronger every year",
+              "sub": "Timeless, unbreakable romance"
+            }
           ]
         }
       ],
@@ -129,18 +244,37 @@
         "match_percentage": "High Receptivity Score",
         "cold_reading": "You give deeply and love with genuine loyalty. Yet too often, you find yourself over-functioning in relationships—carrying the emotional burden, planning, and trying to fix the distance. When a man feels unnecessary or unchallenged, his primal masculine drive shuts down, causing him to pull away. Once you trigger his biological 'Hero Instinct', his entire demeanor shifts: the emotional distance evaporates, and he begins to pursue you with fierce, protective devotion.",
         "traits": [
-          { "label": "Emotional Bottleneck", "value": "Dormant Hero Drive" },
-          { "label": "Devotion Potential", "value": "Extremely High (97%)" },
-          { "label": "Solution Trigger", "value": "12-Word Secret Signal" }
+          {
+            "label": "Emotional Bottleneck",
+            "value": "Dormant Hero Drive"
+          },
+          {
+            "label": "Devotion Potential",
+            "value": "Extremely High (97%)"
+          },
+          {
+            "label": "Solution Trigger",
+            "value": "12-Word Secret Signal"
+          }
         ],
         "urgency_notice": "Relationship counselor James Bauer has released the official video breakdown of the 12-Word Text Message.",
         "cta_label": "🔓 Watch The 12-Word Text That Triggers His Devotion",
         "cta_subtext": "Free masterclass presentation by relationship counselor James Bauer",
         "testimonials": [
-          { "author": "Rebecca K., 33", "text": "My boyfriend of 3 years was pulling away and wouldn't talk about marriage. I used the 'Secret Signal' from James's presentation—within 48 hours his entire attitude transformed." },
-          { "author": "Claire T., 29", "text": "I finally understand the male brain. This isn't manipulation; it's understanding what men secretly crave to feel inspired." }
+          {
+            "author": "Rebecca K., 33",
+            "text": "My boyfriend of 3 years was pulling away and wouldn't talk about marriage. I used the 'Secret Signal' from James's presentation—within 48 hours his entire attitude transformed."
+          },
+          {
+            "author": "Claire T., 29",
+            "text": "I finally understand the male brain. This isn't manipulation; it's understanding what men secretly crave to feel inspired."
+          }
         ]
-      }
+      },
+      "category": "romance",
+      "category_name": "💖 Romance & Psychology",
+      "participants": "29,100+ readers",
+      "rating": "4.9/5"
     },
     "glowup": {
       "id": "glowup",
@@ -157,36 +291,81 @@
         {
           "question": "When does your energy hit the sharpest slump during the day?",
           "options": [
-            { "text": "Right around 2:00 PM – 4:00 PM (Heavy brain fog & sugar cravings)", "sub": "Mid-afternoon metabolic crash" },
-            { "text": "Immediately upon waking up, even after 7–8 hours in bed", "sub": "Unrefreshed sleep and cellular fatigue" },
-            { "text": "Late in the evening after dinner with uncomfortable bloating", "sub": "Sluggish digestion and inflammation" },
-            { "text": "Erratic bursts of fatigue throughout the entire day", "sub": "Unstable blood sugar balance" }
+            {
+              "text": "Right around 2:00 PM – 4:00 PM (Heavy brain fog & sugar cravings)",
+              "sub": "Mid-afternoon metabolic crash"
+            },
+            {
+              "text": "Immediately upon waking up, even after 7–8 hours in bed",
+              "sub": "Unrefreshed sleep and cellular fatigue"
+            },
+            {
+              "text": "Late in the evening after dinner with uncomfortable bloating",
+              "sub": "Sluggish digestion and inflammation"
+            },
+            {
+              "text": "Erratic bursts of fatigue throughout the entire day",
+              "sub": "Unstable blood sugar balance"
+            }
           ]
         },
         {
           "question": "Where does your body stubbornly hold onto excess weight?",
           "options": [
-            { "text": "Lower belly and waistline (cortisol and hormonal resistance)", "sub": "Stress-induced stubborn fat" },
-            { "text": "Hips, thighs, and lower body puffiness", "sub": "Fluid retention and slow lymphatic drainage" },
-            { "text": "Overall sluggish heaviness throughout the whole body", "sub": "Dormant resting metabolic rate" },
-            { "text": "Upper body, arms, and facial puffiness", "sub": "Metabolic inflammation" }
+            {
+              "text": "Lower belly and waistline (cortisol and hormonal resistance)",
+              "sub": "Stress-induced stubborn fat"
+            },
+            {
+              "text": "Hips, thighs, and lower body puffiness",
+              "sub": "Fluid retention and slow lymphatic drainage"
+            },
+            {
+              "text": "Overall sluggish heaviness throughout the whole body",
+              "sub": "Dormant resting metabolic rate"
+            },
+            {
+              "text": "Upper body, arms, and facial puffiness",
+              "sub": "Metabolic inflammation"
+            }
           ]
         },
         {
           "question": "How have restrictive diets or intense cardio worked for you in the past?",
           "options": [
-            { "text": "I lose a few pounds, but it rebounds the second I eat normally", "sub": "The dreaded yo-yo trap" },
-            { "text": "My metabolism grinds to a halt, leaving me drained and irritable", "sub": "Starvation mode slows calorie burn" },
-            { "text": "It feels unnatural and causes terrible mood swings and food obsession", "sub": "Unsustainable mental exhaustion" },
-            { "text": "I haven't found a gentle, natural routine that actually lasts", "sub": "Ready for a scientific, effortless approach" }
+            {
+              "text": "I lose a few pounds, but it rebounds the second I eat normally",
+              "sub": "The dreaded yo-yo trap"
+            },
+            {
+              "text": "My metabolism grinds to a halt, leaving me drained and irritable",
+              "sub": "Starvation mode slows calorie burn"
+            },
+            {
+              "text": "It feels unnatural and causes terrible mood swings and food obsession",
+              "sub": "Unsustainable mental exhaustion"
+            },
+            {
+              "text": "I haven't found a gentle, natural routine that actually lasts",
+              "sub": "Ready for a scientific, effortless approach"
+            }
           ]
         },
         {
           "question": "Can you commit to a 10-second natural botanical ritual with your morning beverage?",
           "options": [
-            { "text": "Yes, absolutely! I want effortless, natural results", "sub": "Zero complicated meal prep or gym marathons" },
-            { "text": "Yes, as long as it is 100% plant-based and backed by clinical research", "sub": "Clean, pure ingredients only" },
-            { "text": "I want to watch the scientific presentation and mechanism first", "sub": "Show me how it works" }
+            {
+              "text": "Yes, absolutely! I want effortless, natural results",
+              "sub": "Zero complicated meal prep or gym marathons"
+            },
+            {
+              "text": "Yes, as long as it is 100% plant-based and backed by clinical research",
+              "sub": "Clean, pure ingredients only"
+            },
+            {
+              "text": "I want to watch the scientific presentation and mechanism first",
+              "sub": "Show me how it works"
+            }
           ]
         }
       ],
@@ -198,18 +377,37 @@
         "match_percentage": "Rebound Potential: +350%",
         "cold_reading": "You are not lazy, and your weight struggles are not a failure of willpower. When the body endures chronic stress, irregular sleep, and modern environmental stressors, it locks into 'survival conservation' mode. Calorie burn slows to a crawl, and carbohydrates are instantly stored as visceral belly fat. By pairing targeted natural micronutrients with your morning routine, you reignite resting cellular thermogenesis without starvation or exhausting cardio.",
         "traits": [
-          { "label": "Metabolic Status", "value": "Hibernating Thermogenesis" },
-          { "label": "Fat-Burn Efficiency", "value": "Restorable to 3.8x" },
-          { "label": "Daily Time Required", "value": "10 Seconds Every Morning" }
+          {
+            "label": "Metabolic Status",
+            "value": "Hibernating Thermogenesis"
+          },
+          {
+            "label": "Fat-Burn Efficiency",
+            "value": "Restorable to 3.8x"
+          },
+          {
+            "label": "Daily Time Required",
+            "value": "10 Seconds Every Morning"
+          }
         ],
         "urgency_notice": "The clinical research video detailing the 10-second morning ritual is currently available for public viewing.",
         "cta_label": "🌿 Watch The 10-Second Morning Ritual Video Presentation",
         "cta_subtext": "Official scientific presentation on natural metabolic acceleration",
         "testimonials": [
-          { "author": "Amanda G., 36", "text": "I struggled with stubborn postpartum belly fat for 4 years. Adding this 10-second routine to my morning coffee was the only thing that actually made the inches melt off without dieting." },
-          { "author": "Karen L., 44", "text": "My afternoon brain fog completely disappeared by Day 5. I have more sustained energy now than I did in my twenties." }
+          {
+            "author": "Amanda G., 36",
+            "text": "I struggled with stubborn postpartum belly fat for 4 years. Adding this 10-second routine to my morning coffee was the only thing that actually made the inches melt off without dieting."
+          },
+          {
+            "author": "Karen L., 44",
+            "text": "My afternoon brain fog completely disappeared by Day 5. I have more sustained energy now than I did in my twenties."
+          }
         ]
-      }
+      },
+      "category": "glowup",
+      "category_name": "👑 Cinderella Glow-Up",
+      "participants": "26,700+ readers",
+      "rating": "4.8/5"
     },
     "brainwave": {
       "id": "brainwave",
@@ -226,36 +424,81 @@
         {
           "question": "If you woke up with an IRL 'Leveling System', which stat would you max out first?",
           "options": [
-            { "text": "Luck & Wealth Generation (Never stress about financial freedom again)", "sub": "Effortless abundance and breakthrough timing" },
-            { "text": "Focus & Mental Acuity (Master any high-income skill 10x faster)", "sub": "Laser cognitive drive with zero brain fog" },
-            { "text": "Charisma & Magnetic Authority (Command respect and influence naturally)", "sub": "Unshakable presence that draws people in" },
-            { "text": "Physical Vitality & Stamina (Boundless energy to outwork everyone)", "sub": "Peak physical and nervous system endurance" }
+            {
+              "text": "Luck & Wealth Generation (Never stress about financial freedom again)",
+              "sub": "Effortless abundance and breakthrough timing"
+            },
+            {
+              "text": "Focus & Mental Acuity (Master any high-income skill 10x faster)",
+              "sub": "Laser cognitive drive with zero brain fog"
+            },
+            {
+              "text": "Charisma & Magnetic Authority (Command respect and influence naturally)",
+              "sub": "Unshakable presence that draws people in"
+            },
+            {
+              "text": "Physical Vitality & Stamina (Boundless energy to outwork everyone)",
+              "sub": "Peak physical and nervous system endurance"
+            }
           ]
         },
         {
           "question": "How often do you feel trapped by mental fatigue or racing thoughts?",
           "options": [
-            { "text": "Almost every night—my brain refuses to shut off when I try to sleep", "sub": "Overactive Beta wave dominance" },
-            { "text": "Whenever I try to take big risks or pursue breakthrough goals", "sub": "Subconscious self-sabotage" },
-            { "text": "Periodically, when physical burnout and stress catch up with me", "sub": "Depleted cognitive battery" },
-            { "text": "Rarely, but I know I'm operating far below my true intellectual potential", "sub": "Untapped potential waiting for a spark" }
+            {
+              "text": "Almost every night—my brain refuses to shut off when I try to sleep",
+              "sub": "Overactive Beta wave dominance"
+            },
+            {
+              "text": "Whenever I try to take big risks or pursue breakthrough goals",
+              "sub": "Subconscious self-sabotage"
+            },
+            {
+              "text": "Periodically, when physical burnout and stress catch up with me",
+              "sub": "Depleted cognitive battery"
+            },
+            {
+              "text": "Rarely, but I know I'm operating far below my true intellectual potential",
+              "sub": "Untapped potential waiting for a spark"
+            }
           ]
         },
         {
           "question": "What is the biggest barrier between where you are and true financial abundance?",
           "options": [
-            { "text": "Subconscious scarcity conditioning and hidden self-limiting beliefs", "sub": "Mental blocks formed in childhood" },
-            { "text": "Lack of high-level timing, lucky breaks, and aligned opportunities", "sub": "Missing the golden window" },
-            { "text": "Procrastination, dopamine burnout, and constant screen distraction", "sub": "Scattered focus" },
-            { "text": "Energy drainage from negative environments and low-vibration circles", "sub": "External resistance" }
+            {
+              "text": "Subconscious scarcity conditioning and hidden self-limiting beliefs",
+              "sub": "Mental blocks formed in childhood"
+            },
+            {
+              "text": "Lack of high-level timing, lucky breaks, and aligned opportunities",
+              "sub": "Missing the golden window"
+            },
+            {
+              "text": "Procrastination, dopamine burnout, and constant screen distraction",
+              "sub": "Scattered focus"
+            },
+            {
+              "text": "Energy drainage from negative environments and low-vibration circles",
+              "sub": "External resistance"
+            }
           ]
         },
         {
           "question": "Can you commit to listening to a targeted 7-minute audio frequency each morning?",
           "options": [
-            { "text": "Yes, I can easily listen with headphones during my morning routine", "sub": "Effortless audio entrainment" },
-            { "text": "Yes, if it is proven by neuroscientists and university research", "sub": "Evidence-backed technology" },
-            { "text": "I want to hear the sound sample and scientific case studies first", "sub": "Show me the proof" }
+            {
+              "text": "Yes, I can easily listen with headphones during my morning routine",
+              "sub": "Effortless audio entrainment"
+            },
+            {
+              "text": "Yes, if it is proven by neuroscientists and university research",
+              "sub": "Evidence-backed technology"
+            },
+            {
+              "text": "I want to hear the sound sample and scientific case studies first",
+              "sub": "Show me the proof"
+            }
           ]
         }
       ],
@@ -267,18 +510,37 @@
         "match_percentage": "99.4% Awakening Potential",
         "cold_reading": "You have an innate hunger for greatness that you rarely share with others because they wouldn't understand. You sense that you were made for far more than an average 9-to-5 grind. Yet whenever you build momentum, an invisible subconscious wall pulls you back into overthinking. Neuroscientists call this 'Beta Wave Dominance'. When you stimulate the hippocampus with a specific 7-minute audio frequency, your brain drops into the Theta wave—the exact brainwave verified in self-made billionaires, elite creatives, and top performers.",
         "traits": [
-          { "label": "Dominant Brainwave", "value": "Overactive Beta (Stress)" },
-          { "label": "Target State", "value": "Pure Theta Wave (Abundance)" },
-          { "label": "Time Required", "value": "7 Minutes Per Day" }
+          {
+            "label": "Dominant Brainwave",
+            "value": "Overactive Beta (Stress)"
+          },
+          {
+            "label": "Target State",
+            "value": "Pure Theta Wave (Abundance)"
+          },
+          {
+            "label": "Time Required",
+            "value": "7 Minutes Per Day"
+          }
         ],
         "urgency_notice": "The Columbia neuroscientist frequency study presentation is accessible for a limited time.",
         "cta_label": "🎧 Listen To The 7-Minute Billionaire Brain Wave Audio",
         "cta_subtext": "Official scientific demonstration and audio frequency presentation",
         "testimonials": [
-          { "author": "David M., 32", "text": "Felt like someone unlocked a cheat code in my brain. My decision paralysis stopped within a week, and I closed the biggest client contract of my career." },
-          { "author": "Marcus V., 27", "text": "The focus and sense of calm confidence it gives you in the morning is unreal. Best 7 minutes of my day." }
+          {
+            "author": "David M., 32",
+            "text": "Felt like someone unlocked a cheat code in my brain. My decision paralysis stopped within a week, and I closed the biggest client contract of my career."
+          },
+          {
+            "author": "Marcus V., 27",
+            "text": "The focus and sense of calm confidence it gives you in the morning is unreal. Best 7 minutes of my day."
+          }
         ]
-      }
+      },
+      "category": "wealth",
+      "category_name": "⚡ System & Mindset",
+      "participants": "22,400+ readers",
+      "rating": "4.9/5"
     },
     "devotion": {
       "id": "devotion",
@@ -295,28 +557,64 @@
         {
           "question": "When messaging someone you are deeply attracted to, what is your default style?",
           "options": [
-            { "text": "Thoughtful, articulate, but sometimes overanalyzing every single word", "sub": "Checking read receipts and waiting with anticipation" },
-            { "text": "Playful, witty, and teasing with effortless banter", "sub": "Keeping things light and exciting" },
-            { "text": "Warm, supportive, and instantly responsive to his messages", "sub": "Showing genuine care and attentiveness" },
-            { "text": "Mysterious, slow to reply, and leaving him wanting more", "sub": "Holding back to maintain high value" }
+            {
+              "text": "Thoughtful, articulate, but sometimes overanalyzing every single word",
+              "sub": "Checking read receipts and waiting with anticipation"
+            },
+            {
+              "text": "Playful, witty, and teasing with effortless banter",
+              "sub": "Keeping things light and exciting"
+            },
+            {
+              "text": "Warm, supportive, and instantly responsive to his messages",
+              "sub": "Showing genuine care and attentiveness"
+            },
+            {
+              "text": "Mysterious, slow to reply, and leaving him wanting more",
+              "sub": "Holding back to maintain high value"
+            }
           ]
         },
         {
           "question": "What is the most frustrating text behavior you encounter from men?",
           "options": [
-            { "text": "Going silent for days, then suddenly reappearing like nothing happened", "sub": "The hot-and-cold disappearing act" },
-            { "text": "Dry, one-word responses that give you nothing to work with", "sub": "Low-effort communication" },
-            { "text": "Talking for weeks without ever asking you out on a real date", "sub": "Endless texting pen pals" },
-            { "text": "Avoiding emotional depth whenever the conversation gets real", "sub": "Emotional deflection" }
+            {
+              "text": "Going silent for days, then suddenly reappearing like nothing happened",
+              "sub": "The hot-and-cold disappearing act"
+            },
+            {
+              "text": "Dry, one-word responses that give you nothing to work with",
+              "sub": "Low-effort communication"
+            },
+            {
+              "text": "Talking for weeks without ever asking you out on a real date",
+              "sub": "Endless texting pen pals"
+            },
+            {
+              "text": "Avoiding emotional depth whenever the conversation gets real",
+              "sub": "Emotional deflection"
+            }
           ]
         },
         {
           "question": "If you could trigger an instant emotional reaction in him via a single text, what would it be?",
           "options": [
-            { "text": "A sudden rush of adoration that makes him drop everything to call me", "sub": "Unstoppable romantic urgency" },
-            { "text": "Intense curiosity that keeps him daydreaming about me all afternoon", "sub": "Living rent-free in his mind" },
-            { "text": "A deep sense of emotional connection that he has never felt before", "sub": "Soulmate-level resonance" },
-            { "text": "Fierce determination to step up and prove his worth to me", "sub": "Inspiring his masculine pursuit" }
+            {
+              "text": "A sudden rush of adoration that makes him drop everything to call me",
+              "sub": "Unstoppable romantic urgency"
+            },
+            {
+              "text": "Intense curiosity that keeps him daydreaming about me all afternoon",
+              "sub": "Living rent-free in his mind"
+            },
+            {
+              "text": "A deep sense of emotional connection that he has never felt before",
+              "sub": "Soulmate-level resonance"
+            },
+            {
+              "text": "Fierce determination to step up and prove his worth to me",
+              "sub": "Inspiring his masculine pursuit"
+            }
           ]
         }
       ],
@@ -328,18 +626,37 @@
         "match_percentage": "98.2% Fascination Capacity",
         "cold_reading": "You have a vibrant, passionate heart, but you frequently give away too much emotional certainty too quickly over text. When a man feels he has completely figured you out, the natural excitement of the chase diminishes. By applying targeted psychological 'Text Chemistry' signals, you flip the script: he stops being complacent, starts anticipating your messages, and views you as the rare, unforgettable prize of his life.",
         "traits": [
-          { "label": "Attraction Archetype", "value": "Magnetic Enchantress" },
-          { "label": "Texting Vulnerability", "value": "Over-availability" },
-          { "label": "Mastery Key", "value": "Curiosity Hooks" }
+          {
+            "label": "Attraction Archetype",
+            "value": "Magnetic Enchantress"
+          },
+          {
+            "label": "Texting Vulnerability",
+            "value": "Over-availability"
+          },
+          {
+            "label": "Mastery Key",
+            "value": "Curiosity Hooks"
+          }
         ],
         "urgency_notice": "Dating coach Amy North has released the private 'Devotion Sequence' text script breakdown.",
         "cta_label": "💌 Unlock The Exact Texts That Trigger His Devotion",
         "cta_subtext": "Official presentation by bestselling relationship author Amy North",
         "testimonials": [
-          { "author": "Jessica P., 27", "text": "Sent the 'Curiosity Hook' text to a guy who was ghosting me for 2 weeks. He called me within 12 minutes apologizing and asked me out to dinner." },
-          { "author": "Lauren B., 34", "text": "Changed the way I communicate with men completely. Now he is the one texting me every morning and evening." }
+          {
+            "author": "Jessica P., 27",
+            "text": "Sent the 'Curiosity Hook' text to a guy who was ghosting me for 2 weeks. He called me within 12 minutes apologizing and asked me out to dinner."
+          },
+          {
+            "author": "Lauren B., 34",
+            "text": "Changed the way I communicate with men completely. Now he is the one texting me every morning and evening."
+          }
         ]
-      }
+      },
+      "category": "romance",
+      "category_name": "💖 Romance & Texting",
+      "participants": "18,500+ readers",
+      "rating": "4.8/5"
     },
     "numerology": {
       "id": "numerology",
@@ -356,28 +673,64 @@
         {
           "question": "Which recurring life pattern do you find yourself experiencing most?",
           "options": [
-            { "text": "Always being the emotional anchor for friends, family, and partners", "sub": "The natural empath and healer burden" },
-            { "text": "A restless urge to reinvent yourself and break free from ordinary expectations", "sub": "The pioneer and visionary calling" },
-            { "text": "Experiencing sudden, dramatic life shifts right before breakthrough chapters", "sub": "Karmic transformation cycles" },
-            { "text": "A deep intuition that your true purpose has not yet been fully revealed", "sub": "Dormant potential awaiting alignment" }
+            {
+              "text": "Always being the emotional anchor for friends, family, and partners",
+              "sub": "The natural empath and healer burden"
+            },
+            {
+              "text": "A restless urge to reinvent yourself and break free from ordinary expectations",
+              "sub": "The pioneer and visionary calling"
+            },
+            {
+              "text": "Experiencing sudden, dramatic life shifts right before breakthrough chapters",
+              "sub": "Karmic transformation cycles"
+            },
+            {
+              "text": "A deep intuition that your true purpose has not yet been fully revealed",
+              "sub": "Dormant potential awaiting alignment"
+            }
           ]
         },
         {
           "question": "What number pattern or synchronicity catches your eye most often?",
           "options": [
-            { "text": "Triple numbers like 111, 222, 333, or 444 on clocks and receipts", "sub": "Angelic alignment reminders" },
-            { "text": "Mirror hours like 11:11, 12:21, or 21:12", "sub": "Portal of rapid manifestation" },
-            { "text": "Repeating numbers tied to significant past dates or milestones", "sub": "Ancestral & karmic guidance" },
-            { "text": "Spontaneous gut feelings that predict events right before they happen", "sub": "High intuitive psychic sensitivity" }
+            {
+              "text": "Triple numbers like 111, 222, 333, or 444 on clocks and receipts",
+              "sub": "Angelic alignment reminders"
+            },
+            {
+              "text": "Mirror hours like 11:11, 12:21, or 21:12",
+              "sub": "Portal of rapid manifestation"
+            },
+            {
+              "text": "Repeating numbers tied to significant past dates or milestones",
+              "sub": "Ancestral & karmic guidance"
+            },
+            {
+              "text": "Spontaneous gut feelings that predict events right before they happen",
+              "sub": "High intuitive psychic sensitivity"
+            }
           ]
         },
         {
           "question": "What is the primary spiritual abundance you wish to unlock this season?",
           "options": [
-            { "text": "Destined soulmate union and emotional peace", "sub": "Finding your karmic counterpart" },
-            { "text": "Financial sovereign freedom and creative flourishing", "sub": "Living on your own terms" },
-            { "text": "Deep self-trust and eradication of chronic self-doubt", "sub": "Unshakable inner knowing" },
-            { "text": "Clearing past-life karmic blockages and generational burdens", "sub": "Releasing emotional baggage" }
+            {
+              "text": "Destined soulmate union and emotional peace",
+              "sub": "Finding your karmic counterpart"
+            },
+            {
+              "text": "Financial sovereign freedom and creative flourishing",
+              "sub": "Living on your own terms"
+            },
+            {
+              "text": "Deep self-trust and eradication of chronic self-doubt",
+              "sub": "Unshakable inner knowing"
+            },
+            {
+              "text": "Clearing past-life karmic blockages and generational burdens",
+              "sub": "Releasing emotional baggage"
+            }
           ]
         }
       ],
@@ -389,18 +742,37 @@
         "match_percentage": "99.1% Karmic Alignment",
         "cold_reading": "Your birth date reveals that you are an old soul placed in a modern world. You feel things with rare intensity—capable of sensing people's unspoken motives before they say a word. Because of this high sensitivity, you have often felt misunderstood or taken for granted by those who lack your emotional depth. You are entering a major 9-year astrological transition where past sacrifices convert into profound romantic alignment and unexpected abundance.",
         "traits": [
-          { "label": "Soul Archetype", "value": "Intuitive Sovereign" },
-          { "label": "Karmic Cycle", "value": "Breakthrough Phase" },
-          { "label": "Destiny Gift", "value": "Emotional Claircognizance" }
+          {
+            "label": "Soul Archetype",
+            "value": "Intuitive Sovereign"
+          },
+          {
+            "label": "Karmic Cycle",
+            "value": "Breakthrough Phase"
+          },
+          {
+            "label": "Destiny Gift",
+            "value": "Emotional Claircognizance"
+          }
         ],
         "urgency_notice": "Your personalized cosmic name and birth date numerology video report is ready for immediate streaming.",
         "cta_label": "🔮 Watch Your Personalized Life Path & Destiny Video Report",
         "cta_subtext": "Official comprehensive reading by Numerologist.com master astrologers",
         "testimonials": [
-          { "author": "Hannah S., 29", "text": "The accuracy about my past relationships and family dynamics was uncanny. It felt like someone had read my private diary." },
-          { "author": "Daniela M., 32", "text": "Gave me goosebumps. It predicted a major career and romantic shift in October that came completely true." }
+          {
+            "author": "Hannah S., 29",
+            "text": "The accuracy about my past relationships and family dynamics was uncanny. It felt like someone had read my private diary."
+          },
+          {
+            "author": "Daniela M., 32",
+            "text": "Gave me goosebumps. It predicted a major career and romantic shift in October that came completely true."
+          }
         ]
-      }
+      },
+      "category": "destiny",
+      "category_name": "🔮 Destiny & Numerology",
+      "participants": "31,200+ readers",
+      "rating": "4.9/5"
     },
     "tea-burn": {
       "id": "tea-burn",
@@ -417,27 +789,60 @@
         {
           "question": "What beverage kickstarts your mornings?",
           "options": [
-            { "text": "Hot green or black tea (I love soothing herbal warmth)", "sub": "Gentle antioxidant nourishment" },
-            { "text": "Warm lemon water or herbal infusions", "sub": "Natural hydration and digestive care" },
-            { "text": "Morning coffee or matcha latte", "sub": "Rich morning energy" },
-            { "text": "A quick glass of water on the go", "sub": "Fast-paced morning routine" }
+            {
+              "text": "Hot green or black tea (I love soothing herbal warmth)",
+              "sub": "Gentle antioxidant nourishment"
+            },
+            {
+              "text": "Warm lemon water or herbal infusions",
+              "sub": "Natural hydration and digestive care"
+            },
+            {
+              "text": "Morning coffee or matcha latte",
+              "sub": "Rich morning energy"
+            },
+            {
+              "text": "A quick glass of water on the go",
+              "sub": "Fast-paced morning routine"
+            }
           ]
         },
         {
           "question": "What is your primary wellness aspiration for your body right now?",
           "options": [
-            { "text": "Effortlessly losing stubborn inches around the waist and hips", "sub": "Natural silhouette contouring" },
-            { "text": "Waking up with clear, radiant skin and zero morning puffiness", "sub": "Lymphatic drainage and facial glow" },
-            { "text": "Clean, steady energy without afternoon jitters or crashes", "sub": "Balanced metabolic vitality" },
-            { "text": "Easing digestion and eliminating uncomfortable post-meal bloating", "sub": "Soothing gut inflammation" }
+            {
+              "text": "Effortlessly losing stubborn inches around the waist and hips",
+              "sub": "Natural silhouette contouring"
+            },
+            {
+              "text": "Waking up with clear, radiant skin and zero morning puffiness",
+              "sub": "Lymphatic drainage and facial glow"
+            },
+            {
+              "text": "Clean, steady energy without afternoon jitters or crashes",
+              "sub": "Balanced metabolic vitality"
+            },
+            {
+              "text": "Easing digestion and eliminating uncomfortable post-meal bloating",
+              "sub": "Soothing gut inflammation"
+            }
           ]
         },
         {
           "question": "Can you stir an unflavored, 100% natural plant packet into your favorite cup of tea?",
           "options": [
-            { "text": "Yes, absolutely! It takes 5 seconds and won't alter the taste of my tea", "sub": "Zero hassle, seamless morning ritual" },
-            { "text": "Yes, if it contains zero artificial chemicals or fillers", "sub": "Pure botanical purity" },
-            { "text": "I want to see the clinical research presentation first", "sub": "Show me the science" }
+            {
+              "text": "Yes, absolutely! It takes 5 seconds and won't alter the taste of my tea",
+              "sub": "Zero hassle, seamless morning ritual"
+            },
+            {
+              "text": "Yes, if it contains zero artificial chemicals or fillers",
+              "sub": "Pure botanical purity"
+            },
+            {
+              "text": "I want to see the clinical research presentation first",
+              "sub": "Show me the science"
+            }
           ]
         }
       ],
@@ -449,16 +854,363 @@
         "match_percentage": "High Botanical Synergy (98.6%)",
         "cold_reading": "Tea has been the beauty secret of royal courts for centuries. However, modern environmental stress and sluggish liver pathways prevent ordinary tea from releasing its full metabolic potential. When combined with specific patent-pending plant micronutrients, your daily cup of tea triggers thermal metabolic synergy—dissolving stubborn fat cells and revitalizing skin luminosity from within.",
         "traits": [
-          { "label": "Ritual Type", "value": "100% Tasteless Botanical Add-in" },
-          { "label": "Daily Duration", "value": "5 Seconds Every Morning" },
-          { "label": "Metabolic Synergy", "value": "400% Acceleration" }
+          {
+            "label": "Ritual Type",
+            "value": "100% Tasteless Botanical Add-in"
+          },
+          {
+            "label": "Daily Duration",
+            "value": "5 Seconds Every Morning"
+          },
+          {
+            "label": "Metabolic Synergy",
+            "value": "400% Acceleration"
+          }
         ],
         "urgency_notice": "The official Tea Burn presentation detailing the patent-pending formula is currently online.",
         "cta_label": "🌿 Watch The Tea Burn Botanical Video Presentation",
         "cta_subtext": "Official scientific presentation on natural tea synergy and thermogenesis",
         "testimonials": [
-          { "author": "Grace W., 35", "text": "I love that it doesn't change the flavor of my favorite Earl Grey. Lost 14 lbs in 6 weeks without changing what I eat." },
-          { "author": "Chloe N., 28", "text": "My skin has that dewy Korean glass skin glow, and my morning puffiness is completely gone!" }
+          {
+            "author": "Grace W., 35",
+            "text": "I love that it doesn't change the flavor of my favorite Earl Grey. Lost 14 lbs in 6 weeks without changing what I eat."
+          },
+          {
+            "author": "Chloe N., 28",
+            "text": "My skin has that dewy Korean glass skin glow, and my morning puffiness is completely gone!"
+          }
+        ]
+      },
+      "category": "glowup",
+      "category_name": "👑 Royal Tea Detox",
+      "participants": "19,300+ readers",
+      "rating": "4.8/5"
+    },
+    "belly-juice": {
+      "id": "belly-juice",
+      "slug": "belly-juice",
+      "vendor": "lbjuice",
+      "category": "glowup",
+      "category_name": "👑 Cinderella Glow-Up",
+      "participants": "21,800+ readers",
+      "rating": "4.9/5",
+      "badge": "🌿 Ancient Mediterranean Slimming Elixir",
+      "title": "The Mediterranean Maiden Cortisol & Belly Audit",
+      "subtitle": "Discover the ancient Mediterranean morning nutrient blend that dissolves stubborn stress-induced belly fat.",
+      "reading_time": "Takes 45 seconds • Instant Body Blueprint",
+      "card_title": "The Mediterranean Cortisol Flush",
+      "card_num": "WELLNESS AUDIT",
+      "icon": "🌿",
+      "questions": [
+        {
+          "question": "When does stress most noticeably affect your physical body?",
+          "options": [
+            {
+              "text": "Tightness and stubborn bloating around my lower abdomen",
+              "sub": "High cortisol belly fat accumulation"
+            },
+            {
+              "text": "Constant evening cravings for sweets and carbs",
+              "sub": "Stress-induced glucose dips"
+            },
+            {
+              "text": "Waking up feeling unrefreshed and inflamed",
+              "sub": "Sluggish nighttime liver detox"
+            }
+          ]
+        },
+        {
+          "question": "Can you mix a delicious plant-based powder into a glass of morning water?",
+          "options": [
+            {
+              "text": "Yes, absolutely! I want effortless, gentle results",
+              "sub": "Zero complicated meal plans"
+            },
+            {
+              "text": "Yes, if it is based on ancient Mediterranean botanical research",
+              "sub": "Clean herbal extracts only"
+            }
+          ]
+        }
+      ],
+      "result": {
+        "badge": "🌿 Mediterranean Analysis Complete",
+        "card_title": "Elevated Ceramide & Cortisol Stress Marker",
+        "card_subtitle": "Your body holds onto belly fat as a protective survival response to modern environmental stress",
+        "tarot_num": "MEDITERRANEAN ELIXIR V",
+        "match_percentage": "98.5% Flush Compatibility",
+        "cold_reading": "You are carrying unnecessary guilt over stubborn midsection weight. Research from the Greek island of Ikaria reveals that stubborn belly fat is triggered by toxic ceramides overflowing into the bloodstream. By neutralizing these compounds with specific Mediterranean fruit polyphenols, your body releases stored visceral fat naturally.",
+        "traits": [
+          {
+            "label": "Target Area",
+            "value": "Deep Visceral Belly Fat"
+          },
+          {
+            "label": "Daily Routine",
+            "value": "1 Delicious Morning Drink"
+          },
+          {
+            "label": "Detox Synergy",
+            "value": "380% Acceleration"
+          }
+        ],
+        "urgency_notice": "The official Ikaria Mediterranean research video is available for streaming.",
+        "cta_label": "🌿 Watch The Ikaria Lean Belly Juice Video Presentation",
+        "cta_subtext": "Official presentation on natural Mediterranean ceramide flushing",
+        "testimonials": [
+          {
+            "author": "Sophia T., 34",
+            "text": "Lost 3 inches off my waistline in less than a month. It tastes amazing and completely eliminated my bloating!"
+          }
+        ]
+      }
+    },
+    "astrology": {
+      "id": "astrology",
+      "slug": "astrology",
+      "vendor": "astroread",
+      "category": "destiny",
+      "category_name": "🔮 Destiny & Tarot",
+      "participants": "17,900+ readers",
+      "rating": "4.8/5",
+      "badge": "🪐 Celestial Star Chart & Love Timing",
+      "title": "The Celestial Star Chart: When Will Your Destined Prince Appear?",
+      "subtitle": "Decode your planetary chart to reveal which zodiac archetype rules your love life and your upcoming romantic portal.",
+      "reading_time": "Takes 45 seconds • Free Star Chart",
+      "card_title": "The Planetary Love Transit",
+      "card_num": "STAR CHART SCAN",
+      "icon": "🪐",
+      "questions": [
+        {
+          "question": "Which zodiac element do you intuitively feel most drawn to?",
+          "options": [
+            {
+              "text": "Water (Pisces, Cancer, Scorpio) — Deep empathy and psychic resonance",
+              "sub": "Soul-deep emotional bond"
+            },
+            {
+              "text": "Earth (Taurus, Virgo, Capricorn) — Unshakable loyalty and grounding stability",
+              "sub": "A protective rock in your life"
+            },
+            {
+              "text": "Fire (Aries, Leo, Sagittarius) — Daring passion and electric pursuit",
+              "sub": "Exciting romance and devotion"
+            },
+            {
+              "text": "Air (Gemini, Libra, Aquarius) — Intellectual wit and telepathic conversation",
+              "sub": "Mental soul connection"
+            }
+          ]
+        },
+        {
+          "question": "How do you feel about the current timing of your romantic life?",
+          "options": [
+            {
+              "text": "I feel like a major cosmic chapter is about to unfold",
+              "sub": "Intuitive anticipation of change"
+            },
+            {
+              "text": "I have been in a long period of emotional waiting and self-healing",
+              "sub": "Preparing your vessel for true love"
+            },
+            {
+              "text": "I want clarity on whether my current connection is karmic or destined",
+              "sub": "Seeking celestial confirmation"
+            }
+          ]
+        }
+      ],
+      "result": {
+        "badge": "🪐 Celestial Alignment Detected",
+        "card_title": "Venus in Seventh House Transit",
+        "card_subtitle": "A major planetary conjunction is opening a golden window for soulmate connection",
+        "tarot_num": "THE HEAVENLY CONJUNCTION",
+        "match_percentage": "99.2% Astrological Resonance",
+        "cold_reading": "Your cosmic chart indicates that your previous relationship trials were karmic lessons designed to strengthen your self-worth. You are entering a celestial window governed by Jupiter and Venus, where old cycles dissolve and a partner of profound emotional maturity enters your orbit.",
+        "traits": [
+          {
+            "label": "Planetary Ruler",
+            "value": "Venus & Jupiter Alignment"
+          },
+          {
+            "label": "Connection Type",
+            "value": "High-Resonance Counterpart"
+          },
+          {
+            "label": "Cosmic Window",
+            "value": "Current Astrological Cycle"
+          }
+        ],
+        "urgency_notice": "Your personalized astrological forecast video report is ready.",
+        "cta_label": "🪐 Watch Your Personalized Star Chart & Love Forecast",
+        "cta_subtext": "Comprehensive astrological transit report by master astrologers",
+        "testimonials": [
+          {
+            "author": "Emily B., 31",
+            "text": "Predicted the exact month I met my fiancé. It felt like the universe had laid out a map for me."
+          }
+        ]
+      }
+    },
+    "wealth-dna": {
+      "id": "wealth-dna",
+      "slug": "wealth-dna",
+      "vendor": "wealthdna",
+      "category": "wealth",
+      "category_name": "⚡ System & Mindset",
+      "participants": "19,400+ readers",
+      "rating": "4.8/5",
+      "badge": "🧬 Spiritual Abundance & Root Chakra",
+      "title": "The Ancestral Wealth Frequency: Root Chakra Code",
+      "subtitle": "Discover the ancient 7-minute root chakra audio vibration that activates dormant wealth DNA within your cellular memory.",
+      "reading_time": "Takes 45 seconds • Audio Frequency Scan",
+      "card_title": "The Wealth DNA Awakening Protocol",
+      "card_num": "FREQUENCY CODE",
+      "icon": "🧬",
+      "questions": [
+        {
+          "question": "When attempting to build abundance or take career leaps, what holds you back most?",
+          "options": [
+            {
+              "text": "An invisible glass ceiling of self-doubt despite high competence",
+              "sub": "Subconscious scarcity imprint"
+            },
+            {
+              "text": "Burnout from working hard with disproportionately small returns",
+              "sub": "Blocked energy flow"
+            },
+            {
+              "text": "Fear of stepping into sovereign authority and wealth",
+              "sub": "Generational financial conditioning"
+            }
+          ]
+        },
+        {
+          "question": "Can you listen to two specific audio frequencies via headphones for 7 minutes in the morning?",
+          "options": [
+            {
+              "text": "Yes, easily! Perfect while relaxing or drinking morning tea",
+              "sub": "Effortless frequency entrainment"
+            },
+            {
+              "text": "I want to see the NASA and Harvard DNA research presentation first",
+              "sub": "Show me the scientific evidence"
+            }
+          ]
+        }
+      ],
+      "result": {
+        "badge": "🧬 Frequency Resonance Confirmed",
+        "card_title": "Dormant Root Chakra DNA Code",
+        "card_subtitle": "Only 8% of human DNA is actively expressed—the remaining 92% holds ancestral abundance memory",
+        "tarot_num": "GENOMIC AWAKENING CODE",
+        "match_percentage": "98.9% Frequency Alignment",
+        "cold_reading": "Ancient spiritual masters and modern epigeneticists agree: your relationship with money is stored in cellular frequency. When your root chakra vibrates at the exact frequency of abundance, opportunities, aligned partnerships, and financial flow gravitate toward you naturally.",
+        "traits": [
+          {
+            "label": "Frequency Type",
+            "value": "Binaural Root Chakra Entrainment"
+          },
+          {
+            "label": "Daily Duration",
+            "value": "7 Minutes With Headphones"
+          },
+          {
+            "label": "Abundance Impact",
+            "value": "Cellular DNA Activation"
+          }
+        ],
+        "urgency_notice": "The private Wealth DNA audio presentation is currently streaming.",
+        "cta_label": "🧬 Listen To The Wealth DNA Code Presentation",
+        "cta_subtext": "Official demonstration of the 7-minute audio abundance frequency",
+        "testimonials": [
+          {
+            "author": "Jonathan P., 38",
+            "text": "My financial anxiety dropped to zero within 3 days. Within a month, I received an unexpected promotion and contract."
+          }
+        ]
+      }
+    },
+    "ex-factor": {
+      "id": "ex-factor",
+      "slug": "ex-factor",
+      "vendor": "brbrowning",
+      "category": "romance",
+      "category_name": "💖 Romance & Psychology",
+      "participants": "16,200+ readers",
+      "rating": "4.8/5",
+      "badge": "💔 Reverse Psychology & Second Chance Love",
+      "title": "The Unforgettable Queen: Can You Reignite His Devotion?",
+      "subtitle": "Discover the proven psychological playbook that transforms you into his irreplaceable White Moonlight.",
+      "reading_time": "Takes 50 seconds • Relationship Audit",
+      "card_title": "The White Moonlight Protocol",
+      "card_num": "RECONCILIATION AUDIT",
+      "icon": "💔",
+      "questions": [
+        {
+          "question": "What mistake did you feel yourself making following the emotional distance or breakup?",
+          "options": [
+            {
+              "text": "Reaching out repeatedly, asking for explanations, or begging for clarity",
+              "sub": "Emotional over-communication that pushes him away"
+            },
+            {
+              "text": "Completely shutting down and pretending not to care while suffering in silence",
+              "sub": "Silent emotional agony"
+            },
+            {
+              "text": "Trying to remain best friends while watching him slowly drift away",
+              "sub": "The agonizing friend-zone trap"
+            }
+          ]
+        },
+        {
+          "question": "What would you want him to feel when he thinks of you right now?",
+          "options": [
+            {
+              "text": "A deep pang of regret and a sudden urge to pursue me like crazy",
+              "sub": "Awakening his fear of permanent loss"
+            },
+            {
+              "text": "A flood of warm, nostalgic memories that make other women pale in comparison",
+              "sub": "Becoming his unforgettable White Moonlight"
+            },
+            {
+              "text": "Total respect and awe at how poised, beautiful, and happy I have become",
+              "sub": "High-value feminine sovereignty"
+            }
+          ]
+        }
+      ],
+      "result": {
+        "badge": "💔 Reconciliation Potential Calculated",
+        "card_title": "High Psychological Rebound Window (94%)",
+        "card_subtitle": "Men do not miss what is readily available—they obsess over the queen who knows her worth",
+        "tarot_num": "THE QUEEN OF REDEMPTION",
+        "match_percentage": "94.2% Reconnection Index",
+        "cold_reading": "When a relationship fractures, human instinct tempts us to chase and explain. However, in male psychology, pursuit triggers panic and retreat. When you execute strategic reverse psychology, the power dynamic flips instantly: his memory selectively filters out conflicts, nostalgia magnifies, and he begins to realize the immense prize he carelessly lost.",
+        "traits": [
+          {
+            "label": "Psychological Strategy",
+            "value": "Strategic Reverse Attraction"
+          },
+          {
+            "label": "Rebound Window",
+            "value": "Within 21-30 Days"
+          },
+          {
+            "label": "Outcome",
+            "value": "Irreplaceable Devotion"
+          }
+        ],
+        "urgency_notice": "Relationship counselor Brad Browning has made his video masterclass available.",
+        "cta_label": "🔓 Watch The Ex Factor Psychological Masterclass",
+        "cta_subtext": "Official relationship revival presentation by counselor Brad Browning",
+        "testimonials": [
+          {
+            "author": "Sarah L., 29",
+            "text": "My ex of 4 years was completely cold to me. After following the 3R method, he texted me asking to talk and admitted he had made the biggest mistake of his life."
+          }
         ]
       }
     }

@@ -7,14 +7,14 @@ export default function handler(req, res) {
   const affiliate = "gnite";
 
   const vendorMap = {
-    "soulmate": "soulmatesk",
-    "love-secret": "beirresist",
-    "glowup": "puravive",
-    "brainwave": "bbwave"
+    "soulmate": "tinapsc",
+    "love-secret": "hissecret",
+    "glowup": "javaburn",
+    "brainwave": "attractbr"
   };
 
   const targetSlug = (slug || "").toLowerCase();
-  const vendor = vendorMap[targetSlug] || req.query.vendor || "soulmatesk";
+  const vendor = vendorMap[targetSlug] || req.query.vendor || "tinapsc";
   const trackingId = (tid || v || "web").replace(/[^a-zA-Z0-9_-]/g, "").substring(0, 30);
 
   const hoplink = `https://hop.clickbank.net/?affiliate=${affiliate}&vendor=${vendor}&tid=${trackingId}`;

@@ -21,7 +21,7 @@ const QUIZ_CATALOG = {
     "soulmate": {
       "id": "soulmate",
       "slug": "soulmate",
-      "vendor": "soulmatesk",
+      "vendor": "tinapsc",
       "badge": "✨ Royal Destiny & Soulmate Audit",
       "title": "Who is Your Real-Life Duke of the North?",
       "subtitle": "Answer 4 intuitive questions to uncover your destined partner's archetype and reveal their psychic sketch.",
@@ -75,7 +75,7 @@ const QUIZ_CATALOG = {
     "love-secret": {
       "id": "love-secret",
       "slug": "love-secret",
-      "vendor": "beirresist",
+      "vendor": "hissecret",
       "badge": "👑 Male Psychology & Hero Instinct Audit",
       "title": "Why Do Men Pull Away? Decode His Hidden Desire",
       "subtitle": "Discover the primal psychological trigger that turns casual attraction into lifelong devotion.",
@@ -129,7 +129,7 @@ const QUIZ_CATALOG = {
     "glowup": {
       "id": "glowup",
       "slug": "glowup",
-      "vendor": "puravive",
+      "vendor": "javaburn",
       "badge": "💎 Villainess Metabolic Glow-Up Audit",
       "title": "What Is Your True Biological Metabolic Score?",
       "subtitle": "Discover the exotic rice & botanical ritual Hollywood and Manhwa heroines use for radiant energy and effortless fat burning.",
@@ -182,7 +182,7 @@ const QUIZ_CATALOG = {
     "brainwave": {
       "id": "brainwave",
       "slug": "brainwave",
-      "vendor": "bbwave",
+      "vendor": "attractbr",
       "badge": "⚡ System Awakening & Theta Frequency Test",
       "title": "Is Your Real-Life 'System' Unlocked?",
       "subtitle": "Discover which brainwave frequency is holding back your wealth, intuition, and IRL stat boosts.",

@@ -21,10 +21,10 @@ Trang web đóng vai trò là **"Tấm khiên an toàn" (Compliant Bridge Page)*
 
 | URL Slug | Sản Phẩm ClickBank & Vendor | Tệp Khán Giả Mục Tiêu | Hoplink Tự Động (`gnite`) |
 | :--- | :--- | :--- | :--- |
-| **`/soulmate`** | **Soulmate Sketch** (`soulmatesk`) | Fan Manga Nữ / Romance / Otome / Duke of the North | `https://hop.clickbank.net/?affiliate=gnite&vendor=soulmatesk&tid=...` |
-| **`/love-secret`** | **His Secret Obsession** (`beirresist`) | Nữ giới / Tâm lý tình cảm đàn ông ("Hero Instinct") | `https://hop.clickbank.net/?affiliate=gnite&vendor=beirresist&tid=...` |
-| **`/glowup`** | **Cinderella Glow-Up** (`puravive`) | Nữ giới / Giảm cân / Thải độc / Làm đẹp | `https://hop.clickbank.net/?affiliate=gnite&vendor=puravive&tid=...` |
-| **`/brainwave`** | **Billionaire Brain Wave** (`bbwave`) | Fan Manga Nam / Shonen / System Leveling | `https://hop.clickbank.net/?affiliate=gnite&vendor=bbwave&tid=...` |
+| **`/soulmate`** | **Soulmate Sketch** (`tinapsc`) | Fan Manga Nữ / Romance / Otome / Duke of the North | `https://hop.clickbank.net/?affiliate=gnite&vendor=tinapsc&tid=...` |
+| **`/love-secret`** | **His Secret Obsession** (`hissecret`) | Nữ giới / Tâm lý tình cảm đàn ông ("Hero Instinct") | `https://hop.clickbank.net/?affiliate=gnite&vendor=hissecret&tid=...` |
+| **`/glowup`** | **Cinderella Glow-Up** (`javaburn`) | Nữ giới / Giảm cân / Thải độc / Làm đẹp | `https://hop.clickbank.net/?affiliate=gnite&vendor=javaburn&tid=...` |
+| **`/brainwave`** | **Billionaire Brain Wave** (`attractbr`) | Fan Manga Nam / Shonen / System Leveling | `https://hop.clickbank.net/?affiliate=gnite&vendor=attractbr&tid=...` |
 
 ---
 
@@ -37,7 +37,7 @@ https://quiz.zamverse.com/soulmate?v=4r0MRF8j9pI
 ```
 
 Hệ thống sẽ tự động bóc tách `4r0MRF8j9pI` và gán vào ClickBank Hoplink:
-`https://hop.clickbank.net/?affiliate=gnite&vendor=soulmatesk&tid=4r0MRF8j9pI`
+`https://hop.clickbank.net/?affiliate=gnite&vendor=tinapsc&tid=4r0MRF8j9pI`
 
 Khi có người mua hàng, trang thống kê Analytics của ClickBank sẽ hiển thị chính xác **video nào đã tạo ra đơn hàng**!
 

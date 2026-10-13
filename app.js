@@ -382,15 +382,19 @@ function showCalculationState() {
   }, 550);
 }
 
-// Show Final Result Card with ClickBank Hoplink
+// Show Final Result Card with Hidden / Cloaked Clean Hoplink
 function showFinalResult() {
   const cardBody = document.getElementById("quizCardBody");
   const res = currentQuizData.result;
   const affiliate = QUIZ_CATALOG.affiliate || DEFAULT_AFFILIATE;
   const vendor = currentQuizData.vendor;
 
-  // Construct ClickBank Hoplink with TID for conversion tracking
-  const hoplink = `https://hop.clickbank.net/?affiliate=${affiliate}&vendor=${vendor}&tid=${encodeURIComponent(targetSubId)}`;
+  // Clean, branded internal URL shown on hover (NO mention of ClickBank)
+  const cleanOutboundUrl = `/out/${currentQuizData.slug}?tid=${encodeURIComponent(targetSubId)}`;
+
+  // Obfuscated payload (Base64) for instant client-side fallback
+  const rawTarget = `https://hop.clickbank.net/?affiliate=${affiliate}&vendor=${vendor}&tid=${encodeURIComponent(targetSubId)}`;
+  const encodedPayload = btoa(rawTarget);
 
   cardBody.innerHTML = `
     <div class="result-view">
@@ -405,7 +409,13 @@ function showFinalResult() {
       </div>
 
       <div class="cta-button-container">
-        <a href="${hoplink}" target="_blank" rel="noopener noreferrer" class="cta-button" id="affiliateCta">
+        <a href="${cleanOutboundUrl}" 
+           data-token="${encodedPayload}" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="cta-button" 
+           id="affiliateCta"
+           onclick="handleOutboundClick(event, this)">
           ${res.cta_label}
         </a>
         <span class="cta-subtext">🔒 ${res.cta_subtext}</span>
@@ -413,6 +423,20 @@ function showFinalResult() {
     </div>
   `;
 }
+
+// Seamless outbound handler ensuring clean UX and fallback
+window.handleOutboundClick = function(event, el) {
+  // If running locally or on static preview without serverless backend, open via decoded token
+  if (window.location.protocol === "file:" || window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+    event.preventDefault();
+    const token = el.getAttribute("data-token");
+    if (token) {
+      const targetUrl = atob(token);
+      window.open(targetUrl, "_blank", "noopener,noreferrer");
+    }
+  }
+  // On Vercel production (quiz.zamverse.com), allow natural navigation to /out/:slug which executes api/out.js 307 redirect
+};
 
 // Directory Footer to Switch between Quizzes easily
 function renderDirectoryFooter() {

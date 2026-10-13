@@ -4,6 +4,14 @@
   "trailingSlash": false,
   "rewrites": [
     {
+      "source": "/out/:slug",
+      "destination": "/api/out?slug=:slug"
+    },
+    {
+      "source": "/go/:slug",
+      "destination": "/api/out?slug=:slug"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

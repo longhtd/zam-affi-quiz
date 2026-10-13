@@ -643,15 +643,9 @@ body {
 
 .portal-tabs {
   display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding-bottom: 6px;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE 10+ */
-}
-
-.portal-tabs::-webkit-scrollbar {
-  display: none; /* Chrome/Safari */
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  align-items: center;
 }
 
 .portal-tab-pill {

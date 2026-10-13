@@ -11,9 +11,23 @@
 
 `zam-affi-quiz` là hệ thống Web Quiz & Cloaked Link thông minh, thiết kế đo ni đóng giày cho tệp **độc giả nữ đọc truyện Manga / Manhwa / Webtoon** (Romance, Otome, Duke of the North, Villainess, Trọng sinh, Lọ lem Glow-up, System).
 
-Hệ thống hỗ trợ 2 chế độ bán hàng:
-1. **Chế độ Quiz tương tác**: `https://quiz.zamverse.com/<slug>?v={VIDEO_ID}` (Người xem trả lời trắc nghiệm thú vị -> Xem bản đọc tính cách/lá bài Tarot -> Bấm nút nhận kết quả/quà sang ClickBank).
-2. **Chế độ Cloaked Link trực tiếp**: `https://quiz.zamverse.com/out/<slug>?tid={VIDEO_ID}` (Chuyển hướng 307 sạch sẽ, che dấu hoàn toàn link ClickBank thô, bảo vệ kênh YouTube an toàn 100%).
+---
+
+## 👑 TRANG DÀNH RIÊNG CHO ANH (ADMIN POST & AI PROMPT STUDIO)
+
+> **Link truy cập Studio**: [quiz.zamverse.com/admin](https://quiz.zamverse.com/admin)  
+> *(Test nội bộ trên máy: `http://localhost:8089/admin.html`)*
+
+Anh không cần phải tự nhớ mã video hay tự nghĩ văn mẫu:
+1. **Dán link YouTube hoặc nhập ID video** (Hệ thống tự động phát hiện mã video từ full URL).
+2. **Chọn 1 trong 24 sản phẩm** từ menu phân theo nhóm chủ đề.
+3. **Bấm "🎲 Tạo Biến Thể Mới (Randomize)"**:
+   - Tự động sinh ra 5 định dạng bài đăng: *Cảm xúc nhân vật*, *Tranh luận cộng đồng*, *Tò mò trúng tim đen*, *Ngắn gọn cho Shorts/Community*, và *Top 3 dòng mô tả Description*.
+   - **Mỗi lần bấm nút sẽ tự động random xáo trộn** câu mở đầu, góc tiếp cận và emoji từ kho mẫu để không video nào bị trùng comment!
+   - Tích hợp nút **"📋 Copy"** 1-click tiện lợi.
+4. **Bấm "🤖 Sinh Mega-Prompt Cho AI (20 Bình Luận)"**:
+   - Tự động đóng gói một **Master Prompt cao cấp** tích hợp sẵn thông tin sản phẩm, tệp độc giả nữ và link gắn mã tracking video.
+   - Bấm **"Copy Master Prompt"** ➡️ Dán vào **ChatGPT / Claude / Gemini** ➡️ Nhận ngay 20 bài comment YouTube chất lượng cao chia theo 5 phong cách khác nhau!
 
 ---
 

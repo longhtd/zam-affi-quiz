@@ -481,7 +481,8 @@ window.switchQuiz = function(slug) {
   document.title = `${currentQuizData.title} | Zamverse Quiz`;
 
   // Update browser URL without page reload
-  const newUrl = `/${slug}${window.location.search}`;
+  const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+  const newUrl = isLocal ? `/?q=${slug}` : `/${slug}${window.location.search}`;
   window.history.pushState({ slug }, "", newUrl);
 
   renderTopNavBar();

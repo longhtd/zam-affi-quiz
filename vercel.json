@@ -12,6 +12,14 @@
       "destination": "/api/out?slug=:slug"
     },
     {
+      "source": "/admin",
+      "destination": "/admin.html"
+    },
+    {
+      "source": "/generator",
+      "destination": "/admin.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

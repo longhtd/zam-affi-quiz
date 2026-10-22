@@ -750,6 +750,8 @@ function showFinalResult() {
 const SUBSCRIBE_URL = "https://zamverse.com/api/subscribe/";
 
 function buildEmailOptInHtml(quizObj) {
+  // Visitors who arrive from our own daily emails (?from=dayN) or the Telegram channel are already subscribed.
+  if (/^(day\d+|email\d*|telegram)$/i.test(targetSubId || "")) return "";
   const cat = (quizObj && quizObj.category) ? quizObj.category : "destiny";
   return `
     <form class="zv-optin" data-optin data-tag="${cat}" novalidate>

@@ -737,11 +737,77 @@ function showFinalResult() {
           </div>
         </div>
       ` : ""}
+      ${buildEmailOptInHtml(currentQuizData)}
       ${buildEcosystemFlywheelHtml(currentQuizData)}
 
     </div>
   `;
 }
+
+// ==========================================================================
+// EMAIL OPT-IN (posts to zamverse.com/api/subscribe -> systeme.io contact + tag)
+// ==========================================================================
+const SUBSCRIBE_URL = "https://zamverse.com/api/subscribe";
+
+function buildEmailOptInHtml(quizObj) {
+  const cat = (quizObj && quizObj.category) ? quizObj.category : "destiny";
+  return `
+    <form class="zv-optin" data-optin data-tag="${cat}" novalidate>
+      <h3 class="zv-optin-title">Get your next story quiz by email</h3>
+      <p class="zv-optin-sub">New quizzes, cozy games and gift codes. No spam.</p>
+      <div class="zv-optin-row">
+        <label class="zv-sr-only" for="zvOptinEmail">Email address</label>
+        <input id="zvOptinEmail" name="email" type="email" required autocomplete="email" placeholder="you@email.com">
+        <input class="zv-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button type="submit">Subscribe</button>
+      </div>
+      <label class="zv-optin-consent"><input type="checkbox" name="consent" required> I agree to receive emails from Zamverse. Unsubscribe any time.</label>
+      <p class="zv-optin-msg" role="status" aria-live="polite"></p>
+    </form>
+  `;
+}
+
+document.addEventListener("submit", function (ev) {
+  const form = ev.target.closest ? ev.target.closest("form[data-optin]") : null;
+  if (!form) return;
+  ev.preventDefault();
+  const msg = form.querySelector(".zv-optin-msg");
+  const btn = form.querySelector("button[type=submit]");
+  const messages = {
+    email: "That email doesn't look right.",
+    consent: "Please tick the box so we can email you.",
+    busy: "We're a bit busy. Try again in a minute.",
+    fail: "Something went wrong. Please try again later."
+  };
+  btn.disabled = true;
+  msg.textContent = "";
+  fetch(SUBSCRIBE_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email: form.elements.email.value,
+      website: form.elements.website.value,
+      consent: form.elements.consent.checked,
+      tag: form.getAttribute("data-tag") || ""
+    })
+  })
+    .then(function (r) { return r.json().catch(function () { return {}; }); })
+    .then(function (j) {
+      if (j.ok) {
+        form.reset();
+        msg.textContent = "You're in! Check your inbox soon.";
+        msg.className = "zv-optin-msg good";
+      } else {
+        msg.textContent = messages[j.error] || messages.fail;
+        msg.className = "zv-optin-msg bad";
+      }
+    })
+    .catch(function () {
+      msg.textContent = messages.fail;
+      msg.className = "zv-optin-msg bad";
+    })
+    .then(function () { btn.disabled = false; });
+});
 
 // Seamless Outbound Handler
 window.handleOutboundClick = function(event, el) {

@@ -1684,3 +1684,100 @@ body {
     order: -1;
   }
 }
+
+/* Email opt-in on the result screen */
+.zv-optin {
+  margin: 28px 0;
+  padding: 22px;
+  border-radius: 18px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  text-align: center;
+}
+
+.zv-optin-title {
+  margin: 0 0 6px;
+  font-size: 19px;
+  color: var(--text-primary);
+}
+
+.zv-optin-sub {
+  margin: 0 0 14px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.zv-optin-row {
+  display: flex;
+  gap: 10px;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.zv-optin-row input[type="email"] {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--card-border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+  font: inherit;
+}
+
+.zv-optin-row button {
+  padding: 12px 22px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent-gold);
+  color: #1a1204;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.zv-optin-row button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.zv-optin-consent {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  max-width: 440px;
+  margin: 10px auto 0;
+  text-align: left;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.zv-optin-msg {
+  min-height: 20px;
+  margin: 8px 0 0;
+  font-size: 14px;
+}
+
+.zv-optin-msg.good { color: #86efac; }
+.zv-optin-msg.bad { color: #fca5a5; }
+
+.zv-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.zv-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .zv-optin-row { flex-direction: column; }
+}

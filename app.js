@@ -32,7 +32,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 // Extract Video ID / Tracking Parameters and persist across all quizzes
 function extractTrackingSubId() {
   const urlParams = new URLSearchParams(window.location.search);
-  const possibleTid = urlParams.get("vid") || 
+  const possibleTid = urlParams.get("from") ||
+                      urlParams.get("vid") || 
                       urlParams.get("v") || 
                       urlParams.get("subid") || 
                       urlParams.get("tid") || 
@@ -52,6 +53,86 @@ function extractTrackingSubId() {
       }
     } catch (e) {}
   }
+}
+
+
+// ==========================================================================
+// ZAMVERSE ECOSYSTEM FLYWHEEL (ARCHETYPE -> COZY GAME + SISTER NETWORK + VIP)
+// ==========================================================================
+const ARCHETYPE_ECOSYSTEM_MAP = {
+  romance: {
+    gameSlug: "styledrop",
+    gameName: "Style Drop & Snug Cats",
+    gameHook: "Your romantic archetype thrives on elegance & warm intuition. Relax between chapters with our royal dress-up & cozy cat puzzles.",
+    channelLabel: "Manhwa Melodies · Manhwa Duchess · Manhwa Ladies",
+    giftCode: "ZAM777",
+  },
+  glowup: {
+    gameSlug: "glimmergrove",
+    gameName: "Glimmer Grove & Burrow Buddy",
+    gameHook: "Your radiance blueprint matches tranquil nature & self-care. Grow a moonlit glowing garden or decorate a warm woodland burrow.",
+    channelLabel: "Manhwa Darling · Manhwa Sweetie · Villainess Haven",
+    giftCode: "GLOW777",
+  },
+  destiny: {
+    gameSlug: "wordlodge",
+    gameName: "Word Lodge (Live on Google Play)",
+    gameHook: "Your intuitive mind excels at connecting hidden patterns. Travel 35 painted woodland worlds in our #1 offline word puzzle.",
+    channelLabel: "Manhwa Fangirl Stories · Manhwa Serenade · Manhwa Dreamy",
+    giftCode: "ZAM777",
+  },
+  wealth: {
+    gameSlug: "arrowaway",
+    gameName: "Arrow Away & Word Lodge",
+    gameHook: "Your strategic frequency loves thinking 3 steps ahead. Test your focus across 4,000 calm elemental arrow & word levels.",
+    channelLabel: "The Manga Reel · Manhwa Vertical · Manhwa Returner",
+    giftCode: "ZAM777",
+  },
+};
+
+function buildEcosystemFlywheelHtml(quizObj) {
+  const cat = (quizObj && quizObj.category) ? quizObj.category : "destiny";
+  const eco = ARCHETYPE_ECOSYSTEM_MAP[cat] || ARCHETYPE_ECOSYSTEM_MAP.destiny;
+  const fromParam = encodeURIComponent(targetSubId || "quiz");
+  const gameUrl = `https://games.zamverse.com/${eco.gameSlug}/?from=${fromParam}&code=${eco.giftCode}`;
+  const darlingUrl = `https://darling.zamverse.com/?from=${fromParam}`;
+  const gateUrl = `https://zamverse.com/?from=${fromParam}`;
+
+  return `
+    <div class="eco-flywheel-box">
+      <div class="eco-flywheel-header">
+        <span class="eco-pill">🌐 ZAMVERSE UNIVERSE BONUS FOR YOUR ARCHETYPE</span>
+        <h3 class="eco-title">Continue Your Story Across the Zamverse Ecosystem</h3>
+      </div>
+      <div class="eco-grid">
+        <a href="${gameUrl}" target="_blank" rel="noopener" class="eco-card game">
+          <div class="eco-card-top">
+            <span class="eco-badge">🎮 ARCHETYPE GAME MATCH</span>
+            <span class="eco-code">🎁 CODE: ${eco.giftCode} (+250 COINS)</span>
+          </div>
+          <h4>${eco.gameName}</h4>
+          <p>${eco.gameHook}</p>
+          <span class="eco-link">Play Free & Claim Reader Bonus →</span>
+        </a>
+        <a href="${darlingUrl}" target="_blank" rel="noopener" class="eco-card channel">
+          <div class="eco-card-top">
+            <span class="eco-badge">📺 SISTER MANHWA NETWORK</span>
+            <span class="eco-sub">13+ Official Channels</span>
+          </div>
+          <h4>Binge Full-Story Recaps Next</h4>
+          <p>Matched for you: <strong>${eco.channelLabel}</strong>. Subscribe across all sister channels in 1 tap.</p>
+          <span class="eco-link">Open darling.zamverse.com →</span>
+        </a>
+      </div>
+      <div class="eco-social-bar">
+        <a href="${gateUrl}" target="_blank" rel="noopener">🌐 zamverse.com Portal</a>
+        <a href="https://www.facebook.com/zamverse.official" target="_blank" rel="noopener">📘 Facebook Game & Giftcodes</a>
+        <a href="https://t.me/zamverse" target="_blank" rel="noopener">✈️ Telegram VIP Alerts</a>
+        <a href="https://zalo.me/g/zamverse" target="_blank" rel="noopener">💬 Zalo Community</a>
+        <a href="https://games.zamverse.com/honor/?from=${fromParam}" target="_blank" rel="noopener">🏆 Wall of Honor</a>
+      </div>
+    </div>
+  `;
 }
 
 // Load Quizzes Configuration
@@ -280,6 +361,7 @@ function renderPortalBody() {
       <div class="portal-grid">
         ${cardsHtml}
       </div>
+      ${buildEcosystemFlywheelHtml(null)}
 
     </div>
   `;
@@ -552,6 +634,7 @@ function showFinalResult() {
           </div>
         </div>
       ` : ""}
+      ${buildEcosystemFlywheelHtml(currentQuizData)}
 
     </div>
   `;

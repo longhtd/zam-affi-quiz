@@ -794,8 +794,10 @@ document.addEventListener("submit", function (ev) {
     .then(function (j) {
       if (j.ok) {
         form.reset();
-        msg.innerHTML = "You're in! Check your inbox soon.<br><a href=\"https://t.me/zamverse\" target=\"_blank\" rel=\"noopener\">Join our Telegram for the daily pick &rarr;</a>";
+        msg.textContent = "You're in! Taking you to the next step...";
         msg.className = "zv-optin-msg good";
+        // Thank-you page on the main site: one next step (join Telegram)
+        setTimeout(function () { window.location.href = "https://zamverse.com/welcome/?from=quiz"; }, 900);
       } else {
         msg.textContent = messages[j.error] || messages.fail;
         msg.className = "zv-optin-msg bad";

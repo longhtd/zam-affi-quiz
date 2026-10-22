@@ -747,7 +747,7 @@ function showFinalResult() {
 // ==========================================================================
 // EMAIL OPT-IN (posts to zamverse.com/api/subscribe -> systeme.io contact + tag)
 // ==========================================================================
-const SUBSCRIBE_URL = "https://zamverse.com/api/subscribe";
+const SUBSCRIBE_URL = "https://zamverse.com/api/subscribe/";
 
 function buildEmailOptInHtml(quizObj) {
   const cat = (quizObj && quizObj.category) ? quizObj.category : "destiny";

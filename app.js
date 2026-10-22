@@ -734,7 +734,6 @@ function showFinalResult() {
         </div>
       ` : ""}
       ${buildEmailOptInHtml(currentQuizData)}
-      ${buildEcosystemFlywheelHtml(currentQuizData)}
 
     </div>
   `;

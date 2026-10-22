@@ -362,29 +362,32 @@ function renderPortalBody() {
       </div>
     `;
   } else {
-    // Simple cards: colour cover (by category) + title + one meta line + arrow.
-    // The featured quiz is already shown in the banner above, so it is not repeated in the grid.
-    const catEmoji = { romance: "💖", destiny: "🔮", glowup: "👑", wealth: "⚡" };
-    const gridQuizzes = showHero ? filteredQuizzes.filter(q => q.slug !== heroQuiz.slug) : filteredQuizzes;
-
-    cardsHtml = gridQuizzes.map(q => {
-      const timeStr = q.reading_time ? q.reading_time.split("•")[0].replace(/Takes\s*/i, "").replace(/seconds?/i, "sec").trim() : "45 sec";
-      const nQ = Array.isArray(q.questions) ? q.questions.length : 0;
-      const readers = String(q.participants || "").replace(/\s*readers?/i, "");
-      const cat = ["romance", "destiny", "glowup", "wealth"].includes(q.category) ? q.category : "destiny";
-      const meta = [timeStr, nQ ? nQ + " questions" : "", readers ? readers + " readers" : ""].filter(Boolean).join(" · ");
+    cardsHtml = filteredQuizzes.map(q => {
+      const timeStr = q.reading_time ? q.reading_time.split("•")[0].trim() : "45s";
+      const ratingStr = q.rating || "4.9/5";
+      const participantsStr = q.participants || "18k+ readers";
+      const categoryLabel = q.category_name || q.badge || "Story Quiz";
 
       return `
-        <article class="pcard cat-${cat}" role="link" tabindex="0"
-                 onclick="selectQuizFromPortal('${q.slug}')"
-                 onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectQuizFromPortal('${q.slug}')}">
-          <div class="pc-cover"><span class="pc-emoji" aria-hidden="true">${q.icon || catEmoji[cat]}</span></div>
-          <div class="pc-body">
-            <h2 class="pc-title">${q.title}</h2>
-            <p class="pc-meta">${meta}</p>
-            <span class="pc-go" aria-hidden="true">→</span>
+        <div class="portal-card" onclick="selectQuizFromPortal('${q.slug}')">
+          <div class="portal-card-top">
+            <span class="portal-card-badge">${q.icon || "✨"} ${categoryLabel}</span>
+            <span class="portal-card-time">⏱️ ${timeStr}</span>
           </div>
-        </article>
+
+          <div class="portal-card-main">
+            <h2 class="portal-card-title">${q.title}</h2>
+            <p class="portal-card-sub">${q.subtitle.substring(0, 110)}...</p>
+          </div>
+
+          <div class="portal-card-footer">
+            <span class="portal-card-rating">⭐️ ${ratingStr} • ${participantsStr}</span>
+            <span class="portal-card-cta">
+              <span>Begin Audit</span>
+              <span>→</span>
+            </span>
+          </div>
+        </div>
       `;
     }).join("");
   }

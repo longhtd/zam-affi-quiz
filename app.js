@@ -101,14 +101,14 @@ function buildEcosystemFlywheelHtml(quizObj) {
   return `
     <div class="eco-flywheel-box">
       <div class="eco-flywheel-header">
-        <span class="eco-pill">🌐 ZAMVERSE UNIVERSE BONUS FOR YOUR ARCHETYPE</span>
+        <span class="eco-pill">🌐 Zamverse Universe Bonus for Your Archetype</span>
         <h3 class="eco-title">Continue Your Story Across the Zamverse Ecosystem</h3>
       </div>
       <div class="eco-grid">
         <a href="${gameUrl}" target="_blank" rel="noopener" class="eco-card game">
           <div class="eco-card-top">
-            <span class="eco-badge">🎮 ARCHETYPE GAME MATCH</span>
-            <span class="eco-code">🎁 CODE: ${eco.giftCode} (+250 COINS)</span>
+            <span class="eco-badge">🎮 Archetype Game Match</span>
+            <span class="eco-code">🎁 Giftcode: ${eco.giftCode} (+250 Coins)</span>
           </div>
           <h4>${eco.gameName}</h4>
           <p>${eco.gameHook}</p>
@@ -116,7 +116,7 @@ function buildEcosystemFlywheelHtml(quizObj) {
         </a>
         <a href="${darlingUrl}" target="_blank" rel="noopener" class="eco-card channel">
           <div class="eco-card-top">
-            <span class="eco-badge">📺 SISTER MANHWA NETWORK</span>
+            <span class="eco-badge">📺 Sister Manhwa Network</span>
             <span class="eco-sub">13+ Official Channels</span>
           </div>
           <h4>Binge Full-Story Recaps Next</h4>
@@ -288,7 +288,7 @@ function renderPortalBody() {
       const timeStr = q.reading_time ? q.reading_time.split("•")[0].trim() : "45s";
       const ratingStr = q.rating || "4.9/5";
       const participantsStr = q.participants || "18k+ readers";
-      const categoryLabel = q.category_name || q.badge.split(" ")[0] + " ASSESSMENT";
+      const categoryLabel = q.category_name || q.badge || "Story Quiz";
 
       return `
         <div class="portal-card" onclick="selectQuizFromPortal('${q.slug}')">
@@ -588,7 +588,7 @@ function showFinalResult() {
 
       <!-- Tarot Header -->
       <div class="tarot-badge-row">
-        <span class="tarot-number">${res.tarot_num || "ARCHETYPE VII"}</span>
+        <span class="tarot-number">${res.tarot_num || "Archetype VII"}</span>
         <span class="tarot-match">⚡ ${res.match_percentage || "98.7% Match"}</span>
       </div>
 

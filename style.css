@@ -1786,3 +1786,150 @@ body {
   color: var(--accent-gold);
   text-decoration: underline;
 }
+
+/* ==========================================================================
+   BONUS GIFT: result-screen buttons + the single email dialog
+   ========================================================================== */
+.zv-gift {
+  margin: 22px 0;
+  text-align: center;
+}
+
+.zv-gift-btn {
+  display: block;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 16px 22px;
+  border: 0;
+  border-radius: 16px;
+  font: inherit;
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, #ff5c8a, #8b5cf6);
+  box-shadow: 0 10px 28px rgba(255, 92, 138, 0.38);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.zv-gift-btn:hover,
+.zv-gift-btn:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(255, 92, 138, 0.55);
+}
+
+.zv-gift-note {
+  margin: 10px 0 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.zv-gift-soft {
+  margin: 8px 0 26px;
+}
+
+.zv-gift-link {
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: 1px solid var(--card-border);
+  background: transparent;
+  color: var(--accent-gold);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.zv-gift-link:hover {
+  background: rgba(245, 208, 97, 0.1);
+}
+
+.zv-modal[hidden] {
+  display: none;
+}
+
+.zv-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.zv-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 3, 12, 0.78);
+}
+
+.zv-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  padding: 28px 24px 24px;
+  border-radius: 22px;
+  background: #150f2c;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
+
+.zv-modal-card h3 {
+  margin: 0 0 8px;
+  font-size: 22px;
+  color: #fff;
+}
+
+.zv-modal-sub {
+  margin: 0 0 16px;
+  font-size: 14.5px;
+  color: var(--text-secondary);
+}
+
+.zv-modal-x {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: none;
+  border: 0;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.zv-gift-form input[type="email"] {
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--card-border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+  font: inherit;
+}
+
+.zv-gift-form .zv-optin-consent {
+  margin: 12px 0;
+}
+
+.zv-gift-submit {
+  width: 100%;
+  padding: 14px;
+  border: 0;
+  border-radius: 12px;
+  font: inherit;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, #ff5c8a, #8b5cf6);
+  cursor: pointer;
+}
+
+.zv-gift-submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+body.zv-modal-open {
+  overflow: hidden;
+}

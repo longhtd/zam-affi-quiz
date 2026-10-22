@@ -704,6 +704,8 @@ function showFinalResult() {
       <!-- Trait Matrix -->
       ${traitsHtml ? `<div class="trait-grid">${traitsHtml}</div>` : ""}
 
+      ${buildGiftHtml("main")}
+
       <!-- Urgency Banner -->
       <div class="urgency-banner">
         <span>⏳</span>
@@ -733,40 +735,93 @@ function showFinalResult() {
           </div>
         </div>
       ` : ""}
-      ${buildEmailOptInHtml(currentQuizData)}
+      ${buildGiftHtml("soft")}
 
     </div>
   `;
 }
 
 // ==========================================================================
-// EMAIL OPT-IN (posts to zamverse.com/api/subscribe -> systeme.io contact + tag)
+// BONUS GIFT: buttons on the result screen open ONE email dialog.
+// Submit -> zamverse.com/api/subscribe (contact + gift email) -> zamverse.com/welcome/?q=<quiz>
 // ==========================================================================
 const SUBSCRIBE_URL = "https://zamverse.com/api/subscribe/";
 
-function buildEmailOptInHtml(quizObj) {
-  // Visitors who arrive from our own daily emails (?from=dayN) are already subscribed.
-  // Telegram visitors are NOT necessarily on the email list, so they still see the opt-in (Telegram -> quiz -> email).
-  if (/^(day\d+|email\d*)$/i.test(targetSubId || "")) return "";
-  const cat = (quizObj && quizObj.category) ? quizObj.category : "destiny";
-  return `
-    <form class="zv-optin" data-optin data-tag="${cat}" novalidate>
-      <h3 class="zv-optin-title">Get your next story quiz by email</h3>
-      <p class="zv-optin-sub">New quizzes, cozy games and stories. No spam.</p>
-      <div class="zv-optin-row">
-        <label class="zv-sr-only" for="zvOptinEmail">Email address</label>
-        <input id="zvOptinEmail" name="email" type="email" required autocomplete="email" placeholder="you@email.com">
-        <input class="zv-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <button type="submit">Subscribe</button>
-      </div>
-      <label class="zv-optin-consent"><input type="checkbox" name="consent" required> I agree to receive emails from Zamverse. Unsubscribe any time.</label>
-      <p class="zv-optin-msg" role="status" aria-live="polite"></p>
-    </form>
-  `;
+// Visitors who arrive from our own daily emails (?from=dayN) are already subscribed: no gift buttons.
+function giftHidden() {
+  return /^(day\d+|email\d*)$/i.test(targetSubId || "");
 }
 
+function buildGiftHtml(kind) {
+  if (giftHidden()) return "";
+  if (kind === "main") {
+    return `
+      <div class="zv-gift">
+        <button type="button" class="zv-gift-btn" data-gift>🎁 Reveal my bonus video</button>
+        <p class="zv-gift-note">Free · a video picked for you, plus 5 recaps sent to your inbox</p>
+      </div>`;
+  }
+  return `
+    <div class="zv-gift zv-gift-soft">
+      <button type="button" class="zv-gift-link" data-gift>📩 Email me my picks</button>
+    </div>`;
+}
+
+function ensureGiftModal() {
+  let m = document.getElementById("zvGiftModal");
+  if (m) return m;
+  m = document.createElement("div");
+  m.id = "zvGiftModal";
+  m.className = "zv-modal";
+  m.hidden = true;
+  m.innerHTML = `
+    <div class="zv-modal-backdrop" data-gift-close></div>
+    <div class="zv-modal-card" role="dialog" aria-modal="true" aria-labelledby="zvGiftTitle">
+      <button type="button" class="zv-modal-x" data-gift-close aria-label="Close">×</button>
+      <h3 id="zvGiftTitle">Almost there! 🎁</h3>
+      <p class="zv-modal-sub">Enter your email to unlock your bonus video. We'll also send your picks to your inbox.</p>
+      <form class="zv-gift-form" novalidate>
+        <label class="zv-sr-only" for="zvGiftEmail">Email address</label>
+        <input id="zvGiftEmail" name="email" type="email" required autocomplete="email" placeholder="you@email.com">
+        <input class="zv-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label class="zv-optin-consent"><input type="checkbox" name="consent" required> I agree to receive emails from Zamverse. Unsubscribe any time.</label>
+        <button type="submit" class="zv-gift-submit">Unlock my bonus</button>
+        <p class="zv-optin-msg" role="status" aria-live="polite"></p>
+      </form>
+    </div>`;
+  document.body.appendChild(m);
+  return m;
+}
+
+function openGiftModal() {
+  const m = ensureGiftModal();
+  m.hidden = false;
+  document.body.classList.add("zv-modal-open");
+  setTimeout(function () {
+    const input = document.getElementById("zvGiftEmail");
+    if (input) input.focus();
+  }, 50);
+}
+
+function closeGiftModal() {
+  const m = document.getElementById("zvGiftModal");
+  if (m) m.hidden = true;
+  document.body.classList.remove("zv-modal-open");
+}
+
+document.addEventListener("click", function (ev) {
+  const t = ev.target;
+  if (!t || !t.closest) return;
+  if (t.closest("[data-gift]")) { openGiftModal(); return; }
+  if (t.closest("[data-gift-close]")) closeGiftModal();
+});
+
+document.addEventListener("keydown", function (ev) {
+  if (ev.key === "Escape") closeGiftModal();
+});
+
 document.addEventListener("submit", function (ev) {
-  const form = ev.target.closest ? ev.target.closest("form[data-optin]") : null;
+  const form = ev.target.closest ? ev.target.closest("form.zv-gift-form") : null;
   if (!form) return;
   ev.preventDefault();
   const msg = form.querySelector(".zv-optin-msg");
@@ -777,6 +832,8 @@ document.addEventListener("submit", function (ev) {
     busy: "We're a bit busy. Try again in a minute.",
     fail: "Something went wrong. Please try again later."
   };
+  const slug = currentQuizData && currentQuizData.slug ? currentQuizData.slug : "";
+  const cat = currentQuizData && currentQuizData.category ? currentQuizData.category : "";
   btn.disabled = true;
   msg.textContent = "";
   fetch(SUBSCRIBE_URL, {
@@ -786,27 +843,29 @@ document.addEventListener("submit", function (ev) {
       email: form.elements.email.value,
       website: form.elements.website.value,
       consent: form.elements.consent.checked,
-      tag: form.getAttribute("data-tag") || ""
+      tag: cat,
+      quiz: slug
     })
   })
     .then(function (r) { return r.json().catch(function () { return {}; }); })
     .then(function (j) {
       if (j.ok) {
-        form.reset();
-        msg.textContent = "You're in! Taking you to the next step...";
+        msg.textContent = "You're in! Unlocking your bonus...";
         msg.className = "zv-optin-msg good";
-        // Thank-you page on the main site: one next step (join Telegram)
-        setTimeout(function () { window.location.href = "https://zamverse.com/welcome/?from=quiz"; }, 900);
+        setTimeout(function () {
+          window.location.href = "https://zamverse.com/welcome/?q=" + encodeURIComponent(slug);
+        }, 700);
       } else {
         msg.textContent = messages[j.error] || messages.fail;
         msg.className = "zv-optin-msg bad";
+        btn.disabled = false;
       }
     })
     .catch(function () {
       msg.textContent = messages.fail;
       msg.className = "zv-optin-msg bad";
-    })
-    .then(function () { btn.disabled = false; });
+      btn.disabled = false;
+    });
 });
 
 // Seamless Outbound Handler

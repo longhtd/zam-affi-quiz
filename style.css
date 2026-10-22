@@ -1781,3 +1781,8 @@ body {
 @media (max-width: 480px) {
   .zv-optin-row { flex-direction: column; }
 }
+
+.zv-optin-msg a {
+  color: var(--accent-gold);
+  text-decoration: underline;
+}

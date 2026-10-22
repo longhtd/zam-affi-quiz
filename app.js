@@ -798,7 +798,7 @@ document.addEventListener("submit", function (ev) {
     .then(function (j) {
       if (j.ok) {
         form.reset();
-        msg.textContent = "You're in! Check your inbox soon.";
+        msg.innerHTML = "You're in! Check your inbox soon.<br><a href=\"https://t.me/zamverse\" target=\"_blank\" rel=\"noopener\">Join our Telegram for the daily pick &rarr;</a>";
         msg.className = "zv-optin-msg good";
       } else {
         msg.textContent = messages[j.error] || messages.fail;

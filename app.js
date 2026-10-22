@@ -65,28 +65,24 @@ const ARCHETYPE_ECOSYSTEM_MAP = {
     gameName: "Style Drop & Snug Cats",
     gameHook: "Your romantic archetype thrives on elegance & warm intuition. Relax between chapters with our royal dress-up & cozy cat puzzles.",
     channelLabel: "Manhwa Melodies · Manhwa Duchess · Manhwa Ladies",
-    giftCode: "ZAM777",
   },
   glowup: {
     gameSlug: "glimmergrove",
     gameName: "Glimmer Grove & Burrow Buddy",
     gameHook: "Your radiance blueprint matches tranquil nature & self-care. Grow a moonlit glowing garden or decorate a warm woodland burrow.",
     channelLabel: "Manhwa Darling · Manhwa Sweetie · Villainess Haven",
-    giftCode: "GLOW777",
   },
   destiny: {
     gameSlug: "wordlodge",
     gameName: "Word Lodge (Live on Google Play)",
     gameHook: "Your intuitive mind excels at connecting hidden patterns. Travel 35 painted woodland worlds in our #1 offline word puzzle.",
     channelLabel: "Manhwa Fangirl Stories · Manhwa Serenade · Manhwa Dreamy",
-    giftCode: "ZAM777",
   },
   wealth: {
     gameSlug: "arrowaway",
     gameName: "Arrow Away & Word Lodge",
     gameHook: "Your strategic frequency loves thinking 3 steps ahead. Test your focus across 4,000 calm elemental arrow & word levels.",
     channelLabel: "The Manga Reel · Manhwa Vertical · Manhwa Returner",
-    giftCode: "ZAM777",
   },
 };
 
@@ -94,8 +90,8 @@ function buildEcosystemFlywheelHtml(quizObj) {
   const cat = (quizObj && quizObj.category) ? quizObj.category : "destiny";
   const eco = ARCHETYPE_ECOSYSTEM_MAP[cat] || ARCHETYPE_ECOSYSTEM_MAP.destiny;
   const fromParam = encodeURIComponent(targetSubId || "quiz");
-  const gameUrl = `https://games.zamverse.com/${eco.gameSlug}/?from=${fromParam}&code=${eco.giftCode}`;
-  const allGamesUrl = `https://games.zamverse.com/?from=${fromParam}&code=${eco.giftCode}`;
+  const gameUrl = `https://games.zamverse.com/${eco.gameSlug}/?from=${fromParam}`;
+  const allGamesUrl = `https://games.zamverse.com/?from=${fromParam}`;
   const darlingUrl = `https://darling.zamverse.com/?from=${fromParam}`;
   const gateUrl = `https://zamverse.com/?from=${fromParam}`;
   const honorUrl = `https://games.zamverse.com/honor/?from=${fromParam}`;
@@ -140,7 +136,7 @@ function buildEcosystemFlywheelHtml(quizObj) {
           <a href="${gameUrl}" target="_blank" rel="noopener" class="zv-node node-cyan">
             <div class="zv-node-icon">🎮</div>
             <div class="zv-node-body">
-              <span class="zv-node-tag">Cozy Games • Giftcode: ${eco.giftCode}</span>
+              <span class="zv-node-tag">Cozy Games</span>
               <strong>${eco.gameName}</strong>
               <small>games.zamverse.com • +250 Bonus Coins</small>
             </div>
@@ -192,7 +188,7 @@ function buildEcosystemFlywheelHtml(quizObj) {
             <div class="zv-node-icon">📘</div>
             <div class="zv-node-body">
               <strong>Facebook Game Page</strong>
-              <small>Daily Giftcodes &amp; Art</small>
+              <small>Daily Updates &amp; Art</small>
             </div>
           </a>
 
@@ -757,7 +753,7 @@ function buildEmailOptInHtml(quizObj) {
   return `
     <form class="zv-optin" data-optin data-tag="${cat}" novalidate>
       <h3 class="zv-optin-title">Get your next story quiz by email</h3>
-      <p class="zv-optin-sub">New quizzes, cozy games and gift codes. No spam.</p>
+      <p class="zv-optin-sub">New quizzes, cozy games and stories. No spam.</p>
       <div class="zv-optin-row">
         <label class="zv-sr-only" for="zvOptinEmail">Email address</label>
         <input id="zvOptinEmail" name="email" type="email" required autocomplete="email" placeholder="you@email.com">

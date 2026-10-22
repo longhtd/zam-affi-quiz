@@ -95,41 +95,123 @@ function buildEcosystemFlywheelHtml(quizObj) {
   const eco = ARCHETYPE_ECOSYSTEM_MAP[cat] || ARCHETYPE_ECOSYSTEM_MAP.destiny;
   const fromParam = encodeURIComponent(targetSubId || "quiz");
   const gameUrl = `https://games.zamverse.com/${eco.gameSlug}/?from=${fromParam}&code=${eco.giftCode}`;
+  const allGamesUrl = `https://games.zamverse.com/?from=${fromParam}&code=${eco.giftCode}`;
   const darlingUrl = `https://darling.zamverse.com/?from=${fromParam}`;
   const gateUrl = `https://zamverse.com/?from=${fromParam}`;
+  const honorUrl = `https://games.zamverse.com/honor/?from=${fromParam}`;
 
   return `
-    <div class="eco-flywheel-box">
-      <div class="eco-flywheel-header">
-        <span class="eco-pill">🌐 Zamverse Universe Bonus for Your Archetype</span>
-        <h3 class="eco-title">Continue Your Story Across the Zamverse Ecosystem</h3>
+    <div class="zv-map-container">
+      <div class="zv-map-head">
+        <span class="zv-map-badge">🌐 Interactive Ecosystem Map</span>
+        <h3 class="zv-map-title">Zamverse Universe Navigation Map</h3>
+        <p class="zv-map-sub">Click any connected node in the diagram below to jump directly to our games, Manhwa channels, or VIP communities.</p>
       </div>
-      <div class="eco-grid">
-        <a href="${gameUrl}" target="_blank" rel="noopener" class="eco-card game">
-          <div class="eco-card-top">
-            <span class="eco-badge">🎮 Archetype Game Match</span>
-            <span class="eco-code">🎁 Giftcode: ${eco.giftCode} (+250 Coins)</span>
-          </div>
-          <h4>${eco.gameName}</h4>
-          <p>${eco.gameHook}</p>
-          <span class="eco-link">Play Free & Claim Reader Bonus →</span>
-        </a>
-        <a href="${darlingUrl}" target="_blank" rel="noopener" class="eco-card channel">
-          <div class="eco-card-top">
-            <span class="eco-badge">📺 Sister Manhwa Network</span>
-            <span class="eco-sub">13+ Official Channels</span>
-          </div>
-          <h4>Binge Full-Story Recaps Next</h4>
-          <p>Matched for you: <strong>${eco.channelLabel}</strong>. Subscribe across all sister channels in 1 tap.</p>
-          <span class="eco-link">Open darling.zamverse.com →</span>
-        </a>
-      </div>
-      <div class="eco-social-bar">
-        <a href="${gateUrl}" target="_blank" rel="noopener">🌐 zamverse.com Portal</a>
-        <a href="https://www.facebook.com/zamverse.official" target="_blank" rel="noopener">📘 Facebook Game & Giftcodes</a>
-        <a href="https://t.me/zamverse" target="_blank" rel="noopener">✈️ Telegram VIP Alerts</a>
-        <a href="https://zalo.me/g/zamverse" target="_blank" rel="noopener">💬 Zalo Community</a>
-        <a href="https://games.zamverse.com/honor/?from=${fromParam}" target="_blank" rel="noopener">🏆 Wall of Honor</a>
+
+      <!-- Visual Hub & Spoke Ecosystem Diagram -->
+      <div class="zv-diagram">
+        <!-- SVG Connecting Lines Behind Nodes (Desktop/Tablet) -->
+        <svg class="zv-diagram-svg" viewBox="0 0 900 420" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="zvLineGold" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.75"/>
+              <stop offset="50%" stop-color="#f5d061" stop-opacity="0.95"/>
+              <stop offset="100%" stop-color="#f472b6" stop-opacity="0.75"/>
+            </linearGradient>
+          </defs>
+          <!-- Center (450, 210) to Top-Left (175, 85) -->
+          <path d="M450,210 C340,210 280,85 175,85" class="zv-conn-line" stroke="url(#zvLineGold)"/>
+          <!-- Center (450, 210) to Top-Right (725, 85) -->
+          <path d="M450,210 C560,210 620,85 725,85" class="zv-conn-line" stroke="url(#zvLineGold)"/>
+          <!-- Center (450, 210) to Mid-Left (155, 215) -->
+          <path d="M450,210 L155,215" class="zv-conn-line" stroke="url(#zvLineGold)"/>
+          <!-- Center (450, 210) to Mid-Right (745, 215) -->
+          <path d="M450,210 L745,215" class="zv-conn-line" stroke="url(#zvLineGold)"/>
+          <!-- Center (450, 210) to Bottom-Left (210, 345) -->
+          <path d="M450,210 C350,210 300,345 210,345" class="zv-conn-line" stroke="url(#zvLineGold)"/>
+          <!-- Center (450, 210) to Bottom-Center (450, 355) -->
+          <path d="M450,210 L450,355" class="zv-conn-line" stroke="url(#zvLineGold)"/>
+          <!-- Center (450, 210) to Bottom-Right (690, 345) -->
+          <path d="M450,210 C550,210 600,345 690,345" class="zv-conn-line" stroke="url(#zvLineGold)"/>
+        </svg>
+
+        <!-- Row 1: Primary Pillar Nodes (Games & Sister Channels) -->
+        <div class="zv-diagram-row top">
+          <a href="${gameUrl}" target="_blank" rel="noopener" class="zv-node node-cyan">
+            <div class="zv-node-icon">🎮</div>
+            <div class="zv-node-body">
+              <span class="zv-node-tag">Cozy Games • Giftcode: ${eco.giftCode}</span>
+              <strong>${eco.gameName}</strong>
+              <small>games.zamverse.com • +250 Bonus Coins</small>
+            </div>
+          </a>
+
+          <a href="${darlingUrl}" target="_blank" rel="noopener" class="zv-node node-rose">
+            <div class="zv-node-icon">📺</div>
+            <div class="zv-node-body">
+              <span class="zv-node-tag">13+ YouTube Channels</span>
+              <strong>Sister Manhwa Network</strong>
+              <small>darling.zamverse.com • Full Story Recaps</small>
+            </div>
+          </a>
+        </div>
+
+        <!-- Row 2: Left Satellite + Central Core Hub + Right Satellite -->
+        <div class="zv-diagram-row middle">
+          <a href="${allGamesUrl}" target="_blank" rel="noopener" class="zv-node node-emerald compact">
+            <div class="zv-node-icon">🕹️</div>
+            <div class="zv-node-body">
+              <span class="zv-node-tag">7 Mobile Games</span>
+              <strong>All Cozy Games Studio</strong>
+              <small>Word Lodge • Snug Cats • Glimmer Grove</small>
+            </div>
+          </a>
+
+          <a href="${gateUrl}" target="_blank" rel="noopener" class="zv-core-hub" title="Open Zamverse Central Universe Gate">
+            <div class="zv-core-ring"></div>
+            <div class="zv-core-inner">
+              <span class="zv-core-crown">✨ CENTRAL HUB</span>
+              <strong>zamverse.com</strong>
+              <small>Universe Portal</small>
+            </div>
+          </a>
+
+          <a href="${honorUrl}" target="_blank" rel="noopener" class="zv-node node-gold compact">
+            <div class="zv-node-icon">🏆</div>
+            <div class="zv-node-body">
+              <span class="zv-node-tag">Hall of Fame</span>
+              <strong>Player Wall of Honor</strong>
+              <small>games.zamverse.com/honor</small>
+            </div>
+          </a>
+        </div>
+
+        <!-- Row 3: Community & Social Nodes (Facebook, Telegram, Zalo) -->
+        <div class="zv-diagram-row bottom">
+          <a href="https://www.facebook.com/zamverse.official" target="_blank" rel="noopener" class="zv-node node-blue mini">
+            <div class="zv-node-icon">📘</div>
+            <div class="zv-node-body">
+              <strong>Facebook Game Page</strong>
+              <small>Daily Giftcodes &amp; Art</small>
+            </div>
+          </a>
+
+          <a href="https://t.me/zamverse" target="_blank" rel="noopener" class="zv-node node-sky mini">
+            <div class="zv-node-icon">✈️</div>
+            <div class="zv-node-body">
+              <strong>Telegram VIP Channel</strong>
+              <small>Episode Alerts &amp; Spoilers</small>
+            </div>
+          </a>
+
+          <a href="https://zalo.me/g/zamverse" target="_blank" rel="noopener" class="zv-node node-teal mini">
+            <div class="zv-node-icon">💬</div>
+            <div class="zv-node-body">
+              <strong>Zalo VIP Community</strong>
+              <small>Giao Lưu &amp; Sự Kiện</small>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
   `;
@@ -317,29 +399,50 @@ function renderPortalBody() {
   cardBody.innerHTML = `
     <div class="portal-view">
 
-      <!-- Category Filter Tabs -->
-      <div class="portal-tabs-container">
-        <div class="portal-tabs">
-          <button class="portal-tab-pill ${currentPortalCategory === 'all' ? 'active' : ''}" onclick="setPortalCategory('all')">
-            <span>✨ All Audits</span>
-            <span class="tab-count">${counts.all}</span>
-          </button>
-          <button class="portal-tab-pill ${currentPortalCategory === 'romance' ? 'active' : ''}" onclick="setPortalCategory('romance')">
-            <span>💖 Romance & Soulmates</span>
-            <span class="tab-count">${counts.romance}</span>
-          </button>
-          <button class="portal-tab-pill ${currentPortalCategory === 'destiny' ? 'active' : ''}" onclick="setPortalCategory('destiny')">
-            <span>🔮 Destiny & Tarot</span>
-            <span class="tab-count">${counts.destiny}</span>
-          </button>
-          <button class="portal-tab-pill ${currentPortalCategory === 'glowup' ? 'active' : ''}" onclick="setPortalCategory('glowup')">
-            <span>👑 Cinderella Glow-Up</span>
-            <span class="tab-count">${counts.glowup}</span>
-          </button>
-          <button class="portal-tab-pill ${currentPortalCategory === 'wealth' ? 'active' : ''}" onclick="setPortalCategory('wealth')">
-            <span>⚡ System & Mindset</span>
-            <span class="tab-count">${counts.wealth}</span>
-          </button>
+      <!-- Interactive Story Realm Map (Sơ đồ 4 Nhánh Trắc Nghiệm thay cho hàng button phẳng) -->
+      <div class="realm-map-wrapper">
+        <svg class="realm-map-svg" viewBox="0 0 800 130" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M400,26 C240,26 140,68 95,98" class="realm-line"/>
+          <path d="M400,26 C330,26 305,68 295,98" class="realm-line"/>
+          <path d="M400,26 C470,26 495,68 505,98" class="realm-line"/>
+          <path d="M400,26 C560,26 660,68 705,98" class="realm-line"/>
+        </svg>
+        <div class="realm-root-row">
+          <div class="realm-root-node ${currentPortalCategory === 'all' ? 'active' : ''}" onclick="setPortalCategory('all')">
+            <span class="realm-root-dot"></span>
+            <strong>✨ All Story Realms (${counts.all} Quizzes)</strong>
+            <span class="realm-root-hint">Tap any branch node below to filter</span>
+          </div>
+        </div>
+        <div class="realm-branches-row">
+          <div class="realm-branch-node rose ${currentPortalCategory === 'romance' ? 'active' : ''}" onclick="setPortalCategory('romance')">
+            <span class="r-icon">💖</span>
+            <div class="r-text">
+              <strong>Romance &amp; Soulmates</strong>
+              <small>${counts.romance} Story Quizzes</small>
+            </div>
+          </div>
+          <div class="realm-branch-node purple ${currentPortalCategory === 'destiny' ? 'active' : ''}" onclick="setPortalCategory('destiny')">
+            <span class="r-icon">🔮</span>
+            <div class="r-text">
+              <strong>Destiny &amp; Star Chart</strong>
+              <small>${counts.destiny} Story Quizzes</small>
+            </div>
+          </div>
+          <div class="realm-branch-node emerald ${currentPortalCategory === 'glowup' ? 'active' : ''}" onclick="setPortalCategory('glowup')">
+            <span class="r-icon">👑</span>
+            <div class="r-text">
+              <strong>Royal Glow-Up</strong>
+              <small>${counts.glowup} Story Quizzes</small>
+            </div>
+          </div>
+          <div class="realm-branch-node gold ${currentPortalCategory === 'wealth' ? 'active' : ''}" onclick="setPortalCategory('wealth')">
+            <span class="r-icon">⚡</span>
+            <div class="r-text">
+              <strong>Genius &amp; Abundance</strong>
+              <small>${counts.wealth} Story Quizzes</small>
+            </div>
+          </div>
         </div>
       </div>
 

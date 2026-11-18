@@ -304,14 +304,29 @@ function quizKeywords(quiz) {
     : [];
 }
 
-// 0 = no match. 100 = exact video keyword. Higher score is listed first.
+// What the visitor typed, reduced to the bare keyword:
+// "tea.", "#TEA", " tea " or "“tea”" all become "tea" (people copy what they see).
+function keywordFromTerm(term) {
+  return normalizeSearchTerm(term).replace(/^[^a-z0-9]+|[^a-z0-9]+$/g, "");
+}
+
+// keywords[0] is the PRIMARY keyword (the word shown at the end of the video);
+// the rest are older aliases. Scores, higher is listed first, 0 = no match:
+// 100 exact primary, 95 exact alias, 90 primary prefix, 85 alias prefix,
+// then plain text. Keywords are compared as whole words or prefixes only, so
+// "ex" never matches "next" and "tea" never matches "team" through a keyword.
 function scoreQuizForSearch(quiz, term) {
   if (!quiz || !term) return 0;
-  // "duke!", "#DUKE" or "“duke”" still count as the keyword
-  const keywordTerm = term.replace(/^[^a-z0-9]+|[^a-z0-9]+$/g, "");
+  const keywordTerm = keywordFromTerm(term);
   const keywords = quizKeywords(quiz);
-  if (keywordTerm && keywords.includes(keywordTerm)) return 100;
-  if (keywordTerm && keywords.some((k) => k.startsWith(keywordTerm))) return 90;
+  if (keywordTerm && keywords.length > 0) {
+    const primary = keywords[0];
+    const aliases = keywords.slice(1);
+    if (primary === keywordTerm) return 100;
+    if (aliases.includes(keywordTerm)) return 95;
+    if (primary.startsWith(keywordTerm)) return 90;
+    if (aliases.some((k) => k.startsWith(keywordTerm))) return 85;
+  }
 
   const has = (field) => typeof field === "string" && field.toLowerCase().includes(term);
   if (has(quiz.title)) return 60;
@@ -324,7 +339,8 @@ function scoreQuizForSearch(quiz, term) {
 
 // Returns { term, exact, results }.
 // - no term: the category tab decides, original order
-// - exact keyword: only the matching quiz, whatever tab is active
+// - exact keyword: only the matching quiz, whatever tab is active and whatever
+//   other quizzes contain those letters; a primary keyword beats an alias
 // - otherwise: every quiz that matches, best match first
 function searchQuizzes(quizzes, rawTerm, category) {
   const list = Array.isArray(quizzes) ? quizzes : [];
@@ -338,8 +354,9 @@ function searchQuizzes(quizzes, rawTerm, category) {
     .map((quiz, index) => ({ quiz, index, score: scoreQuizForSearch(quiz, term) }))
     .filter((item) => item.score > 0);
 
-  const exactMatches = scored.filter((item) => item.score === 100);
-  if (exactMatches.length > 0) {
+  const topScore = scored.reduce((max, item) => Math.max(max, item.score), 0);
+  if (topScore >= 95) {
+    const exactMatches = scored.filter((item) => item.score === topScore);
     return { term, exact: true, results: exactMatches.map((item) => item.quiz) };
   }
 
@@ -483,7 +500,9 @@ function updatePortalResults() {
 
       // Exact video keyword: one highlighted card with an obvious Start button
       if (found.exact) {
-        const keywordLabel = (q.keywords && q.keywords[0]) ? q.keywords[0] : currentPortalSearch.trim();
+        // Show the word the visitor typed (primary or alias), not always the primary
+        const typedKeyword = keywordFromTerm(currentPortalSearch);
+        const keywordLabel = quizKeywords(q).includes(typedKeyword) ? typedKeyword : (quizKeywords(q)[0] || typedKeyword);
         return `
         <div class="portal-card keyword-match" data-slug="${q.slug}" onclick="selectQuizFromPortal('${q.slug}')">
           <div class="portal-card-top">
@@ -572,7 +591,7 @@ function buildPortalShellHtml() {
           <input type="text"
                  id="portalSearchInput"
                  class="portal-search-input"
-                 placeholder="Keyword or topic (e.g. DUKE, Tarot)"
+                 placeholder="Keyword or topic (e.g. COFFEE)"
                  inputmode="search"
                  enterkeyhint="go"
                  autocomplete="off"

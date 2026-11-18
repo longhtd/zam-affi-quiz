@@ -5,7 +5,7 @@
     "soulmate": {
       "id": "soulmate",
       "slug": "soulmate",
-      "keywords": ["DUKE"],
+      "keywords": ["SKETCH", "DUKE"],
       "vendor": "tinapsc",
       "badge": "✨ Royal Destiny & Soul Connection",
       "title": "Who is Your Real-Life Duke of the North?",
@@ -281,7 +281,7 @@
     "glowup": {
       "id": "glowup",
       "slug": "glowup",
-      "keywords": ["GLOW"],
+      "keywords": ["COFFEE", "GLOW"],
       "vendor": "javaburn",
       "badge": "💎 Cinderella Metabolic Glow-Up Audit",
       "title": "What Is Your True Biological Metabolic Score?",
@@ -415,7 +415,7 @@
     "brainwave": {
       "id": "brainwave",
       "slug": "brainwave",
-      "keywords": ["SYSTEM"],
+      "keywords": ["WAVE", "SYSTEM"],
       "vendor": "attractbr",
       "badge": "⚡ System Awakening & Theta Frequency Test",
       "title": "Is Your Real-Life 'System' Unlocked?",
@@ -549,7 +549,7 @@
     "devotion": {
       "id": "devotion",
       "slug": "devotion",
-      "keywords": ["SIREN"],
+      "keywords": ["TEXT", "SIREN"],
       "vendor": "amynorth",
       "badge": "💌 Romantic Siren & Text Chemistry",
       "title": "What Is Your Romantic Fascination Archetype?",
@@ -666,7 +666,7 @@
     "numerology": {
       "id": "numerology",
       "slug": "numerology",
-      "keywords": ["DESTINY"],
+      "keywords": ["NUMBER", "DESTINY"],
       "vendor": "numerology",
       "badge": "🔢 Sacred Destiny & Life Path Code",
       "title": "What Does Your Birth Date Reveal About Your Destiny?",
@@ -783,7 +783,7 @@
     "tea-burn": {
       "id": "tea-burn",
       "slug": "tea-burn",
-      "keywords": ["RITUAL"],
+      "keywords": ["TEA", "RITUAL"],
       "vendor": "teaburn",
       "badge": "🍵 Royal Herbal Radiance Ritual",
       "title": "What Is Your Cellular Detox & Glow Score?",
@@ -896,7 +896,7 @@
     "belly-juice": {
       "id": "belly-juice",
       "slug": "belly-juice",
-      "keywords": ["MAIDEN"],
+      "keywords": ["JUICE", "MAIDEN"],
       "vendor": "lbjuice",
       "category": "glowup",
       "category_name": "👑 Cinderella Glow-Up",
@@ -1144,7 +1144,7 @@
     "ex-factor": {
       "id": "ex-factor",
       "slug": "ex-factor",
-      "keywords": ["QUEEN"],
+      "keywords": ["EX", "QUEEN"],
       "vendor": "brbrowning",
       "category": "romance",
       "category_name": "💖 Romance & Psychology",

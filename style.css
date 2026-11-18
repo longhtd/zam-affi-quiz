@@ -685,10 +685,114 @@ body {
   color: var(--accent-gold);
 }
 
-/* Search Bar */
+/* Search Bar (first block of the portal: bio-link visitors type a video keyword) */
+.portal-search-block {
+  margin-bottom: 22px;
+}
+
+.portal-search-label {
+  display: block;
+  margin-bottom: 8px;
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--accent-gold-light);
+}
+
 .portal-search-wrapper {
   position: relative;
-  margin-bottom: 22px;
+}
+
+.portal-search-block .portal-search-input {
+  min-height: 52px;
+  border-color: rgba(245, 208, 97, 0.5);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* While a search is active the results sit directly under the box */
+.portal-view.is-searching .realm-map-wrapper {
+  display: none;
+}
+
+/* Exact video-keyword match: one highlighted card with a Start button */
+.portal-card.keyword-match {
+  grid-column: 1 / -1;
+  border-color: var(--accent-gold);
+  background: linear-gradient(135deg, rgba(30, 20, 55, 0.95) 0%, rgba(18, 12, 34, 0.98) 100%);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 24px rgba(245, 208, 97, 0.2);
+}
+
+.portal-card.keyword-match::before {
+  background: linear-gradient(90deg, var(--accent-purple) 0%, var(--accent-gold) 100%);
+}
+
+.portal-card.keyword-match .portal-card-top {
+  flex-wrap: wrap;
+  gap: 6px 10px;
+}
+
+.portal-card.keyword-match .portal-card-badge {
+  white-space: nowrap;
+}
+
+.portal-card.keyword-match .portal-card-footer {
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.portal-start-btn {
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #f5d061 0%, #e6a817 100%);
+  color: #07050e;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(245, 208, 97, 0.4);
+  transition: var(--transition-smooth);
+}
+
+.portal-card.keyword-match:hover .portal-start-btn {
+  transform: scale(1.04);
+  box-shadow: 0 8px 30px rgba(245, 208, 97, 0.6);
+}
+
+.portal-search-more {
+  text-align: center;
+  margin-top: 18px;
+}
+
+.portal-link-btn {
+  background: none;
+  border: none;
+  padding: 6px 4px;
+  color: var(--accent-gold);
+  font-family: var(--font-body);
+  font-size: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.portal-link-btn:hover {
+  color: var(--accent-gold-light);
+}
+
+.portal-search-more .portal-link-btn {
+  font-size: 14.5px;
+}
+
+@media (max-width: 540px) {
+  .portal-start-btn { width: 100%; }
 }
 
 .portal-search-input {
@@ -722,7 +826,7 @@ body {
 
 .search-clear-btn {
   position: absolute;
-  right: 14px;
+  right: 6px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
@@ -731,7 +835,7 @@ body {
   cursor: pointer;
   font-size: 14px;
   display: none;
-  padding: 4px;
+  padding: 10px;
 }
 
 .search-clear-btn:hover {
@@ -1206,7 +1310,7 @@ body {
   font-weight: 600;
 }
 .portal-search-input {
-  font-size: 15px;
+  font-size: 16px; /* 16px minimum: iOS Safari zooms the page on focus below that */
 }
 .hero-crown-badge {
   font-size: 12.5px;

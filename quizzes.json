@@ -5,6 +5,7 @@
     "soulmate": {
       "id": "soulmate",
       "slug": "soulmate",
+      "keywords": ["DUKE"],
       "vendor": "tinapsc",
       "badge": "✨ Royal Destiny & Soul Connection",
       "title": "Who is Your Real-Life Duke of the North?",
@@ -142,6 +143,7 @@
     "love-secret": {
       "id": "love-secret",
       "slug": "love-secret",
+      "keywords": ["HERO"],
       "vendor": "hissecret",
       "badge": "👑 Male Psychology & Hero Instinct Audit",
       "title": "Why Do Men Pull Away? Decode His Primal Trigger",
@@ -279,6 +281,7 @@
     "glowup": {
       "id": "glowup",
       "slug": "glowup",
+      "keywords": ["GLOW"],
       "vendor": "javaburn",
       "badge": "💎 Cinderella Metabolic Glow-Up Audit",
       "title": "What Is Your True Biological Metabolic Score?",
@@ -412,6 +415,7 @@
     "brainwave": {
       "id": "brainwave",
       "slug": "brainwave",
+      "keywords": ["SYSTEM"],
       "vendor": "attractbr",
       "badge": "⚡ System Awakening & Theta Frequency Test",
       "title": "Is Your Real-Life 'System' Unlocked?",
@@ -545,6 +549,7 @@
     "devotion": {
       "id": "devotion",
       "slug": "devotion",
+      "keywords": ["SIREN"],
       "vendor": "amynorth",
       "badge": "💌 Romantic Siren & Text Chemistry",
       "title": "What Is Your Romantic Fascination Archetype?",
@@ -661,6 +666,7 @@
     "numerology": {
       "id": "numerology",
       "slug": "numerology",
+      "keywords": ["DESTINY"],
       "vendor": "numerology",
       "badge": "🔢 Sacred Destiny & Life Path Code",
       "title": "What Does Your Birth Date Reveal About Your Destiny?",
@@ -777,6 +783,7 @@
     "tea-burn": {
       "id": "tea-burn",
       "slug": "tea-burn",
+      "keywords": ["RITUAL"],
       "vendor": "teaburn",
       "badge": "🍵 Royal Herbal Radiance Ritual",
       "title": "What Is Your Cellular Detox & Glow Score?",
@@ -889,6 +896,7 @@
     "belly-juice": {
       "id": "belly-juice",
       "slug": "belly-juice",
+      "keywords": ["MAIDEN"],
       "vendor": "lbjuice",
       "category": "glowup",
       "category_name": "👑 Cinderella Glow-Up",
@@ -968,6 +976,7 @@
     "astrology": {
       "id": "astrology",
       "slug": "astrology",
+      "keywords": ["STAR"],
       "vendor": "astroread",
       "category": "destiny",
       "category_name": "🔮 Destiny & Tarot",
@@ -1055,6 +1064,7 @@
     "wealth-dna": {
       "id": "wealth-dna",
       "slug": "wealth-dna",
+      "keywords": ["WEALTH"],
       "vendor": "wealthdna",
       "category": "wealth",
       "category_name": "⚡ System & Mindset",
@@ -1134,6 +1144,7 @@
     "ex-factor": {
       "id": "ex-factor",
       "slug": "ex-factor",
+      "keywords": ["QUEEN"],
       "vendor": "brbrowning",
       "category": "romance",
       "category_name": "💖 Romance & Psychology",

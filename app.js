@@ -230,9 +230,20 @@ async function loadQuizCatalog() {
 function routeAndRender() {
   const path = window.location.pathname.replace(/^\/|\/$/g, "").toLowerCase();
   const urlParams = new URLSearchParams(window.location.search);
-  const queryQuiz = urlParams.get("q") || urlParams.get("quiz");
+  let queryQuiz = urlParams.get("q") || urlParams.get("quiz");
 
-  let slug = queryQuiz || path;
+  // /?q=<keyword> on the portal root prefills the search box (videos end on a
+  // keyword and send viewers to the bio link). A real quiz slug or an old alias
+  // in ?q= still opens that quiz directly, as before.
+  const isPortalPath = !path || path === "index.html" || path === "portal";
+  const portalQuery = isPortalPath ? resolvePortalQuery(urlParams.get("q")) : null;
+  if (portalQuery !== null) {
+    currentPortalSearch = portalQuery;
+    currentPortalCategory = "all";
+    queryQuiz = urlParams.get("quiz");
+  }
+
+  let slug = (queryQuiz || path).toLowerCase();
 
   // Handle aliases
   if (slug === "love" || slug === "secret" || slug === "hero") slug = "love-secret";
@@ -275,6 +286,106 @@ let currentPortalCategory = "all";
 let currentPortalSearch = "";
 
 // ==========================================================================
+// PORTAL SEARCH (pure helpers: video keyword first, then text fields)
+// ==========================================================================
+function escapeHtml(value) {
+  return String(value == null ? "" : value).replace(/[&<>"']/g, (ch) => (
+    { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]
+  ));
+}
+
+function normalizeSearchTerm(value) {
+  return String(value == null ? "" : value).trim().toLowerCase();
+}
+
+function quizKeywords(quiz) {
+  return quiz && Array.isArray(quiz.keywords)
+    ? quiz.keywords.map(normalizeSearchTerm).filter(Boolean)
+    : [];
+}
+
+// What the visitor typed, reduced to the bare keyword:
+// "tea.", "#TEA", " tea " or "“tea”" all become "tea" (people copy what they see).
+function keywordFromTerm(term) {
+  return normalizeSearchTerm(term).replace(/^[^a-z0-9]+|[^a-z0-9]+$/g, "");
+}
+
+// keywords[0] is the PRIMARY keyword (the word shown at the end of the video);
+// the rest are older aliases. Scores, higher is listed first, 0 = no match:
+// 100 exact primary, 95 exact alias, 90 primary prefix, 85 alias prefix,
+// then plain text. Keywords are compared as whole words or prefixes only, so
+// "ex" never matches "next" and "tea" never matches "team" through a keyword.
+function scoreQuizForSearch(quiz, term) {
+  if (!quiz || !term) return 0;
+  const keywordTerm = keywordFromTerm(term);
+  const keywords = quizKeywords(quiz);
+  if (keywordTerm && keywords.length > 0) {
+    const primary = keywords[0];
+    const aliases = keywords.slice(1);
+    if (primary === keywordTerm) return 100;
+    if (aliases.includes(keywordTerm)) return 95;
+    if (primary.startsWith(keywordTerm)) return 90;
+    if (aliases.some((k) => k.startsWith(keywordTerm))) return 85;
+  }
+
+  const has = (field) => typeof field === "string" && field.toLowerCase().includes(term);
+  if (has(quiz.title)) return 60;
+  if (has(quiz.badge)) return 50;
+  if (has(quiz.category) || has(quiz.category_name)) return 40;
+  if (has(quiz.subtitle)) return 30;
+  if (has(quiz.slug)) return 20;
+  return 0;
+}
+
+// Returns { term, exact, results }.
+// - no term: the category tab decides, original order
+// - exact keyword: only the matching quiz, whatever tab is active and whatever
+//   other quizzes contain those letters; a primary keyword beats an alias
+// - otherwise: every quiz that matches, best match first
+function searchQuizzes(quizzes, rawTerm, category) {
+  const list = Array.isArray(quizzes) ? quizzes : [];
+  const term = normalizeSearchTerm(rawTerm);
+  if (!term) {
+    const cat = category || "all";
+    return { term, exact: false, results: list.filter((q) => cat === "all" || q.category === cat) };
+  }
+
+  const scored = list
+    .map((quiz, index) => ({ quiz, index, score: scoreQuizForSearch(quiz, term) }))
+    .filter((item) => item.score > 0);
+
+  const topScore = scored.reduce((max, item) => Math.max(max, item.score), 0);
+  if (topScore >= 95) {
+    const exactMatches = scored.filter((item) => item.score === topScore);
+    return { term, exact: true, results: exactMatches.map((item) => item.quiz) };
+  }
+
+  scored.sort((a, b) => b.score - a.score || a.index - b.index);
+  return { term, exact: false, results: scored.map((item) => item.quiz) };
+}
+
+// Old ?q= values that must keep opening a quiz (aliases and the random route)
+const LEGACY_Q_ROUTES = [
+  "love", "secret", "hero", "diet", "health", "cinderella", "theta", "wealth", "system",
+  "random", "any", "lucky", "portal", "index.html"
+];
+
+// Decides what ?q= means on the portal root.
+// Returns the text to put in the search box, or null when ?q= is a quiz route.
+function resolvePortalQuery(rawQ) {
+  if (rawQ === null || rawQ === undefined) return null;
+  const raw = String(rawQ).trim().slice(0, 60);
+  const term = raw.toLowerCase();
+  if (!term) return null;
+
+  const quizzes = QUIZ_DATA && QUIZ_DATA.quizzes ? QUIZ_DATA.quizzes : {};
+  if (Object.prototype.hasOwnProperty.call(quizzes, term)) return null;
+  if (searchQuizzes(Object.values(quizzes), term, "all").exact) return raw;
+  if (LEGACY_Q_ROUTES.includes(term)) return null;
+  return raw;
+}
+
+// ==========================================================================
 // PORTAL HUB (FOR ROOT HOMEPAGE VISITORS)
 // ==========================================================================
 function renderPortalHub() {
@@ -300,28 +411,45 @@ function renderPortalHub() {
   renderPortalBody();
 }
 
+// Builds the portal shell (search box, realm map, ecosystem map) ONCE, then only
+// refreshes the results. The search <input> is never re-created while typing:
+// replacing it on every keystroke is what dropped focus and made the page flash.
 function renderPortalBody() {
   const cardBody = document.getElementById("quizCardBody");
-  const allQuizzes = QUIZ_DATA ? Object.values(QUIZ_DATA.quizzes) : [];
+  if (!cardBody) return;
 
-  // Filter categories count
-  const counts = {
-    all: allQuizzes.length,
-    romance: allQuizzes.filter(q => q.category === "romance").length,
-    destiny: allQuizzes.filter(q => q.category === "destiny").length,
-    glowup: allQuizzes.filter(q => q.category === "glowup").length,
-    wealth: allQuizzes.filter(q => q.category === "wealth").length
-  };
+  let input = document.getElementById("portalSearchInput");
+  if (!input) {
+    cardBody.innerHTML = buildPortalShellHtml();
+    input = document.getElementById("portalSearchInput");
+  }
+  // Set through the property (not the HTML) so ?q= text can never break the markup
+  if (input && input.value !== currentPortalSearch) {
+    input.value = currentPortalSearch;
+  }
 
-  // Filter quizzes based on active tab and search
-  const term = currentPortalSearch.toLowerCase().trim();
-  const filteredQuizzes = allQuizzes.filter(q => {
-    const matchCat = currentPortalCategory === "all" || q.category === currentPortalCategory;
-    const matchSearch = !term || 
-      q.title.toLowerCase().includes(term) || 
-      q.subtitle.toLowerCase().includes(term) || 
-      (q.badge && q.badge.toLowerCase().includes(term));
-    return matchCat && matchSearch;
+  updatePortalResults();
+}
+
+// Re-renders ONLY the results area (#portalResults) and the small state flags.
+function updatePortalResults() {
+  const resultsEl = document.getElementById("portalResults");
+  if (!resultsEl) return;
+
+  const allQuizzes = QUIZ_DATA && QUIZ_DATA.quizzes ? Object.values(QUIZ_DATA.quizzes) : [];
+  const found = searchQuizzes(allQuizzes, currentPortalSearch, currentPortalCategory);
+  const term = found.term;
+  const filteredQuizzes = found.results;
+
+  // While searching, the realm map is hidden so results sit right under the box
+  const view = document.getElementById("portalView");
+  if (view) view.classList.toggle("is-searching", !!term);
+
+  const clearBtn = document.getElementById("searchClearBtn");
+  if (clearBtn) clearBtn.style.display = currentPortalSearch ? "block" : "none";
+
+  document.querySelectorAll("[data-realm]").forEach((node) => {
+    node.classList.toggle("active", node.getAttribute("data-realm") === currentPortalCategory);
   });
 
   // Featured Hero Quiz (Soulmate Sketch)
@@ -357,8 +485,10 @@ function renderPortalBody() {
     cardsHtml = `
       <div class="portal-empty">
         <div class="portal-empty-icon">🔍</div>
-        <h3>No assessments found</h3>
-        <p>Try searching with another keyword or select "All Audits" above.</p>
+        <h3>${term ? `No quiz matches “${escapeHtml(currentPortalSearch.trim())}” yet` : "No quizzes here yet"}</h3>
+        <p>Double-check the keyword from the video, or
+          <button type="button" class="portal-link-btn" onclick="clearPortalSearch()">browse all ${allQuizzes.length} quizzes</button>.
+        </p>
       </div>
     `;
   } else {
@@ -368,8 +498,36 @@ function renderPortalBody() {
       const participantsStr = q.participants || "18k+ readers";
       const categoryLabel = q.category_name || q.badge || "Story Quiz";
 
+      // Exact video keyword: one highlighted card with an obvious Start button
+      if (found.exact) {
+        // Show the word the visitor typed (primary or alias), not always the primary
+        const typedKeyword = keywordFromTerm(currentPortalSearch);
+        const keywordLabel = quizKeywords(q).includes(typedKeyword) ? typedKeyword : (quizKeywords(q)[0] || typedKeyword);
+        return `
+        <div class="portal-card keyword-match" data-slug="${q.slug}" onclick="selectQuizFromPortal('${q.slug}')">
+          <div class="portal-card-top">
+            <span class="portal-card-badge">🔑 Keyword match • ${escapeHtml(String(keywordLabel).toUpperCase())}</span>
+            <span class="portal-card-time">⏱️ ${timeStr}</span>
+          </div>
+
+          <div class="portal-card-main">
+            <h2 class="portal-card-title">${q.title}</h2>
+            <p class="portal-card-sub">${q.subtitle}</p>
+          </div>
+
+          <div class="portal-card-footer">
+            <span class="portal-card-rating">⭐️ ${ratingStr} • ${participantsStr}</span>
+            <button type="button" class="portal-start-btn">
+              <span>✨ Start</span>
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+      `;
+      }
+
       return `
-        <div class="portal-card" onclick="selectQuizFromPortal('${q.slug}')">
+        <div class="portal-card" data-slug="${q.slug}" onclick="selectQuizFromPortal('${q.slug}')">
           <div class="portal-card-top">
             <span class="portal-card-badge">${q.icon || "✨"} ${categoryLabel}</span>
             <span class="portal-card-time">⏱️ ${timeStr}</span>
@@ -392,8 +550,60 @@ function renderPortalBody() {
     }).join("");
   }
 
-  cardBody.innerHTML = `
-    <div class="portal-view">
+  const moreHtml = (term && filteredQuizzes.length > 0) ? `
+    <div class="portal-search-more">
+      <button type="button" class="portal-link-btn" onclick="clearPortalSearch()">← Browse all ${allQuizzes.length} quizzes</button>
+    </div>
+  ` : "";
+
+  resultsEl.innerHTML = `
+    <!-- Spotlight Hero Card -->
+    ${heroHtml}
+
+    <!-- Filtered Quiz Cards Grid -->
+    <div class="portal-grid">
+      ${cardsHtml}
+    </div>
+    ${moreHtml}
+  `;
+}
+
+function buildPortalShellHtml() {
+  const allQuizzes = QUIZ_DATA && QUIZ_DATA.quizzes ? Object.values(QUIZ_DATA.quizzes) : [];
+
+  // Filter categories count
+  const counts = {
+    all: allQuizzes.length,
+    romance: allQuizzes.filter(q => q.category === "romance").length,
+    destiny: allQuizzes.filter(q => q.category === "destiny").length,
+    glowup: allQuizzes.filter(q => q.category === "glowup").length,
+    wealth: allQuizzes.filter(q => q.category === "wealth").length
+  };
+
+  return `
+    <div class="portal-view" id="portalView">
+
+      <!-- Keyword / Real-time Search (first thing on a phone screen) -->
+      <form class="portal-search-block" role="search" onsubmit="return submitPortalSearch(event)">
+        <label class="portal-search-label" for="portalSearchInput">🔑 Have a video keyword? Type it here</label>
+        <div class="portal-search-wrapper">
+          <span class="search-icon-left">🔍</span>
+          <input type="text"
+                 id="portalSearchInput"
+                 class="portal-search-input"
+                 placeholder="Keyword or topic (e.g. COFFEE)"
+                 inputmode="search"
+                 enterkeyhint="go"
+                 autocomplete="off"
+                 autocorrect="off"
+                 autocapitalize="off"
+                 spellcheck="false"
+                 maxlength="60"
+                 aria-label="Search quizzes by keyword"
+                 oninput="onPortalSearch(this.value)">
+          <button type="button" class="search-clear-btn" id="searchClearBtn" aria-label="Clear search" onclick="clearPortalSearch(true)">✕</button>
+        </div>
+      </form>
 
       <!-- Interactive Story Realm Map (Sơ đồ 4 Nhánh Trắc Nghiệm thay cho hàng button phẳng) -->
       <div class="realm-map-wrapper">
@@ -404,35 +614,35 @@ function renderPortalBody() {
           <path d="M400,26 C560,26 660,68 705,98" class="realm-line"/>
         </svg>
         <div class="realm-root-row">
-          <div class="realm-root-node ${currentPortalCategory === 'all' ? 'active' : ''}" onclick="setPortalCategory('all')">
+          <div class="realm-root-node ${currentPortalCategory === 'all' ? 'active' : ''}" data-realm="all" onclick="setPortalCategory('all')">
             <span class="realm-root-dot"></span>
             <strong>✨ All Story Realms (${counts.all} Quizzes)</strong>
             <span class="realm-root-hint">Tap any branch node below to filter</span>
           </div>
         </div>
         <div class="realm-branches-row">
-          <div class="realm-branch-node rose ${currentPortalCategory === 'romance' ? 'active' : ''}" onclick="setPortalCategory('romance')">
+          <div class="realm-branch-node rose ${currentPortalCategory === 'romance' ? 'active' : ''}" data-realm="romance" onclick="setPortalCategory('romance')">
             <span class="r-icon">💖</span>
             <div class="r-text">
               <strong>Romance &amp; Soulmates</strong>
               <small>${counts.romance} Story Quizzes</small>
             </div>
           </div>
-          <div class="realm-branch-node purple ${currentPortalCategory === 'destiny' ? 'active' : ''}" onclick="setPortalCategory('destiny')">
+          <div class="realm-branch-node purple ${currentPortalCategory === 'destiny' ? 'active' : ''}" data-realm="destiny" onclick="setPortalCategory('destiny')">
             <span class="r-icon">🔮</span>
             <div class="r-text">
               <strong>Destiny &amp; Star Chart</strong>
               <small>${counts.destiny} Story Quizzes</small>
             </div>
           </div>
-          <div class="realm-branch-node emerald ${currentPortalCategory === 'glowup' ? 'active' : ''}" onclick="setPortalCategory('glowup')">
+          <div class="realm-branch-node emerald ${currentPortalCategory === 'glowup' ? 'active' : ''}" data-realm="glowup" onclick="setPortalCategory('glowup')">
             <span class="r-icon">👑</span>
             <div class="r-text">
               <strong>Royal Glow-Up</strong>
               <small>${counts.glowup} Story Quizzes</small>
             </div>
           </div>
-          <div class="realm-branch-node gold ${currentPortalCategory === 'wealth' ? 'active' : ''}" onclick="setPortalCategory('wealth')">
+          <div class="realm-branch-node gold ${currentPortalCategory === 'wealth' ? 'active' : ''}" data-realm="wealth" onclick="setPortalCategory('wealth')">
             <span class="r-icon">⚡</span>
             <div class="r-text">
               <strong>Genius &amp; Abundance</strong>
@@ -442,48 +652,47 @@ function renderPortalBody() {
         </div>
       </div>
 
-      <!-- Real-time Search Input -->
-      <div class="portal-search-wrapper">
-        <span class="search-icon-left">🔍</span>
-        <input type="text" 
-               class="portal-search-input" 
-               placeholder="Search assessments (e.g. Duke, Soulmate, Coffee, Tarot, Belly Fat, Wealth...)"
-               value="${currentPortalSearch}"
-               oninput="onPortalSearch(this.value)">
-        <button class="search-clear-btn" id="searchClearBtn" onclick="clearPortalSearch()">✕</button>
-      </div>
-
-      <!-- Spotlight Hero Card -->
-      ${heroHtml}
-
-      <!-- Filtered Quiz Cards Grid -->
-      <div class="portal-grid">
-        ${cardsHtml}
-      </div>
+      <!-- Hero + quiz cards: the only part that changes while typing -->
+      <div id="portalResults"></div>
       ${buildEcosystemFlywheelHtml(null)}
 
     </div>
   `;
 }
 
-// Portal Filter Actions
+// Portal Filter Actions (none of them rebuilds the search input)
 window.setPortalCategory = function(cat) {
   currentPortalCategory = cat;
-  renderPortalBody();
+  updatePortalResults();
 };
 
 window.onPortalSearch = function(val) {
   currentPortalSearch = val;
-  const clearBtn = document.getElementById("searchClearBtn");
-  if (clearBtn) {
-    clearBtn.style.display = val ? "block" : "none";
-  }
-  renderPortalBody();
+  updatePortalResults();
 };
 
-window.clearPortalSearch = function() {
+// refocus = true for the ✕ button inside the box (keep typing);
+// the "browse all" links leave the keyboard closed.
+window.clearPortalSearch = function(refocus) {
   currentPortalSearch = "";
-  renderPortalBody();
+  currentPortalCategory = "all";
+  const input = document.getElementById("portalSearchInput");
+  if (input) {
+    input.value = "";
+    if (refocus === true) input.focus();
+  }
+  updatePortalResults();
+};
+
+// Enter / "Go" on the keyboard: open the quiz when exactly one result is left
+window.submitPortalSearch = function(event) {
+  if (event && event.preventDefault) event.preventDefault();
+  const allQuizzes = QUIZ_DATA && QUIZ_DATA.quizzes ? Object.values(QUIZ_DATA.quizzes) : [];
+  const found = searchQuizzes(allQuizzes, currentPortalSearch, currentPortalCategory);
+  if (found.term && found.results.length === 1) {
+    selectQuizFromPortal(found.results[0].slug);
+  }
+  return false;
 };
 
 // Select Quiz From Portal Hub (Always keeps tracking ID)
